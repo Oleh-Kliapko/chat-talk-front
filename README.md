@@ -25,8 +25,8 @@ reliable chatting experience.
 
 ## Front-end:
 
-- [github pages](https://)
-- [repository](https://)
+- [github pages](https://oleh-kliapko.github.io/chat-talk-front)
+- [repository](https://github.com/Oleh-Kliapko/chat-talk-front)
 
 ## Back-end:
 

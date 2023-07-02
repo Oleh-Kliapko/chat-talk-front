@@ -12,8 +12,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth/slice';
-import { channelsReducer } from './channels/slice';
-import { commentsReducer } from './comments/slice';
+// import { channelsReducer } from './channels/slice';
+// import { commentsReducer } from './comments/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -24,8 +24,8 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    channels: channelsReducer,
-    comments: commentsReducer,
+    // channels: channelsReducer,
+    // comments: commentsReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
