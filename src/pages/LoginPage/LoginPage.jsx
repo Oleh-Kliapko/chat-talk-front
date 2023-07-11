@@ -1,5 +1,14 @@
+import { Wrapper, Title } from './LoginPage.styled';
+import { Container } from '@/utils/Container';
+
 const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return (
+    <Container>
+      <Wrapper>
+        <Title>LoginPage</Title>
+      </Wrapper>
+    </Container>
+  );
 };
 
 export default LoginPage;
