@@ -8,6 +8,7 @@ import PublicRoute from './routes/PublicRoute';
 
 import { Loader } from './utils/Loader';
 
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const ChannelPage = lazy(() => import('./pages/ChannelPage/ChannelPage'));
@@ -21,6 +22,12 @@ export const App = () => {
       <Routes>
         <Route
           path="/"
+          element={
+            <PublicRoute component={<HomePage />} redirectTo="/channels" />
+          }
+        />
+        <Route
+          path="/login"
           element={
             <PublicRoute component={<LoginPage />} redirectTo="/channels" />
           }
