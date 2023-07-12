@@ -1,3 +1,4 @@
-import { Button } from './Button';
+import { BtnTemplate } from './BtnTemplate';
+import { LoginBtn } from './LoginBtn';
 
-export default { Button };
+export { BtnTemplate, LoginBtn };
