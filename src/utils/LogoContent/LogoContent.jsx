@@ -12,7 +12,7 @@ export const LogoContent = ({ widthLogo, heightLogo, title, slogan, from }) => {
     <LogoWrapper from={from}>
       <Logo width={widthLogo} height={heightLogo} />
       <Title from={from}>{title}</Title>
-      <Slogan>{slogan}</Slogan>
+      {slogan && <Slogan>{slogan}</Slogan>}
     </LogoWrapper>
   );
 };
