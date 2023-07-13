@@ -6,11 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 
-import { Loader } from './utils/Loader';
+import { Loader } from './utils';
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
-const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
+const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/GeneralPages/RegisterPage'));
+
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const ChannelPage = lazy(() => import('./pages/ChannelPage/ChannelPage'));
 const NotFoundPagePage = lazy(() =>

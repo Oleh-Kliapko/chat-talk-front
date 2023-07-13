@@ -2,7 +2,7 @@ import { BtnTemplate } from './BtnTemplate';
 import { themes } from '../../styles';
 import { useNavigate } from 'react-router-dom';
 
-export const LoginBtn = () => {
+export const HomeBtn = () => {
   const navigate = useNavigate();
 
   return (

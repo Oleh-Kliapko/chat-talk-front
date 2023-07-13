@@ -1,4 +1,4 @@
 import { BtnTemplate } from './BtnTemplate';
-import { LoginBtn } from './LoginBtn';
+import { HomeBtn } from './HomeBtn';
 
-export { BtnTemplate, LoginBtn };
+export { BtnTemplate, HomeBtn };

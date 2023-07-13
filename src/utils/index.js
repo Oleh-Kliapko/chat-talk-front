@@ -1,4 +1,5 @@
 import { Container } from './Container';
 import { Loader, LoaderMini } from './Loader';
+import { LogoContent } from './LogoContent';
 
-export default { Container, Loader, LoaderMini };
+export { Container, Loader, LoaderMini, LogoContent };
