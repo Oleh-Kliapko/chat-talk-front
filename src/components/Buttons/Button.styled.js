@@ -11,10 +11,12 @@ export const Button = styled.button`
   border-radius: ${props => props.borderRadius};
   margin-bottom: ${props => props.marginBottom};
   margin-top: ${props => props.marginTop};
+  transition: transform 0.5s ease;
 
   &:hover {
     background: ${props =>
       props.hoverGradient ? props.hoverGradient : props.hoverBackgroundColor};
     color: ${props => props.hoverColor};
+    transform: scale(1.05);
   }
 `;
