@@ -10,6 +10,7 @@ import { Loader } from './utils/Loader';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const ChannelPage = lazy(() => import('./pages/ChannelPage/ChannelPage'));
 const NotFoundPagePage = lazy(() =>
@@ -30,6 +31,12 @@ export const App = () => {
           path="/login"
           element={
             <PublicRoute component={<LoginPage />} redirectTo="/channels" />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute component={<RegisterPage />} redirectTo="/channels" />
           }
         />
         <Route
