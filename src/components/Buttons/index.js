@@ -1,4 +1,7 @@
 import { BtnTemplate } from './BtnTemplate';
-import { LoginBtn } from './LoginBtn';
+import { HomeBtn } from './HomeBtn';
+import { AuthBtn } from './AuthBtn';
+import { RedirectBtn } from './RedirectBtn';
+import { ForgotPasswordBtn } from './ForgotPasswordBtn';
 
-export { BtnTemplate, LoginBtn };
+export { BtnTemplate, HomeBtn, AuthBtn, RedirectBtn, ForgotPasswordBtn };
