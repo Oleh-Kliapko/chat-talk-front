@@ -22,6 +22,6 @@ export const Title = styled.h1`
 export const Slogan = styled.h4`
   color: ${themes.colors.second};
   font-family: 'Segoe-Regular';
-  font-size: ${themes.fontSizes.m};
+  font-size: ${themes.fontSizes.s};
   padding: 0;
 `;

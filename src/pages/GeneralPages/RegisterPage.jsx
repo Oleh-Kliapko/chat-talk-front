@@ -1,12 +1,11 @@
 import { Container, LogoContent } from '@/utils';
-import { Wrapper } from './Pages.styled';
+import { LoginForm } from '../../components/Auth';
 
 const RegisterPage = () => {
   return (
     <Container>
-      <Wrapper>
-        <LogoContent widthLogo="80" heightLogo="80" title="LogIn to Talk" />
-      </Wrapper>
+      <LogoContent widthLogo="80" heightLogo="80" title="Sign Up to Talk" />
+      <LoginForm />
     </Container>
   );
 };
