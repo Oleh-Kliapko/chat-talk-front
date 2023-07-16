@@ -7,11 +7,7 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-`;
-
-export const Title = styled.h2`
-  color: ${themes.colors.main};
-  font-family: 'Segoe-Bold';
+  justify-content: ${props =>
+    props.from === 'homepage' ? 'space-between' : 'none'};
 `;
