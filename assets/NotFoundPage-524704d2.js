@@ -1,4 +1,4 @@
-import{n as e,L as n,j as t}from"./index-52b76177.js";const o="/chat-talk-front/assets/404-page-animation-d03ade57.gif",i=e.div`
+import{n as e,a as n,j as t}from"./index-58dd9088.js";const o="/chat-talk-front/assets/404-page-animation-d03ade57.gif",a=e.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +8,7 @@ import{n as e,L as n,j as t}from"./index-52b76177.js";const o="/chat-talk-front/
   margin: 0 auto;
   height: 100vh;
   max-width: 100%;
-`,a=e.img`
+`,i=e.img`
   display: block;
   width: 50%;
   margin-bottom: 10px;
@@ -36,4 +36,4 @@ import{n as e,L as n,j as t}from"./index-52b76177.js";const o="/chat-talk-front/
   &:hover {
     background-color: green;
   }
-`,g=()=>t.jsxs(i,{children:[t.jsx(a,{src:o,alt:""}),t.jsx(r,{children:"Oops! Page not found"}),t.jsx(s,{to:"/",children:"Go back to homepage"})]});export{g as default};
+`,g=()=>t.jsxs(a,{children:[t.jsx(i,{src:o,alt:""}),t.jsx(r,{children:"Oops! Page not found"}),t.jsx(s,{to:"/",children:"Go back to homepage"})]});export{g as default};
