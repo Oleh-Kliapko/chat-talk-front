@@ -2,12 +2,12 @@ import { BtnTemplate } from './BtnTemplate';
 import { themes } from '@/styles';
 import { useNavigate } from 'react-router-dom';
 
-export const LoginBtn = () => {
+export const HomeBtn = () => {
   const navigate = useNavigate();
 
   return (
     <BtnTemplate
-      text="Log in"
+      text="Get started"
       textSize={themes.fontSizes.m}
       color={themes.colors.white}
       width="342px"
@@ -17,7 +17,7 @@ export const LoginBtn = () => {
       border={themes.border.main}
       borderRadius={themes.radii.main}
       marginBottom="100px"
-      onClick={() => navigate('/channels')}
+      onClick={() => navigate('/login')}
     />
   );
 };
