@@ -1,4 +1,4 @@
-import{n as e,a as n,j as t}from"./index-58dd9088.js";const o="/chat-talk-front/assets/404-page-animation-d03ade57.gif",a=e.div`
+import{n as e,a as n,j as t}from"./index-d10f90cd.js";const o="/chat-talk-front/assets/404-page-animation-d03ade57.gif",a=e.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
