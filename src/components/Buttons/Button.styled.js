@@ -38,9 +38,7 @@ export const RedirectTitle = styled(Link)`
 export const ForgotPasswordWrapper = styled.div`
   display: flex;
   justify-content: end;
-  font-family: 'Segoe-Regular';
   color: ${themes.colors.main};
+  font-family: 'Segoe-Regular';
   font-size: ${themes.fontSizes.m};
-  margin-top: ${themes.spacing[4]}px;
-  margin-bottom: ${themes.spacing[8]}px;
 `;

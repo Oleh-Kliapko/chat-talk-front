@@ -1,11 +1,11 @@
-import { themes } from '@/styles';
-import { useNavigate } from 'react-router-dom';
+import { useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 
+import { themes } from '@/styles';
 import { BtnTemplate } from './BtnTemplate';
 
 export const AuthBtn = ({ from }) => {
-  const navigate = useNavigate();
+  const { handleSubmit } = useFormikContext();
 
   return (
     <BtnTemplate
@@ -18,8 +18,10 @@ export const AuthBtn = ({ from }) => {
       hoverGradient={themes.colors.accentBtnBgr}
       border={themes.border.main}
       borderRadius={themes.radii.main}
-      marginBottom="24px"
-      onClick={() => navigate('/channels')}
+      marginBottom={`${themes.spacing[6]}px`}
+      marginTop={`${themes.spacing[8]}px`}
+      type="button"
+      onClick={handleSubmit}
     />
   );
 };

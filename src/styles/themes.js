@@ -8,7 +8,7 @@ export const themes = Object.freeze({
     main: '#000',
     second: '#4C4C4C',
     accent: '#9747FF',
-    placeholder: 'rgba(17, 17, 19, 0.6)',
+    error: '#D8000C',
     white: '#FFF',
 
     mainBgr: '#FAFAFA',
@@ -35,6 +35,7 @@ export const themes = Object.freeze({
   border: {
     main: '1px solid #D3D3D3',
     accent: '1px solid #9747FF',
+    input: '1px solid #909090',
   },
   radii: {
     main: '4px',
