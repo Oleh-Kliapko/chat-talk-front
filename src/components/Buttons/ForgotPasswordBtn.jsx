@@ -8,7 +8,7 @@ export const ForgotPasswordBtn = ({ from }) => {
     <>
       {from === 'loginPage' && (
         <ForgotPasswordWrapper>
-          <Link to="/register">Forgot password?</Link>
+          <Link to="/">Forgot password?</Link>
         </ForgotPasswordWrapper>
       )}
     </>

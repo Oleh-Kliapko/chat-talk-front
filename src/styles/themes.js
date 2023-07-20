@@ -21,6 +21,7 @@ export const themes = Object.freeze({
     otherMessageBgr: '#F2F2F7',
   },
   fontSizes: {
+    xxs: '10px',
     xs: '12px',
     s: '14px',
     m: '16px',
