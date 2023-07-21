@@ -1,0 +1,1 @@
+import{j as o,C as t,L as r}from"./index-c618f2fa.js";import{A as s}from"./AuthForm-729a42f3.js";import"./ForgotPasswordBtn-ceeea00b.js";const a=()=>o.jsxs(t,{children:[o.jsx(r,{widthLogo:"80",heightLogo:"80",title:"LogIn to Talk"}),o.jsx(s,{from:"loginPage"})]});export{a as default};
