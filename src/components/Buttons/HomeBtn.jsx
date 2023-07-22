@@ -10,7 +10,7 @@ export const HomeBtn = () => {
       text="Get started"
       textSize={themes.fontSizes.m}
       color={themes.colors.white}
-      width="100%"
+      width="95vw"
       height={`${themes.spacing[12]}px`}
       gradient={themes.colors.mainBtnBgr}
       hoverGradient={themes.colors.accentBtnBgr}

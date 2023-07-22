@@ -18,12 +18,16 @@ import { OffEyeIcon, OnEyeIcon } from '@/images/reactIcons';
 
 export const AuthForm = ({ from }) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
+  const isLoginPage = from === 'loginPage';
 
   return (
     <Wrapper>
       <Formik
-        validationSchema={validations.loginSchema}
-        initialValues={{ email: '', password: '' }}
+        validationSchema={
+          isLoginPage ? validations.loginSchema : validations.signUpSchema
+        }
+        initialValues={{ email: '', password: '', confirmPassword: '' }}
         onSubmit={(values, { setSubmitting }) => {
           alert(JSON.stringify(values));
           setSubmitting(false);
@@ -51,9 +55,7 @@ export const AuthForm = ({ from }) => {
                 id="email"
               />
             </InputWrapper>
-            <Error className="error">
-              {errors.email && touched.email && errors.email}
-            </Error>
+            <Error>{errors.email && touched.email && errors.email}</Error>
             <Title>Password</Title>
             <InputWrapper>
               <Lock />
@@ -80,6 +82,38 @@ export const AuthForm = ({ from }) => {
             <Error>
               {errors.password && touched.password && errors.password}
             </Error>
+            {!isLoginPage && (
+              <>
+                <Title>Confirm Password</Title>
+                <InputWrapper>
+                  <Lock />
+                  <Input
+                    type={isShowConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    secureTextEntry={!isShowConfirmPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.confirmPassword}
+                    placeholder="Enter password again"
+                  />
+                  <ShowPasswordBtn
+                    type="button"
+                    onClick={() => setIsShowConfirmPassword(prev => !prev)}
+                  >
+                    {isShowConfirmPassword ? (
+                      <OnEyeIcon size={18} />
+                    ) : (
+                      <OffEyeIcon size={18} />
+                    )}
+                  </ShowPasswordBtn>
+                </InputWrapper>
+                <Error>
+                  {errors.confirmPassword &&
+                    touched.confirmPassword &&
+                    errors.confirmPassword}
+                </Error>
+              </>
+            )}
             <ForgotPasswordBtn from={from} />
             <AuthBtn from={from} />
           </Form>

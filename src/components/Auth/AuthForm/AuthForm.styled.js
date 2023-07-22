@@ -42,7 +42,7 @@ export const Input = styled.input`
 
 export const Error = styled.p`
   color: ${themes.colors.error};
-  font-size: ${themes.fontSizes.xs};
+  font-size: ${themes.fontSizes.xxs};
   font-family: 'Segoe-Regular';
   margin-bottom: ${themes.spacing[4]}px;
   align-self: flex-end;
