@@ -17,7 +17,7 @@ const initialState = {
   },
   token: null,
   isRefreshing: false,
-  isLoggedIn: false,
+  isLoggedIn: true,
   error: null,
 };
 

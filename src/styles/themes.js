@@ -10,6 +10,7 @@ export const themes = Object.freeze({
     accent: '#9747FF',
     error: '#D8000C',
     white: '#FFF',
+    grey:'#909090',
 
     mainBgr: '#FAFAFA',
     mainBtnBgr: 'linear-gradient(90deg, #3459FE 0%, #6216CF 100%)',

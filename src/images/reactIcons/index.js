@@ -7,7 +7,6 @@ import { CiSearch } from 'react-icons/ci';
 import { RxAvatar } from 'react-icons/rx';
 import { IoIosArrowBack } from 'react-icons/io';
 import { GoArrowRight } from 'react-icons/go';
-
 export {
   AiOutlineEye as OnEyeIcon,
   AiOutlineEyeInvisible as OffEyeIcon,
@@ -16,4 +15,4 @@ export {
   RxAvatar as AvatarIcon,
   IoIosArrowBack as ArrowBackIcon,
   GoArrowRight as ArrowRightIcon,
-};
+  };
