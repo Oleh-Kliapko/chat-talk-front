@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import { themes } from '@/styles';
 import { BtnTemplate } from './BtnTemplate';
-
+// import { useDispatch } from 'react-redux';
+// import {logIn} from "../../redux/auth/operations"
 export const AuthBtn = ({ from }) => {
-  const { handleSubmit } = useFormikContext();
+  // const dispatch = useDispatch();
+  const { handleSubmit} = useFormikContext();
 
   return (
     <BtnTemplate

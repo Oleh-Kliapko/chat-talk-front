@@ -1,5 +1,9 @@
+import { useParams } from "react-router-dom";
+
+
 const ChannelPage = () => {
-  return <div>LoginPage</div>;
+ const { channelId } = useParams();
+  return <div>Channel Page id--{channelId }</div>;
 };
 
 export default ChannelPage;

@@ -7,6 +7,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 
 import { Loader } from './utils';
+import CreateChannel from './pages/CreateChannel/CreateChannel';
 
 const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
 const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));
@@ -19,6 +20,8 @@ const NotFoundPagePage = lazy(() =>
 );
 
 export const App = () => {
+
+
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
@@ -40,15 +43,16 @@ export const App = () => {
             <PublicRoute component={<RegisterPage />} redirectTo="/channels" />
           }
         />
-        <Route
-          path="channels"
-          element={<PrivateRoute redirectTo="/" component={<MainPage />} />}
-        >
-          <Route path="channels/:channelId" element={<ChannelPage />} />
-        </Route>
+        <Route path="/channels/:channelId" element={<PrivateRoute redirectTo="/" component={<ChannelPage />} />}  />
+         <Route path="create-channel" element={<PrivateRoute redirectTo="/" component={<CreateChannel />} />} />
+        <Route path="channels" element={<PrivateRoute redirectTo="/" component={<MainPage />} />} />
+          
+         
+        
         <Route path="*" element={<NotFoundPagePage />} />
       </Routes>
       <ToastContainer autoClose={3000} />
     </Suspense>
   );
 };
+// element={<ChannelPage
