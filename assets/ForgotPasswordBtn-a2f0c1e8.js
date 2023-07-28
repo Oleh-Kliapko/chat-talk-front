@@ -1,4 +1,4 @@
-import{n as vr,t as O,b as Ve,P as N,j as P,g as Mt,r as f}from"./index-c618f2fa.js";const Rt=vr.button`
+import{n as vr,t as O,d as Ve,P as N,j as P,g as Mt,r as f}from"./index-a1e799dd.js";const Rt=vr.button`
   color: ${r=>r.color};
   font-size: ${r=>r.textSize};
   width: ${r=>r.width};
