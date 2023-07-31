@@ -8,6 +8,9 @@ import PublicRoute from './routes/PublicRoute';
 
 import { Loader } from './utils';
 import CreateChannel from './pages/CreateChannel/CreateChannel';
+import RecoverPasswordPage from './pages/RecoverPasswordPage/RecoverPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
+import VeriFyEmailPage from './pages/VeriFyEmailPage/VeriFyEmailPage';
 
 const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
 const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));
@@ -25,29 +28,17 @@ export const App = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PublicRoute component={<HomePage />} redirectTo="/channels" />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute component={<LoginPage />} redirectTo="/channels" />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute component={<RegisterPage />} redirectTo="/channels" />
-          }
-        />
-        <Route path="/channels/:channelId" element={<PrivateRoute redirectTo="/" component={<ChannelPage />} />}  />
-         <Route path="create-channel" element={<PrivateRoute redirectTo="/" component={<CreateChannel />} />} />
+        <Route path="/" element={<PublicRoute component={<HomePage />} redirectTo="/channels" />} />
+        <Route path="/login" element={<PublicRoute component={<LoginPage />} redirectTo="/channels" />} />
+        <Route path="/register" element={<PublicRoute component={<RegisterPage />} redirectTo="/channels" />} />
+        <Route path="/recover-password" element={<PublicRoute component={<RecoverPasswordPage />} redirectTo="/channels" />} />
+        <Route path="/reset-password" element={<PublicRoute component={<ResetPasswordPage />} redirectTo="/channels" />} />
+        <Route path="/verify-email" element={<PublicRoute component={<VeriFyEmailPage />} redirectTo="/channels" />} />
+        
+        <Route path="/channels/:channelId" element={<PrivateRoute redirectTo="/" component={<ChannelPage />} />} />
+        <Route path="create-channel" element={<PrivateRoute redirectTo="/" component={<CreateChannel />} />} />
         <Route path="channels" element={<PrivateRoute redirectTo="/" component={<MainPage />} />} />
-          
-         
+                  
         
         <Route path="*" element={<NotFoundPagePage />} />
       </Routes>
@@ -55,4 +46,4 @@ export const App = () => {
     </Suspense>
   );
 };
-// element={<ChannelPage
+// VeriFyEmailPage

@@ -9,9 +9,18 @@ export const AuthBtn = ({ from }) => {
   // const dispatch = useDispatch();
   const { handleSubmit} = useFormikContext();
 
+  const changeTitle = () => {
+    if (from === 'loginPage') {
+      return 'Log in'
+    } else if (from === 'recovey-password') {
+      return " Log In with new password"
+    } else {
+      return 'Sign Up'
+    }
+  }
   return (
     <BtnTemplate
-      text={from === 'loginPage' ? 'Log in' : 'Sign Up'}
+    text={changeTitle()}
       textSize={themes.fontSizes.m}
       color={themes.colors.white}
       width="100%"

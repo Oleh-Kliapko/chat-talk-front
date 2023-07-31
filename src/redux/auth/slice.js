@@ -17,7 +17,7 @@ const initialState = {
   },
   token: null,
   isRefreshing: false,
-  isLoggedIn: true,
+  isLoggedIn: false,
   error: null,
 };
 
@@ -26,9 +26,8 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(logIn.fulfilled, (state, { payload: { token, ...others } }) => {
-        state.user = { ...others };
-        state.token = token;
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        state.user.username = payload.username;
         state.isLoggedIn = true;
         state.error = null;
       })
