@@ -1,55 +1,65 @@
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// const baseUrl = import.meta.env.VITE_BASE_URL;
-
-// export const authApi = createApi({
-//   reducerPath: 'auth',
-//   baseQuery: fetchBaseQuery({
-//     baseUrl,
-//     prepareHeaders: (headers, { getState }) => {
-//       const token = getState().auth.token;
-//       if (token) {
-//         headers.set('authorization', `Bearer ${token}`);
-//       }
-//       return headers;
-//     },
-//   }),
-//   tagTypes: ['Auth'],
-//   endpoints: builder => ({
-//     login: builder.mutation({
-//       query: credentials => ({
-//         url: '/login',
-//         method: 'POST',
-//         body: credentials,
-//       }),
-//       invalidatesTags: ['Auth'],
-//     }),
-//   }),
-// });
-
-// export const { useLoginMutation } = authApi;
 
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+export const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_BASE_URL
+});
 
-export const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+// export const setAuthHeader = token => {
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
+
 
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
+  axiosInstance.defaults.headers.common['Authorization'] = '';
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
 };
+// -----------------------------------------------------------------------
+axiosInstance.interceptors.request.use(
+  config => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      config.headers = { Authorization: `Bearer ${accessToken}` };
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
+  response => {
+    return response;
+  },
+  async error => {
+    if (error.response.status === 401) {
+      const refresh = localStorage.getItem('refreshToken');
+      try {
+        const { data } = await axiosInstance.post('api/v1/token/refresh/', { refresh });
+        console.log("data",data);
+        axiosInstance.headers = { Authorization: `Bearer ${data.access}` };
+        localStorage.setItem('refreshToken', data.refresh);
+        localStorage.setItem('accessToken', data.access);
+        return axiosInstance(error.config);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+// -----------------------------------------------------------------------
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post('/api/v1/register/', credentials);
-      console.log(data);
-      setAuthHeader(data.data.token);
-      return data.data;
+      const { data } = await axiosInstance.post('/api/v1/register/', credentials);
+      return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -60,10 +70,11 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post('/api/v1/login/', credentials);
+      const { data } = await axiosInstance.post('/api/v1/login/', credentials);
       console.log(data);
-      // setAuthHeader(data.data.token);
-      // return data.data;
+      localStorage.setItem('accessToken', data.access);
+      localStorage.setItem('refreshToken', data.refresh);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

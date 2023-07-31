@@ -12,6 +12,7 @@ export const LogoWrapper = styled.div`
 export const Title = styled.h1`
   color: ${themes.colors.main};
   font-family: 'Segoe-Bold';
+  font-weight:700;
   font-size: ${props =>
     props.from === 'homepage' ? themes.fontSizes.xxl : themes.fontSizes.xl};
   padding-top: ${props =>

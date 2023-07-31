@@ -28,5 +28,14 @@ const loginSchema = Yup.object().shape({
     .required(rules.requiredField('Password'))
     // .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
 });
+const recoveryPasswordSchema = Yup.object().shape({
+  password: Yup.string()
+    .required(rules.requiredField('Password'))
+    .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
 
-export const validations = { signUpSchema, loginSchema };
+  confirmPassword: Yup.string()
+    .required(rules.requiredField('Confirm password'))
+    .oneOf([Yup.ref('password'), null], rules.confirmPasswordErrorMessage),
+});
+
+export const validations = { signUpSchema, loginSchema, recoveryPasswordSchema };

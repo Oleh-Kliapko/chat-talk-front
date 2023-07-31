@@ -53,7 +53,7 @@ export const AuthForm = ({ from }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
-                placeholder="Enter email address"
+                placeholder="Email address"
                 id="email"
               />
             </InputWrapper>
@@ -68,7 +68,7 @@ export const AuthForm = ({ from }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
-                placeholder="Enter password"
+                placeholder="Password"
               />
               <ShowPasswordBtn
                 type="button"
