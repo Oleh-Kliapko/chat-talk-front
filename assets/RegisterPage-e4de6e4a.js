@@ -1,1 +1,0 @@
-import{j as t,C as o,L as r}from"./index-a1e799dd.js";import{A as s}from"./AuthForm-d1ac5c1c.js";import"./ForgotPasswordBtn-a2f0c1e8.js";import"./index.esm-3b60fd5b.js";const m=()=>t.jsxs(o,{children:[t.jsx(r,{widthLogo:"80",heightLogo:"80",title:"Sign Up to Talk"}),t.jsx(s,{})]});export{m as default};
