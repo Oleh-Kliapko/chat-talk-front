@@ -20,7 +20,7 @@
   font-family: 'Segoe-Bold';
   src: url('./fonts/SegoeUI-Bold.woff2') format('woff2'),
     url('./fonts/SegoeUI-Bold.woff') format('woff');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

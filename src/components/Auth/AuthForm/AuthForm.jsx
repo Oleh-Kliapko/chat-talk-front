@@ -17,7 +17,7 @@ import { Email, Lock } from '@/images/svg';
 import { OffEyeIcon, OnEyeIcon } from '@/images/reactIcons';
 import {logIn,signUp} from "../../../redux/auth/operations"
 import { useDispatch } from 'react-redux';
-export const AuthForm = ({ from }) => {
+export const AuthForm = ({ from, onOpen }) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
   const isLoginPage = from === 'loginPage';
@@ -32,7 +32,8 @@ export const AuthForm = ({ from }) => {
         initialValues={{ email: '', password: '', confirmPassword: '' }}
         onSubmit={(values, { setSubmitting }) => {
           isLoginPage ? dispatch(logIn({ email: values.email, password: values.password })) : dispatch(signUp({ email: values.email, password: values.password }));
-        setSubmitting(false);
+          !isLoginPage && onOpen();
+          setSubmitting(false);
         }}
       >
         {({
@@ -116,7 +117,7 @@ export const AuthForm = ({ from }) => {
                 </Error>
               </>
             )}
-            <ForgotPasswordBtn from={from} />
+            <ForgotPasswordBtn from={from} onOpen={onOpen} />
             <AuthBtn from={from} />
           </Form>
         )}
