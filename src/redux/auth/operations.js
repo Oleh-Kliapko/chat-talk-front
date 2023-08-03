@@ -40,7 +40,7 @@ axiosInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refreshToken');
       try {
         const { data } = await axiosInstance.post('api/v1/token/refresh/', { refresh });
-        console.log("data",data);
+        console.log("data inter",data);
         axiosInstance.headers = { Authorization: `Bearer ${data.access}` };
         localStorage.setItem('refreshToken', data.refresh);
         localStorage.setItem('accessToken', data.access);
@@ -71,7 +71,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axiosInstance.post('/api/v1/login/', credentials);
-      console.log(data);
+      console.log("data login",data);
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
       return data;
@@ -83,7 +83,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await axios.post('/api/v1/logout');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

@@ -7,7 +7,9 @@ import { CiSearch } from 'react-icons/ci';
 import { RxAvatar } from 'react-icons/rx';
 import { IoIosArrowBack } from 'react-icons/io';
 import { GoArrowRight } from 'react-icons/go';
+import{TfiEmail} from "react-icons/tfi"
 export {
+  TfiEmail,
   AiOutlineEye as OnEyeIcon,
   AiOutlineEyeInvisible as OffEyeIcon,
   AiOutlineCloseCircle as CloseIcon,

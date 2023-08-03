@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import { Backdrop, Modal, CloseModal } from './CreateModal.styled';
+import { Backdrop, Modal } from './CreateModal.styled';
 
 const rootModal = document.querySelector('#modal');
 
@@ -27,7 +27,7 @@ export const CreateModal = ({ children, onClose, background, color }) => {
   return createPortal(
     <Backdrop onMouseDown={handleClose}>
       <Modal background={background}>
-        <CloseModal color={color} onClick={onClose} />
+        {/* <CloseModal color={color} onClick={onClose} /> */}
         {children}
       </Modal>
     </Backdrop>,
