@@ -53,6 +53,20 @@ axiosInstance.interceptors.response.use(
   }
 );
 // -----------------------------------------------------------------------
+export const resetPassword = async (email) => {
+  try {
+    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/password_reset/`,  email );
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const confirmPassword = async (credentials) => {
+  try {
+    await axiosInstance.post(`${import.meta.env.VITE_BASE_URL}/api/v1/password_reset_confirm/`, credentials);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -83,7 +97,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/api/v1/logout');
+    await axios.post('/api/v1/logout/');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
