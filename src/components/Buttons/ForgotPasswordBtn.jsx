@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
 
 import { ForgotPasswordWrapper } from './Button.styled';
 
@@ -8,7 +8,7 @@ export const ForgotPasswordBtn = ({ from,onOpen }) => {
     <>
       {from === 'loginPage' && (
         <ForgotPasswordWrapper>
-          <button onClick={onOpen}>Forgot password?</button>
+          <p onClick={onOpen}>Forgot password?</p>
         </ForgotPasswordWrapper>
       )}
     </>

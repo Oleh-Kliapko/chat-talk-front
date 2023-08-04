@@ -1,9 +1,10 @@
 import { Container, LogoContent } from '@/utils';
 import { AuthForm } from '@/components/Auth';
-  import { CreateModal } from '../../components/Modal'
+import { CreateModal } from '../../components/Modal';
 import { useState } from 'react';
 import { EnterEmailModal } from '../../components/Modal/EnterEmailModal';
 import { RecievedEmail } from '../../components/Modal/RecievedEmail';
+
 const LoginPage = () => {
   const [showModalRecieved, setShowModalRecieved] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +22,6 @@ const LoginPage = () => {
       {showModalRecieved && <CreateModal onClose={onCloseRecieved}>
         <RecievedEmail onClose={onCloseRecieved} />
       </CreateModal >}
-    
     </Container>
   );
 };

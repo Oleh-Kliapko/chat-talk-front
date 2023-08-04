@@ -5,14 +5,13 @@ import { MainContainer } from '../RecoverPasswordPage/RecoverPasswordPage.styled
 import { MainText, MainTextBox, FooterText, FooterContainer } from "./VeriFyEmailPage.styled";
 
 const VeriFyEmailPage = () => {
-   return (
+    return (
         <Container>
             <MainContainer>
-               <LogoContent widthLogo="80" heightLogo="80" title="Welcome to Talk!" />
-               <MainTextBox>
-                <MainText>Hi,<br/>
-You're almost ready to get started. Please click on the button below to verify your email address!</MainText>
-          </MainTextBox>
+                <LogoContent widthLogo="80" heightLogo="80" title="Welcome to Talk!" />
+                <MainTextBox>
+                    <MainText>Hi,<br /> You're almost ready to get started. Please click on the button below to verify your email address!</MainText>
+                </MainTextBox>
                 <BtnTemplate text="Verify email"
                     textSize={themes.fontSizes.m}
                     color={themes.colors.white}
@@ -31,6 +30,6 @@ You're almost ready to get started. Please click on the button below to verify y
             </MainContainer>
         </Container>
     );
-}
+};
 
 export default VeriFyEmailPage

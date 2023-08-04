@@ -1,12 +1,9 @@
 import { useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
-
 import { themes } from '@/styles';
 import { BtnTemplate } from './BtnTemplate';
-// import { useDispatch } from 'react-redux';
-// import {logIn} from "../../redux/auth/operations"
+
 export const AuthBtn = ({ from }) => {
-  // const dispatch = useDispatch();
   const { handleSubmit} = useFormikContext();
 
   const changeTitle = () => {

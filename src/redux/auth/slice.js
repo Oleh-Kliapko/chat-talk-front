@@ -32,17 +32,19 @@ export const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user.username = payload.username;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
         state.error = null;
       })
   .addCase(logIn.rejected, state => {
         state.isRefreshing = false;
       })
       .addCase(logOut.pending, state => {
-        state.isLoggedIn = false;
+         state.isRefreshing = true;
       })
       .addCase(logOut.fulfilled, state => {
         state.user.username = null;
         state.isLoggedIn = false;
+        state.isRefreshing = false;
         state.error = null;
       })
       .addCase(logOut.rejected, state => {
@@ -55,9 +57,9 @@ export const authSlice = createSlice({
       .addCase(
         refreshUser.fulfilled,
         (state, { payload}) => {
-      //  state.user.username = payload.username;
-        // state.isLoggedIn = true;
-        // state.error = null;
+       state.user.username = payload.email;
+        state.isLoggedIn = true;
+        state.error = null;
         }
       )
       .addCase(refreshUser.rejected, state => {
