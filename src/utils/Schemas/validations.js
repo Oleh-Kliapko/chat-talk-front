@@ -9,12 +9,12 @@ const signUpSchema = Yup.object().shape({
     .max(64, rules.emailLengthErrorMessage),
 
   password: Yup.string()
-    .required(rules.requiredField('Password')),
-    // .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
+    .required(rules.requiredField('Password'))
+    .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
 
   confirmPassword: Yup.string()
     .required(rules.requiredField('Confirm password'))
-    // .oneOf([Yup.ref('password'), null], rules.confirmPasswordErrorMessage),
+    .oneOf([Yup.ref('password'), null], rules.confirmPasswordErrorMessage),
 });
 
 const loginSchema = Yup.object().shape({
@@ -28,6 +28,7 @@ const loginSchema = Yup.object().shape({
     .required(rules.requiredField('Password'))
     .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
 });
+
 const recoveryPasswordSchema = Yup.object().shape({
   password: Yup.string()
     .required(rules.requiredField('Password'))
