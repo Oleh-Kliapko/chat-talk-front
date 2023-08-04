@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { EnterEmailModal } from '../../components/Modal/EnterEmailModal';
 import { RecievedEmail } from '../../components/Modal/RecievedEmail';
 const LoginPage = () => {
-  const [showModalRecieved, setShowModalRecieved] = useState(true);
-  const [showModal, setShowModal] = useState(true);
+  const [showModalRecieved, setShowModalRecieved] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const onClose = () => setShowModal(false);
   const onOpen = () => setShowModal(true);
   const onCloseRecieved = () => setShowModalRecieved(false);

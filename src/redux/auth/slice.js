@@ -26,12 +26,17 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
+          .addCase(logIn.pending, state => {
+        state.isRefreshing = true;
+      })
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user.username = payload.username;
         state.isLoggedIn = true;
         state.error = null;
       })
-
+  .addCase(logIn.rejected, state => {
+        state.isRefreshing = false;
+      })
       .addCase(logOut.pending, state => {
         state.isLoggedIn = false;
       })

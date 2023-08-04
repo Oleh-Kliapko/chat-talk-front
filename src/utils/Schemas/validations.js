@@ -30,8 +30,8 @@ const loginSchema = Yup.object().shape({
 });
 const recoveryPasswordSchema = Yup.object().shape({
   password: Yup.string()
-    .required(rules.requiredField('Password'))
-    .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
+    .required(rules.requiredField('Password')),
+    // .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
 
   confirmPassword: Yup.string()
     .required(rules.requiredField('Confirm password'))

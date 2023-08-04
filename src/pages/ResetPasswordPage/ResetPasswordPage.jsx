@@ -3,7 +3,9 @@ import { themes } from '@/styles';
 import { BtnTemplate } from '../../components/Buttons/BtnTemplate';
 import { MainContainer } from '../RecoverPasswordPage/RecoverPasswordPage.styled';
 import { MainText, SecondaryText, FooterText, FooterContainer } from "./ResetPasswordPage.styled";
+
 const ResetPasswordPage = () => {
+
     return (
         <Container>
             <MainContainer>
