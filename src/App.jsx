@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +11,8 @@ import CreateChannel from './pages/CreateChannel/CreateChannel';
 import RecoverPasswordPage from './pages/RecoverPasswordPage/RecoverPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import VeriFyEmailPage from './pages/VeriFyEmailPage/VeriFyEmailPage';
+import { refreshUser } from './redux/auth/operations';
+import { useDispatch } from 'react-redux';
 
 const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
 const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));
@@ -23,7 +25,8 @@ const NotFoundPagePage = lazy(() =>
 );
 
 export const App = () => {
-
+  // const dispatch = useDispatch()
+  // useEffect(() => { dispatch(refreshUser()) }, [dispatch]);
 
   return (
     <Suspense fallback={<Loader />}>
@@ -38,12 +41,10 @@ export const App = () => {
         <Route path="/channels/:channelId" element={<PrivateRoute redirectTo="/" component={<ChannelPage />} />} />
         <Route path="create-channel" element={<PrivateRoute redirectTo="/" component={<CreateChannel />} />} />
         <Route path="channels" element={<PrivateRoute redirectTo="/" component={<MainPage />} />} />
-                  
-        
+                         
         <Route path="*" element={<NotFoundPagePage />} />
       </Routes>
       <ToastContainer autoClose={3000} />
     </Suspense>
   );
 };
-// VeriFyEmailPage

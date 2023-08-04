@@ -41,10 +41,9 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logOut.fulfilled, state => {
-        state.user = initialState.user;
-        state.token = initialState.token;
-        state.isLoggedIn = initialState.isLoggedIn;
-        state.error = initialState.error;
+        state.user.username = null;
+        state.isLoggedIn = false;
+        state.error = null;
       })
       .addCase(logOut.rejected, state => {
         state.isLoggedIn = true;
@@ -55,12 +54,10 @@ export const authSlice = createSlice({
       })
       .addCase(
         refreshUser.fulfilled,
-        (state, { payload: { token, ...others } }) => {
-          state.user = { ...others };
-          state.token = token;
-          state.isLoggedIn = true;
-          state.isRefreshing = false;
-          state.error = null;
+        (state, { payload}) => {
+      //  state.user.username = payload.username;
+        // state.isLoggedIn = true;
+        // state.error = null;
         }
       )
       .addCase(refreshUser.rejected, state => {
