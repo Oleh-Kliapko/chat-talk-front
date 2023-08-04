@@ -3,10 +3,10 @@ import {
   logIn,
   logOut,
   refreshUser,
-  updateUser,
-  fetchUserById,
-  authGoogle,
-  getNewPassword,
+  // updateUser,
+  // fetchUserById,
+  // authGoogle,
+  // getNewPassword,
 } from './operations';
 
 const initialState = {
@@ -27,7 +27,7 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
           .addCase(logIn.pending, state => {
-        state.isRefreshing = true;
+            state.isRefreshing = true;
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user.username = payload.username;
@@ -36,10 +36,10 @@ export const authSlice = createSlice({
         state.error = null;
       })
   .addCase(logIn.rejected, state => {
-        state.isRefreshing = false;
+    state.isRefreshing = false;
       })
       .addCase(logOut.pending, state => {
-         state.isRefreshing = true;
+        state.isRefreshing = true;
       })
       .addCase(logOut.fulfilled, state => {
         state.user.username = null;
@@ -57,51 +57,51 @@ export const authSlice = createSlice({
       .addCase(
         refreshUser.fulfilled,
         (state, { payload}) => {
-       state.user.username = payload.email;
-        state.isLoggedIn = true;
-        state.error = null;
+          state.user.username = payload.email;
+          state.isLoggedIn = true;
+          state.error = null;
         }
       )
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
 
-      .addCase(updateUser.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-        state.error = null;
-      })
-      .addCase(updateUser.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.isRefreshing = false;
-      })
+      // .addCase(updateUser.pending, state => {
+      //   state.isRefreshing = true;
+      // })
+      // .addCase(updateUser.fulfilled, (state, { payload }) => {
+      //   state.user = payload;
+      //   state.isLoggedIn = true;
+      //   state.isRefreshing = false;
+      //   state.error = null;
+      // })
+      // .addCase(updateUser.rejected, (state, { payload }) => {
+      //   state.error = payload;
+      //   state.isRefreshing = false;
+      // })
 
-      .addCase(fetchUserById.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.error = null;
-      })
-      .addCase(fetchUserById.rejected, (state, { payload }) => {
-        state.error = payload;
-      })
+      // .addCase(fetchUserById.fulfilled, (state, { payload }) => {
+      //   state.user = payload;
+      //   state.error = null;
+      // })
+      // .addCase(fetchUserById.rejected, (state, { payload }) => {
+      //   state.error = payload;
+      // })
 
-      .addCase(authGoogle.fulfilled, (state, { payload }) => {
-        state.token = payload;
-        state.error = null;
-      })
+      // .addCase(authGoogle.fulfilled, (state, { payload }) => {
+      //   state.token = payload;
+      //   state.error = null;
+      // })
 
-      .addCase(getNewPassword.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(getNewPassword.fulfilled, state => {
-        state.isRefreshing = false;
-      })
-      .addCase(getNewPassword.rejected, state => {
-        state.isRefreshing = false;
-      });
+      // .addCase(getNewPassword.pending, state => {
+      //   state.isRefreshing = true;
+      // })
+      // .addCase(getNewPassword.fulfilled, state => {
+      //   state.isRefreshing = false;
+      // })
+      // .addCase(getNewPassword.rejected, state => {
+      //   state.isRefreshing = false;
+      // });
   },
 });
 

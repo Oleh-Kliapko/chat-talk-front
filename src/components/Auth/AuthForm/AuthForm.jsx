@@ -15,8 +15,9 @@ import { AuthBtn, RedirectBtn, ForgotPasswordBtn } from '@/components/Buttons';
 import { validations } from '@/utils/Schemas';
 import { Email, Lock } from '@/images/svg';
 import { OffEyeIcon, OnEyeIcon } from '@/images/reactIcons';
-import {logIn,signUp} from "../../../redux/auth/operations"
+import { logIn, signUp } from "../../../redux/auth/operations";
 import { useDispatch } from 'react-redux';
+
 export const AuthForm = ({ from, onOpen }) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
