@@ -41,4 +41,7 @@ export const ForgotPasswordWrapper = styled.div`
   color: ${themes.colors.main};
   font-family: 'Segoe-Regular';
   font-size: ${themes.fontSizes.m};
+  &:hover{
+    cursor:pointer
+  }
 `;

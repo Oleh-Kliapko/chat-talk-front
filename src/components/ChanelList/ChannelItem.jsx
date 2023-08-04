@@ -33,4 +33,3 @@ ChannelItem.propTypes = {
     lastComment: PropTypes.string,
     }),
 };
-// onClick={() => { navigate(`/channels/${channel.id}`)}}

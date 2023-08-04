@@ -21,21 +21,21 @@ export const ForgotPasswordLink = () => {
     console.log('token:', token);
   }, []);
 
-    return (
-         <Wrapper>
+  return (
+    <Wrapper>
       <Formik
         validationSchema={validations.recoveryPasswordSchema}
-        initialValues={{  password: '', confirmPassword: '' }}
-                onSubmit={async(values, { setSubmitting }) => {
-                    if (values.password !== values.confirmPassword) {
-                        alert("passwords in the fields do not match")
-                         setSubmitting(false);
-                    }else{
-                      const credentials = { new_password: values.password, token };
-                      await confirmPassword(credentials);
-                      navigate("/login")
-                      setSubmitting(false);
-                    }
+        initialValues={{ password: '', confirmPassword: '' }}
+        onSubmit={async (values, { setSubmitting }) => {
+          if (values.password !== values.confirmPassword) {
+            alert("passwords in the fields do not match")
+            setSubmitting(false);
+          } else {
+            const credentials = { new_password: values.password, token };
+            await confirmPassword(credentials);
+            navigate("/login")
+            setSubmitting(false);
+          }
         }}
       >
         {({
@@ -75,38 +75,38 @@ export const ForgotPasswordLink = () => {
               {errors.password && touched.password && errors.password}
             </Error>
           
-                <Title>New Password</Title>
-                <InputWrapper>
-                  <Lock />
-                  <Input
-                    type={isShowConfirmPassword ? 'text' : 'password'}
-                    name="confirmPassword"
-                    secureTextEntry={!isShowConfirmPassword}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.confirmPassword}
-                    placeholder="Enter password again"
-                  />
-                  <ShowPasswordBtn
-                    type="button"
-                    onClick={() => setIsShowConfirmPassword(prev => !prev)}
-                  >
-                    {isShowConfirmPassword ? (
-                      <OnEyeIcon size={18} />
-                    ) : (
-                      <OffEyeIcon size={18} />
-                    )}
-                  </ShowPasswordBtn>
-                </InputWrapper>
-                <Error>
-                  {errors.confirmPassword &&
-                    touched.confirmPassword &&
-                    errors.confirmPassword}
-                </Error>
+            <Title>New Password</Title>
+            <InputWrapper>
+              <Lock />
+              <Input
+                type={isShowConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                secureTextEntry={!isShowConfirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.confirmPassword}
+                placeholder="Enter password again"
+              />
+              <ShowPasswordBtn
+                type="button"
+                onClick={() => setIsShowConfirmPassword(prev => !prev)}
+              >
+                {isShowConfirmPassword ? (
+                  <OnEyeIcon size={18} />
+                ) : (
+                  <OffEyeIcon size={18} />
+                )}
+              </ShowPasswordBtn>
+            </InputWrapper>
+            <Error>
+              {errors.confirmPassword &&
+                touched.confirmPassword &&
+                errors.confirmPassword}
+            </Error>
             <AuthBtn from={"recovey-password"} />
           </Form>
         )}
       </Formik>
-      </Wrapper>
-    )
+    </Wrapper>
+  );
 };

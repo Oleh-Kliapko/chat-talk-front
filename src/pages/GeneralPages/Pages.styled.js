@@ -1,2 +1,2 @@
-import styled from '@emotion/styled';
-import { themes } from '@/styles';
+// import styled from '@emotion/styled';
+// import { themes } from '@/styles';

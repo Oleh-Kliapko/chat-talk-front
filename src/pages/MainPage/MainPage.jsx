@@ -6,8 +6,8 @@ import { Container } from "../../utils";
 import { logOut } from "../../redux/auth/operations";
 
 const MainPage = () => {
-const dispatch = useDispatch()
-const signOut = async ()=>{dispatch(logOut())}
+  const dispatch = useDispatch();
+  const signOut = async () => { dispatch(logOut()) };
   return (
     <Container>
       <button onClick={signOut} type="button">logout</button>

@@ -1,8 +1,9 @@
 import { Container, LogoContent } from '@/utils';
 import { AuthForm } from '@/components/Auth';
-      import { CreateModal } from '../../components/Modal';
+import { CreateModal } from '../../components/Modal';
 import { SingingUpModal } from '../../components/Modal/SingingUpModal';
 import { useState } from 'react';
+
 const RegisterPage = () => {
   const [showModal, setShowModal] = useState(false);
   const onClose = () => setShowModal(false);

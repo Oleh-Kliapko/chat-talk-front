@@ -129,4 +129,5 @@ export const AuthForm = ({ from, onOpen }) => {
 
 AuthForm.propTypes = {
   from: PropTypes.string,
+  onOpen:PropTypes.func
 };
