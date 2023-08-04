@@ -6,12 +6,14 @@ import { Lock } from '@/images/svg';
 import { OffEyeIcon, OnEyeIcon } from '@/images/reactIcons';
 import { useEffect, useState } from 'react';
 import { confirmPassword } from '../../../../redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
 
 
 export const ForgotPasswordLink = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
   const [token, setToken] = useState('');
+  const navigate = useNavigate()
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
@@ -31,6 +33,7 @@ export const ForgotPasswordLink = () => {
                     }else{
                       const credentials = { new_password: values.password, token };
                       await confirmPassword(credentials);
+                      navigate("/login")
                       setSubmitting(false);
                     }
         }}

@@ -1,4 +1,4 @@
-
+import {toast} from 'react-toastify';
 
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -6,11 +6,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL
 });
-
-// export const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
 
 const clearAuthHeader = () => {
   axiosInstance.defaults.headers.common['Authorization'] = '';
@@ -53,20 +48,39 @@ axiosInstance.interceptors.response.use(
   }
 );
 // -----------------------------------------------------------------------
+// export const resetPassword = async (email) => {
+//   try {
+//     await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/password_reset/`,  email );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// export const confirmPassword = async (credentials) => {
+//   try {
+//     await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/password_reset_confirm/`, credentials);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 export const resetPassword = async (email) => {
   try {
-    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/password_reset/`,  email );
+    await axiosInstance.post("/api/v1/password_reset/", email);
   } catch (error) {
     console.log(error);
   }
 }
 export const confirmPassword = async (credentials) => {
   try {
-    await axiosInstance.post(`${import.meta.env.VITE_BASE_URL}/api/v1/password_reset_confirm/`, credentials);
+    await axiosInstance.post("/api/v1/password_reset_confirm/", credentials);
   } catch (error) {
     console.log(error);
   }
 };
+
+
+
+
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -75,6 +89,7 @@ export const signUp = createAsyncThunk(
       const { data } = await axiosInstance.post('/api/v1/register/', credentials);
       return data
     } catch (error) {
+      toast.error('something went wrong, try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -90,6 +105,8 @@ export const logIn = createAsyncThunk(
       localStorage.setItem('refreshToken', data.refresh);
       return data;
     } catch (error) {
+      console.log(error);
+      toast.error('wrong email or password');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -97,9 +114,11 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/api/v1/logout/');
+    const qqq = await axiosInstance.get('/api/v1/logout/');
+    console.log(qqq);
     clearAuthHeader();
   } catch (error) {
+    console.log(error);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -107,21 +126,37 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Token is invalid');
-    }
-    setAuthHeader(persistedToken);
-
-    try {
-      const { data } = await axios.get('users/current');
-      return data.data;
-    } catch (error) {
+    const refresh = localStorage.getItem('refreshToken');
+    if (!refresh) return;
+     try {
+       const { data } = await axiosInstance.post('api/v1/token/refresh/', { refresh });
+       console.log("refresh data",data);
+      return data
+     } catch (error) {
+       console.log("refresh error",error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+// export const refreshUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedToken = state.auth.token;
+//     if (persistedToken === null) {
+//       return thunkAPI.rejectWithValue('Token is invalid');
+//     }
+//     setAuthHeader(persistedToken);
+
+//     try {
+//       const { data } = await axios.get('users/current');
+//       return data.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
