@@ -1,4 +1,4 @@
-import{n,t as o,r as c,j as e,B as h,b as m,C as g,L as u}from"./index-bf7ab2f8.js";import{E as j,a as f,T as w,M as y,b as $,S,c as b,B as C,A as v,C as x}from"./SingingUpModal.styled-9685af41.js";const E=n.div`
+import{n,t as o,r as c,j as e,B as h,b as m,C as g,L as u}from"./index-8610a16a.js";import{E as j,a as f,T as w,M as y,b as $,S,c as b,B as C,A as v,C as x}from"./SingingUpModal.styled-58b2cf3f.js";const E=n.div`
  width: 390px;
  /* padding:40px 20px; */
  `,T=n.h4`
