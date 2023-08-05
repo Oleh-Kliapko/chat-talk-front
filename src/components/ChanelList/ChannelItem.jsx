@@ -5,13 +5,14 @@ import { useCallback } from 'react';
 
 export const ChannelItem = ({ channel }) => {
     const { name, description, imageUrl, lastComment } = channel;
+    const navigate = useNavigate();
     const truncateString = useCallback((str, maxLength) => {
         if (str.length > maxLength) {
             return str.substring(0, maxLength) + '...';
         }
         return str;
     }, []);
-      const navigate = useNavigate()
+    
     return (
         <Item onClick={() => { navigate(`/channels/${channel.id}`)}} >
             <ImageBox> <Image src={imageUrl} alt="chanel image" width={40} height={40} /></ImageBox>

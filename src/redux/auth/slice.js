@@ -3,10 +3,6 @@ import {
   logIn,
   logOut,
   refreshUser,
-  // updateUser,
-  // fetchUserById,
-  // authGoogle,
-  // getNewPassword,
 } from './operations';
 
 const initialState = {
@@ -27,7 +23,7 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
           .addCase(logIn.pending, state => {
-            state.isRefreshing = true;
+            state.isRefreshing = false;
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user.username = payload.username;
@@ -50,7 +46,6 @@ export const authSlice = createSlice({
       .addCase(logOut.rejected, state => {
         state.isLoggedIn = true;
       })
-
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -61,48 +56,10 @@ export const authSlice = createSlice({
           state.isLoggedIn = true;
           state.error = null;
           state.isRefreshing = false;
-        }
-      )
+        })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
-
-      // .addCase(updateUser.pending, state => {
-      //   state.isRefreshing = true;
-      // })
-      // .addCase(updateUser.fulfilled, (state, { payload }) => {
-      //   state.user = payload;
-      //   state.isLoggedIn = true;
-      //   state.isRefreshing = false;
-      //   state.error = null;
-      // })
-      // .addCase(updateUser.rejected, (state, { payload }) => {
-      //   state.error = payload;
-      //   state.isRefreshing = false;
-      // })
-
-      // .addCase(fetchUserById.fulfilled, (state, { payload }) => {
-      //   state.user = payload;
-      //   state.error = null;
-      // })
-      // .addCase(fetchUserById.rejected, (state, { payload }) => {
-      //   state.error = payload;
-      // })
-
-      // .addCase(authGoogle.fulfilled, (state, { payload }) => {
-      //   state.token = payload;
-      //   state.error = null;
-      // })
-
-      // .addCase(getNewPassword.pending, state => {
-      //   state.isRefreshing = true;
-      // })
-      // .addCase(getNewPassword.fulfilled, state => {
-      //   state.isRefreshing = false;
-      // })
-      // .addCase(getNewPassword.rejected, state => {
-      //   state.isRefreshing = false;
-      // });
   },
 });
 

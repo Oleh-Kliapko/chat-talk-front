@@ -12,7 +12,7 @@ export const Header = ({title}) => {
             </HeadContainer>
             <LinkContainer>
                 <StyledLink to='/create-channel'><Plus size={20} /></StyledLink>
-                <StyledLink to='/channels'><AvatarIcon size={40}/></StyledLink>
+                <StyledLink to='/channels'><AvatarIcon size={40} /></StyledLink>
             </LinkContainer>
         </MainContainer>
     );

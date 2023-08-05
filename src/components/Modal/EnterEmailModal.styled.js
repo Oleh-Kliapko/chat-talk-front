@@ -1,18 +1,15 @@
 import styled from '@emotion/styled';
 import { themes } from '../../styles/themes';
 
-
-
 export const MainContainer = styled.div`
- width: 390px;
- /* padding:40px 20px; */
+ min-width: 390px;
+ padding:40px 20px;
  `
  export const MainText = styled.h4`
 font-family:'Segoe-Bold';
 font-weight:700;
 font-size:${themes.fontSizes.xl};
 color:${themes.colors.main};
-
 `
 export const SecondaryText = styled.p`
 margin-top:8px;

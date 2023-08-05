@@ -1,6 +1,6 @@
 import { TfiEmail } from "react-icons/tfi"
 import {EmailBox,MainContainer,MainText,SecondaryText,Text,Button} from "./SingingUpModal.styled"
-
+import PropTypes from 'prop-types';
 export const RecievedEmail = ({onClose}) => {
     return (
         <>
@@ -15,4 +15,6 @@ export const RecievedEmail = ({onClose}) => {
     );
 }
 
-
+RecievedEmail.propTypes = {
+    onClose: PropTypes.func,
+};

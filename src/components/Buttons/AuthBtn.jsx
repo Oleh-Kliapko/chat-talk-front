@@ -2,11 +2,11 @@ import { useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 import { themes } from '@/styles';
 import { BtnTemplate } from './BtnTemplate';
+import { useCallback } from 'react';
 
 export const AuthBtn = ({ from }) => {
   const { handleSubmit} = useFormikContext();
-
-  const changeTitle = () => {
+  const changeTitle = useCallback(() => {
     if (from === 'loginPage') {
       return 'Log in'
     } else if (from === 'recovey-password') {
@@ -14,7 +14,8 @@ export const AuthBtn = ({ from }) => {
     } else {
       return 'Sign Up'
     }
-  }
+  }, [from]);
+
   return (
     <BtnTemplate
     text={changeTitle()}
