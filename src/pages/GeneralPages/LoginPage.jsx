@@ -14,7 +14,7 @@ const LoginPage = () => {
   const onOpenRecieved = () => setShowModalRecieved(true);
   return (
     <Container>
-      <LogoContent widthLogo="80" heightLogo="80" title="LogIn to Talk" />
+      <LogoContent widthLogo="80" heightLogo="80" title="Login to Talk" />
       <AuthForm from="loginPage" onOpen={onOpen} />
       {showModal && <CreateModal onClose={onClose}>
         <EnterEmailModal onClose={onClose} onOpenRecieved={onOpenRecieved} />
