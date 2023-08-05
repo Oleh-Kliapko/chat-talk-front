@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import {
   lazy,
   Suspense,
-  // useEffect
+  useEffect
 } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,9 +15,9 @@ import CreateChannel from './pages/CreateChannel/CreateChannel';
 import RecoverPasswordPage from './pages/RecoverPasswordPage/RecoverPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import VeriFyEmailPage from './pages/VeriFyEmailPage/VeriFyEmailPage';
-// import { refreshUser } from './redux/auth/operations';
+import { refreshUser } from './redux/auth/operations';
 import {
-  // useDispatch,
+  useDispatch,
   useSelector
 } from 'react-redux';
 
@@ -30,9 +30,8 @@ const NotFoundPagePage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'))
 
 export const App = () => {
   const { isRefreshing } = useSelector(state => state.auth);
-  console.log("isRefreshing", isRefreshing);
-  // const dispatch = useDispatch()
-  // useEffect(() => { dispatch(refreshUser()) }, [dispatch]);
+  const dispatch = useDispatch();
+  useEffect(() => { dispatch(refreshUser()) }, [dispatch]);
 
   return (
     isRefreshing ? <Loader /> :
