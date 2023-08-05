@@ -107,13 +107,18 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const refresh = localStorage.getItem('refreshToken');
-    if (!refresh) return;
+    console.log(refresh);
+   
     try {
-      const { data } = await axiosInstance.post('api/v1/refresh_user/', { refresh });
+      if (refresh !== null) {
+         console.log({refresh});
+      const { data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/refresh_user/`, { refresh });
       console.log("refresh data", data);
-      return data;
+        return data;
+      }else{
+      throw new Error("not authorized")}
     } catch (error) {
-      console.log("refresh error", error);
+      console.log("refresh error", error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

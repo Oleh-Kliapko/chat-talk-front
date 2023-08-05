@@ -60,6 +60,7 @@ export const authSlice = createSlice({
           state.user.username = payload.email;
           state.isLoggedIn = true;
           state.error = null;
+          state.isRefreshing = false;
         }
       )
       .addCase(refreshUser.rejected, state => {
