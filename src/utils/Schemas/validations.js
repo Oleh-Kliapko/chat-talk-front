@@ -5,7 +5,10 @@ const signUpSchema = Yup.object().shape({
   email: Yup.string()
     .required(rules.requiredField('Email'))
     .matches(rules.emailPattern, rules.emailPatternErrorMessage)
-    .notOneOf(rules.emailForbidden, rules.emailForbiddenErrorMessage)
+    .test('excluded-domains', 'Invalid email domain', (value) => {
+      const excludedDomains = /@(rambler\.ru|mailinator\.com|mail\.ru)$/i;
+      return !excludedDomains.test(value);
+    })
     .max(64, rules.emailLengthErrorMessage),
 
   password: Yup.string()
@@ -21,7 +24,10 @@ const loginSchema = Yup.object().shape({
   email: Yup.string()
     .required(rules.requiredField('Email'))
     .matches(rules.emailPattern, rules.emailPatternErrorMessage)
-    .notOneOf(rules.emailForbidden, rules.emailForbiddenErrorMessage)
+    .test('excluded-domains', 'Invalid email domain', (value) => {
+      const excludedDomains = /@(rambler\.ru|mailinator\.com|mail\.ru)$/i;
+      return !excludedDomains.test(value);
+    })
     .max(64, rules.emailLengthErrorMessage),
 
   password: Yup.string()
