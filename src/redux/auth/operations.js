@@ -1,5 +1,4 @@
-import {toast} from 'react-toastify';
-
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -35,7 +34,6 @@ axiosInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refreshToken');
       try {
         const { data } = await axiosInstance.post('api/v1/token/refresh/', { refresh });
-        console.log("data inter",data);
         axiosInstance.headers = { Authorization: `Bearer ${data.access}` };
         localStorage.setItem('refreshToken', data.refresh);
         localStorage.setItem('accessToken', data.access);
@@ -54,7 +52,8 @@ export const resetPassword = async (email) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
+
 export const confirmPassword = async (credentials) => {
   try {
     await axiosInstance.post("/api/v1/password_reset_confirm/", credentials);
@@ -81,7 +80,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axiosInstance.post('/api/v1/login/', credentials);
-      console.log("data login",data);
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
       return data;
@@ -107,16 +105,15 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const refresh = localStorage.getItem('refreshToken');
-    console.log(refresh);
-   
     try {
       if (refresh !== null) {
-         console.log({refresh});
-      const { data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/refresh_user/`, { refresh });
-      console.log("refresh data", data);
+        console.log({ refresh });
+        const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/refresh_user/`, { refresh });
+        console.log("refresh data", data);
         return data;
-      }else{
-      throw new Error("not authorized")}
+      } else {
+        throw new Error("not authorized")
+      }
     } catch (error) {
       console.log("refresh error", error.message);
       return thunkAPI.rejectWithValue(error.message);

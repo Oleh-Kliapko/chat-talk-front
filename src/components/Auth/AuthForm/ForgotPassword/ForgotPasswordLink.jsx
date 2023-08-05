@@ -47,7 +47,6 @@ export const ForgotPasswordLink = () => {
           handleSubmit,
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
-          
             <Title>New Password</Title>
             <InputWrapper>
               <Lock />
@@ -74,7 +73,6 @@ export const ForgotPasswordLink = () => {
             <Error>
               {errors.password && touched.password && errors.password}
             </Error>
-          
             <Title>New Password</Title>
             <InputWrapper>
               <Lock />

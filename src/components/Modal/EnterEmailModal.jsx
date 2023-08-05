@@ -3,11 +3,12 @@ import { Input, InputWrapper, MainContainer, MainText, SecondaryText, LabelWrapp
 import { Email } from '@/images/svg';
 import { themes } from "../../styles/themes";
 import { resetPassword } from "../../redux/auth/operations";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import PropTypes from 'prop-types';
 export const EnterEmailModal = ({ onClose, onOpenRecieved }) => {
 
     const [value, setValue] = useState('');
-    const sendEmail = async () => {
+    const sendEmail = useCallback( async () => {
         try {
             await resetPassword({ email: value });
             onClose();
@@ -15,7 +16,7 @@ export const EnterEmailModal = ({ onClose, onOpenRecieved }) => {
         } catch (error) {
             console.log(error);
         }
-    };
+    },[onClose, onOpenRecieved, value]);
 
     return (
         <MainContainer>
@@ -43,3 +44,7 @@ export const EnterEmailModal = ({ onClose, onOpenRecieved }) => {
     );
 }
 
+EnterEmailModal.propTypes = {
+    onClose: PropTypes.func,
+    onOpenRecieved: PropTypes.func,
+};

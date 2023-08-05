@@ -10,7 +10,7 @@ export const ChanelList = () => {
     const ChannelsList = list;
     setChannels(ChannelsList)
   }, []);
-  console.log(channels);
+
   if (!channels) return <EmptyChannelList />;
   return (
     <MainContainer>

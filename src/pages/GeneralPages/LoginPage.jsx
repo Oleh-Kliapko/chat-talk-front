@@ -1,17 +1,17 @@
 import { Container, LogoContent } from '@/utils';
 import { AuthForm } from '@/components/Auth';
 import { CreateModal } from '../../components/Modal';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { EnterEmailModal } from '../../components/Modal/EnterEmailModal';
 import { RecievedEmail } from '../../components/Modal/RecievedEmail';
 
 const LoginPage = () => {
   const [showModalRecieved, setShowModalRecieved] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const onClose = () => setShowModal(false);
-  const onOpen = () => setShowModal(true);
-  const onCloseRecieved = () => setShowModalRecieved(false);
-  const onOpenRecieved = () => setShowModalRecieved(true);
+  const onClose = useCallback(() => setShowModal(false), []);
+  const onOpen = useCallback(() => setShowModal(true), []);
+  const onCloseRecieved = useCallback(() => setShowModalRecieved(false), []);
+  const onOpenRecieved = useCallback(() => setShowModalRecieved(true), []);
   return (
     <Container>
       <LogoContent widthLogo="80" heightLogo="80" title="Login to Talk" />
