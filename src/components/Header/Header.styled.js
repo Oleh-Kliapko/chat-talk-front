@@ -13,10 +13,14 @@ export const MainContainer = styled.div`
   margin-top:50px;
 `;
 export const HeadContainer = styled.div`
-
+display:flex;
+align-items:flex-end;
 `;
 export const LinkContainer = styled.div`
 
+`;
+export const Button = styled.button`
+margin-right:16px;
 `;
 
 export const MainText = styled.h1`

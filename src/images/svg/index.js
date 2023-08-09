@@ -7,3 +7,4 @@ export { default as Mention } from './Mention';
 export { default as Pencil } from './Pencil';
 export { default as PhotoSkeleton } from './PhotoSkeleton';
 export { default as Plus } from './Plus';
+export { default as List } from './List';

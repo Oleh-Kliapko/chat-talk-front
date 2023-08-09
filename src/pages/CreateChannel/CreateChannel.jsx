@@ -1,10 +1,14 @@
+import { CreateChannelForm } from "../../components/CreateChannelForm/CreateChannelForm";
+import { Header } from "../../components/Header/Header"
+import { Container } from "../../utils"
 
 const CreateChannel = () => {
   return (
-    <div>
-      <h1>create channel page</h1>
-    </div>
-  )
+    <Container>
+      <Header title='Create channel' goBack={true} />
+      <CreateChannelForm/>
+    </Container>
+  );
 }
 
 export default CreateChannel
