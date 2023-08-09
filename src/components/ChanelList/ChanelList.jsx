@@ -3,8 +3,9 @@ import { EmptyChannelList } from "../EmptyChannelList/EmptyChannelList";
 import list from "../../list";
 import {MainContainer,List} from "./ChanelList.styled"
 import { ChannelItem } from "./ChannelItem";
+import PropTypes from 'prop-types';
 
-export const ChanelList = () => {
+export const ChanelList = ({from}) => {
   const [channels, setChannels] = useState([]);
   useEffect(() => {
     const ChannelsList = list;
@@ -21,3 +22,6 @@ export const ChanelList = () => {
   );
 };
 
+ChanelList.propTypes = {
+  from: PropTypes.string,
+};

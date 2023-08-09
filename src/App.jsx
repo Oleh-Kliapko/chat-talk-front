@@ -20,6 +20,8 @@ import {
   useDispatch,
   useSelector
 } from 'react-redux';
+import { MyChannelsPage } from './pages/MyChannelsPage/MyChannelsPage';
+import { MyProfilePage } from './pages/MyProfilePage/MyProfilePage';
 
 const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
 const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));
@@ -45,8 +47,10 @@ export const App = () => {
           <Route path="/verify-email" element={<PublicRoute component={<VeriFyEmailPage />} redirectTo="/channels" />} />
         
           <Route path="/channels/:channelId" element={<PrivateRoute redirectTo="/" component={<ChannelPage />} />} />
-          <Route path="create-channel" element={<PrivateRoute redirectTo="/" component={<CreateChannel />} />} />
-          <Route path="channels" element={<PrivateRoute redirectTo="/" component={<MainPage />} />} />
+          <Route path="/create-channel" element={<PrivateRoute redirectTo="/" component={<CreateChannel />} />} />
+          <Route path="/channels" element={<PrivateRoute redirectTo="/" component={<MainPage />} />} />
+          <Route path="/my-channels" element={<PrivateRoute redirectTo="/" component={<MyChannelsPage />} />} />
+          <Route path="/my-profile" element={<PrivateRoute redirectTo="/" component={<MyProfilePage />} />} />
                          
           <Route path="*" element={<NotFoundPagePage />} />
         </Routes>

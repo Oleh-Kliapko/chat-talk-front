@@ -38,8 +38,8 @@ padding-right:32px;
 font-size:${themes.fontSizes.m};
 font-weight: 400;
 font-family:"Segoe-Regular";
-  border: ${themes.border.main};
-  border-radius: ${themes.radii.main};
+border: ${themes.border.main};
+border-radius: ${themes.radii.main};
 `;
 export const OptionsContainer = styled.div`
 width:100px;
