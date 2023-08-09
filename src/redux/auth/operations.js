@@ -34,11 +34,14 @@ axiosInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refreshToken');
       try {
         const { data } = await axiosInstance.post('api/v1/token/refresh/', { refresh });
+        if (!data) return alert('token is not valid');
+        console.log("data",data);
         axiosInstance.headers = { Authorization: `Bearer ${data.access}` };
         localStorage.setItem('refreshToken', data.refresh);
         localStorage.setItem('accessToken', data.access);
         return axiosInstance(error.config);
       } catch (error) {
+        console.log(error);
         return Promise.reject(error);
       }
     }
