@@ -45,6 +45,8 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
       }
     }
+    console.log("error", error);
+    logOut()
     return Promise.reject(error);
   }
 );
@@ -82,7 +84,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axiosInstance.post('/api/v1/login/', credentials);
+      const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/login/`, credentials);
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
       return data;
