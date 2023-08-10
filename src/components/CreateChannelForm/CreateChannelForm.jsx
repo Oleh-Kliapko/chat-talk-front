@@ -44,6 +44,7 @@ export const CreateChannelForm = () => {
     
     const handleClick = useCallback(() => { hiddenFileInput.current.click() }, []);
     const handleChange = useCallback(event => { setSelectedPhoto(event.target.files[0]) }, []);
+
     const createChannel = useCallback(() => {
         const formData = new FormData();
         formData.append('image', selectedPhoto)
@@ -51,7 +52,7 @@ export const CreateChannelForm = () => {
         formData.append('channelDescription', textAreaValue.value);
         if (!selectedPhoto || !textAreaValue.value || !channelName) return toast.warn('fill all the fields');
          toast.success("channel created");
-        return navigate("/channels")
+        return navigate("/channels/123")
     }, [channelName, navigate, selectedPhoto, textAreaValue.value]);
 
     return (

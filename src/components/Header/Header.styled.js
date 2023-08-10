@@ -2,9 +2,6 @@ import styled from '@emotion/styled';
 import { themes } from '@/styles';
 import { Link } from "react-router-dom";
 
-// export const MainContainer = styled.div`
-//   width: ${themes.breakpoints.mobile}px;
-// `;
 export const MainContainer = styled.div`
   width: ${themes.breakpoints.mobile}px;
   display:flex;
