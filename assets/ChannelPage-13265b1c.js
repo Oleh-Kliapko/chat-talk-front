@@ -1,0 +1,1 @@
+import{j as s,m as e,C as a,H as n}from"./index-884b2a32.js";const r=()=>s.jsx("div",{children:"MessageList"}),t=()=>s.jsx("div",{children:"SendMessageForm"}),o=()=>(e(),s.jsxs(a,{children:[s.jsx(n,{goBack:!0,imageUrl:"https://klike.net/uploads/posts/2019-05/medium/1556708030_2.jpg",channelName:"this is name"}),s.jsx(r,{}),s.jsx(t,{})]}));export{o as default};
