@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 
 export const Header = ({ title, goBack, profileLink, addChannelLink, imageUrl,channelName }) => {
     const navigate = useNavigate();
-    console.log("channelName",channelName);
     return (
         <MainContainer>
             <HeadContainer>
