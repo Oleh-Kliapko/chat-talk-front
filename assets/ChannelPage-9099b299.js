@@ -1,0 +1,1 @@
+import{m as a,j as e,C as n,H as t}from"./index-91667566.js";const i=()=>{const{channelId:s}=a();return e.jsxs(n,{children:[e.jsx(t,{goBack:!0,imageUrl:"https://klike.net/uploads/posts/2019-05/medium/1556708030_2.jpg",channelName:"this is name"}),e.jsx("div",{children:e.jsx("p",{children:s})})]})};export{i as default};
