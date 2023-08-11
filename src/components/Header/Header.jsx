@@ -5,7 +5,7 @@ import Plus from "../../images/svg/Plus"
 import { MainContainer, HeadContainer, LinkContainer, MainText, StyledLink, Button,ChannelImageBox,Image,ChannelName } from "./Header.styled";
 import PropTypes from 'prop-types';
 
-export const Header = ({ title, goBack, profileLink, addChannelLink, imageUrl,channelName }) => {
+export const Header = ({ title, goBack, profileLink, addChannelLink, imageUrl, channelName, id="123" }) => {
     const navigate = useNavigate();
     return (
         <MainContainer>
@@ -15,21 +15,22 @@ export const Header = ({ title, goBack, profileLink, addChannelLink, imageUrl,ch
             </HeadContainer>
             {channelName && <ChannelName>{channelName}</ChannelName>}
             <LinkContainer>
-                {imageUrl ? <ChannelImageBox><Image src={imageUrl} width={40} height={40} /></ChannelImageBox>
+                {imageUrl ? <ChannelImageBox onClick={()=>navigate(`/about-channel/${id}`)} ><Image src={imageUrl} width={40} height={40} /></ChannelImageBox>
                     :
                     <>{addChannelLink && <StyledLink to='/create-channel'><Plus size={20} /></StyledLink>}
                         {profileLink && <StyledLink to='/my-profile'><AvatarIcon size={40} /></StyledLink>}</>}
             </LinkContainer>
         </MainContainer>
     );
-}
+};
 Header.propTypes = {
     title: PropTypes.string,
     profileLink: PropTypes.bool,
     addChannelLink: PropTypes.bool,
     goBack: PropTypes.bool,
     channelName: PropTypes.string,
-     imageUrl:PropTypes.string,
+    imageUrl: PropTypes.string,
+    id: PropTypes.string,
 };
 
 
