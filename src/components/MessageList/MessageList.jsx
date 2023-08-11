@@ -1,9 +1,9 @@
-
+import { MainContainer } from "./MessageList.styled"
 export const MessageList = () => {
   return (
-    <div>
+    <MainContainer>
       MessageList
-    </div>
+    </MainContainer>
   )
 }
 

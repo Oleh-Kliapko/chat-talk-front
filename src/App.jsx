@@ -22,6 +22,7 @@ import {
 } from 'react-redux';
 import { MyChannelsPage } from './pages/MyChannelsPage/MyChannelsPage';
 import { MyProfilePage } from './pages/MyProfilePage/MyProfilePage';
+import AboutChannelPage from './pages/AboutChannelPage/AboutChannelPage';
 
 const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
 const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));
@@ -51,6 +52,7 @@ export const App = () => {
           <Route path="/channels" element={<PrivateRoute redirectTo="/" component={<MainPage />} />} />
           <Route path="/my-channels" element={<PrivateRoute redirectTo="/" component={<MyChannelsPage />} />} />
           <Route path="/my-profile" element={<PrivateRoute redirectTo="/" component={<MyProfilePage />} />} />
+           <Route path="/about-channel/:channelId" element={<PrivateRoute redirectTo="/" component={<AboutChannelPage />} />} />
                          
           <Route path="*" element={<NotFoundPagePage />} />
         </Routes>
