@@ -51,3 +51,12 @@ font-size:${themes.fontSizes.m};
 font-weight:700;
 color:${themes.colors.main};
 `
+export const Text = styled.p`
+font-family:"Segoe-Regular";
+font-size:${themes.fontSizes.m};
+font-weight:400;
+color:${themes.colors.accent};
+&:hover{
+  cursor: pointer;
+}
+`

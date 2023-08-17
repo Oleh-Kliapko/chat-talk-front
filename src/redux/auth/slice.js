@@ -7,9 +7,9 @@ import {
 
 const initialState = {
   user: {
-    username: null,
-    // email: null,
-    avatarURL: null,
+    username: "",
+    email: "examlpe@Gmail.com",
+    avatarURL: "https://klike.net/uploads/posts/2019-05/medium/1556708030_2.jpg",
   },
   token: null,
   isRefreshing: false,
@@ -52,7 +52,7 @@ export const authSlice = createSlice({
       .addCase(
         refreshUser.fulfilled,
         (state, { payload}) => {
-          state.user.username = payload.email;
+          state.user.username = payload.username;
           state.isLoggedIn = true;
           state.error = null;
           state.isRefreshing = false;

@@ -8,3 +8,6 @@ export { default as Pencil } from './Pencil';
 export { default as PhotoSkeleton } from './PhotoSkeleton';
 export { default as Plus } from './Plus';
 export { default as List } from './List';
+export { default as User } from './User';
+export { default as Security } from './Security';
+

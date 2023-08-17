@@ -19,7 +19,7 @@ width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:30px;
+margin-top:0;
 &:not(:first-of-type){
     margin-top:12px;
 }
