@@ -5,8 +5,10 @@ import { themes } from "../../styles/themes";
 import { MainContainer } from "./ProfileOptionsList.styled"
 import { ListItem, IconContainer, Text, Box,Lis} from "./ProfileOptionsList.styled";
 import PropTypes from 'prop-types';
+
 export const ProfileOptionsList = ({showModal}) => {
-const navigate = useNavigate()
+    const navigate = useNavigate();
+
     return (
         <MainContainer>
             <Lis>
@@ -16,7 +18,8 @@ const navigate = useNavigate()
                 </ListItem>
                 <ListItem onClick={showModal}>
                     <Box><IconContainer><IoLogOutOutline size={20} /> </IconContainer><Text>Log Out</Text></Box>
-                    <IoIosArrowForward size={24} color={themes.colors.grey} /></ListItem>
+                    <IoIosArrowForward size={24} color={themes.colors.grey} />
+                </ListItem>
             </Lis>
         </MainContainer>
     );

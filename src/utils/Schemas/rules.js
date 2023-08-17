@@ -5,6 +5,9 @@ const emailLengthErrorMessage ='Email must be less than or equal to 64 character
 const emailForbidden = ['mailinator.com', 'rambler.ru', 'mail.ru'];
 const emailForbiddenErrorMessage = 'Invalid email provider';
 
+const namePattern = /^[\p{L}\s]+$/u; // only Latin or Cyrillic characters
+const namePatternErrorMessage = 'only of Latin or Cyrillic characters';
+
 const passwordPattern = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,32}/g
   // /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/;
 const passwordPatternErrorMessage =
@@ -14,15 +17,15 @@ const confirmPasswordErrorMessage = 'Passwords must match';
 const requiredField = fieldName => `${fieldName} is required`;
 
 export const rules = {
+  namePattern,
+  namePatternErrorMessage,
   emailPattern,
   emailPatternErrorMessage,
   emailLengthErrorMessage,
   emailForbidden,
   emailForbiddenErrorMessage,
-
   passwordPattern,
   passwordPatternErrorMessage,
   confirmPasswordErrorMessage,
-
   requiredField,
 };

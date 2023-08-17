@@ -10,7 +10,9 @@ export const AuthBtn = ({ from }) => {
     if (from === 'loginPage') {
       return 'Log in'
     } else if (from === 'recovey-password') {
-      return " Log In with new password"
+      return "Log In with new password"
+    } else if (from === 'emailModal') {
+      return "Continue"
     } else {
       return 'Sign Up'
     }
@@ -28,7 +30,7 @@ export const AuthBtn = ({ from }) => {
       border={themes.border.main}
       borderRadius={themes.radii.main}
       marginBottom={`${themes.spacing[6]}px`}
-      marginTop={`${themes.spacing[8]}px`}
+      marginTop={from==="emailModal"?"84px":`${themes.spacing[8]}px`}
       type="button"
       onClick={handleSubmit}
     />

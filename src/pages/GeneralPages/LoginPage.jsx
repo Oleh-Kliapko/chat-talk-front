@@ -12,6 +12,7 @@ const LoginPage = () => {
   const onOpen = useCallback(() => setShowModal(true), []);
   const onCloseRecieved = useCallback(() => setShowModalRecieved(false), []);
   const onOpenRecieved = useCallback(() => setShowModalRecieved(true), []);
+  
   return (
     <Container>
       <LogoContent widthLogo="80" heightLogo="80" title="Login to Talk" />

@@ -10,7 +10,7 @@ const VeriFyEmailPage = () => {
             <MainContainer>
                 <LogoContent widthLogo="80" heightLogo="80" title="Welcome to Talk!" />
                 <MainTextBox>
-                    <MainText>Hi,<br /> You're almost ready to get started. Please click on the button below to verify your email address!</MainText>
+                    <MainText>Hi,<br /> You&apos;re almost ready to get started. Please click on the button below to verify your email address!</MainText>
                 </MainTextBox>
                 <BtnTemplate text="Verify email"
                     textSize={themes.fontSizes.m}

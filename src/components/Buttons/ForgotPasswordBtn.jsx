@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-
-
 import { ForgotPasswordWrapper } from './Button.styled';
 
 export const ForgotPasswordBtn = ({ from,onOpen }) => {

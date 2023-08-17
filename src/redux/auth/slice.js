@@ -8,7 +8,7 @@ import {
 const initialState = {
   user: {
     username: null,
-    email: null,
+    // email: null,
     avatarURL: null,
   },
   token: null,

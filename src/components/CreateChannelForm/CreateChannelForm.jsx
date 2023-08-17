@@ -81,15 +81,16 @@ export const CreateChannelForm = () => {
                         />
                     </InputFileBox>}
             </ImgContainer>
-            <StyledLabel>Channel Name<StyledInput type="text" name="name" value={channelName} onChange={(e)=>setChannelName(e.target.value)} placeholder="Channel name" /></StyledLabel>
+            <StyledLabel>Channel Name<StyledInput type="text" name="name" value={channelName} onChange={(e) => setChannelName(e.target.value)} placeholder="Channel name" />
+            </StyledLabel>
             <StyledLabel>Description<StyledTextarea name="description"
                 rows={textAreaValue.rows}
                 value={textAreaValue.value}
                 onChange={handleTextAreaChange}
                 maxLength={textAreaValue.maxLength}
-                                placeholder="Write here..."
+                placeholder="Write here..."
             ></StyledTextarea></StyledLabel>
-                        <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
+            <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
             <BtnTemplate
                 onClick={createChannel}
                 text="Create"
@@ -103,7 +104,7 @@ export const CreateChannelForm = () => {
                 borderRadius={themes.radii.main}
                 marginTop={`150px`}
                 marginBottom={`auto`}
-                type="button"/>
+                type="button" />
         </MainContainer>
     );
 }

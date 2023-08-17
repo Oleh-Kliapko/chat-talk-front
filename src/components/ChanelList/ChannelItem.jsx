@@ -7,9 +7,7 @@ export const ChannelItem = ({ channel }) => {
     const { name, description, imageUrl, lastComment } = channel;
     const navigate = useNavigate();
     const truncateString = useCallback((str, maxLength) => {
-        if (str.length > maxLength) {
-            return str.substring(0, maxLength) + '...';
-        }
+        if (str.length > maxLength) return str.substring(0, maxLength) + '...';
         return str;
     }, []);
     

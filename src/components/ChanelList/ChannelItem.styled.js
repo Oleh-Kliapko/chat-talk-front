@@ -28,7 +28,7 @@ width:40px;
 height:40px;
 `;
 export const Title = styled.p`
-font-size:16px;
+font-size:${themes.fontSizes.m};
 font-weight:700;
 margin-bottom:8px;
 `;

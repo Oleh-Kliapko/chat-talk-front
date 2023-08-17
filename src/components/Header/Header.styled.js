@@ -3,11 +3,11 @@ import { themes } from '@/styles';
 import { Link } from "react-router-dom";
 
 export const MainContainer = styled.div`
-  width: ${themes.breakpoints.mobile}px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:50px;
+width: ${themes.breakpoints.mobile}px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:50px;
 `;
 export const HeadContainer = styled.div`
 display:flex;
@@ -36,14 +36,18 @@ width:40px;
 height:40px;
 border-radius:50%;
 overflow:hidden;
+&:hover {
+  cursor: pointer;
+}
 `;
 export const Image = styled.img`
 width:100%;
 height:100%;
-`; 
+`
+
 export const ChannelName = styled.h4`
 font-family:"Segoe-Bold";
 font-size:${themes.fontSizes.m};
 font-weight:700;
 color:${themes.colors.main};
-`;
+`
