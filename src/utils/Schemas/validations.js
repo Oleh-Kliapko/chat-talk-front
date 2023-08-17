@@ -46,8 +46,8 @@ const loginSchema = Yup.object().shape({
     .max(64, rules.emailLengthErrorMessage),
 
   password: Yup.string()
-    // .required(rules.requiredField('Password'))
-    // .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
+    .required(rules.requiredField('Password'))
+    .matches(rules.passwordPattern, rules.passwordPatternErrorMessage),
 });
 
 const recoveryPasswordSchema = Yup.object().shape({
