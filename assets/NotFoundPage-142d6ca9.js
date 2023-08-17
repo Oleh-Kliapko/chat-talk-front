@@ -1,4 +1,4 @@
-import{n as o,o as e,j as t}from"./index-81b92b97.js";const n="/chat-talk-front/assets/404-page-animation-d03ade57.gif",i=o.div`
+import{n as e,p as n,j as t}from"./index-22639d8d.js";const o="/chat-talk-front/assets/404-page-animation-d03ade57.gif",i=e.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,11 +8,11 @@ import{n as o,o as e,j as t}from"./index-81b92b97.js";const n="/chat-talk-front/
   margin: 0 auto;
   height: 100vh;
   max-width: 100%;
-`,a=o.img`
+`,a=e.img`
   display: block;
   width: 50%;
   margin-bottom: 10px;
-`,r=o.h1`
+`,r=e.h1`
   margin: 0;
   margin-bottom: 20px;
   padding: 0 20px;
@@ -21,7 +21,7 @@ import{n as o,o as e,j as t}from"./index-81b92b97.js";const n="/chat-talk-front/
   font-size: 32px;
   line-height: 100%;
   text-align: center;
-`,s=o(e)`
+`,s=e(n)`
   padding: 16px 23px;
   font-weight: 500;
   font-size: 24px;
@@ -36,4 +36,4 @@ import{n as o,o as e,j as t}from"./index-81b92b97.js";const n="/chat-talk-front/
   &:hover {
     background-color: green;
   }
-`,g=()=>t.jsxs(i,{children:[t.jsx(a,{src:n,alt:""}),t.jsx(r,{children:"Oops! Page not found"}),t.jsx(s,{to:"/",children:"Go back to homepage"})]});export{g as default};
+`,c=()=>t.jsxs(i,{children:[t.jsx(a,{src:o,alt:""}),t.jsx(r,{children:"Oops! Page not found"}),t.jsx(s,{to:"/",children:"Go back to homepage"})]});export{c as default};
