@@ -28,7 +28,6 @@ export const InputFileBox = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 `
 export const Image = styled.img`
 width:100%;

@@ -11,8 +11,9 @@ import { TfiEmail } from "react-icons/tfi"
 import { MdAddPhotoAlternate,MdAlternateEmail } from "react-icons/md";
 import { IoLogOutOutline } from "react-icons/io5"
 import { VscSend } from "react-icons/vsc"
-import {BiUserCircle} from "react-icons/bi"
+import {BiUserCircle,BiSolidCamera} from "react-icons/bi"
 export {
+  BiSolidCamera,
   VscSend,
   BiUserCircle,
   IoIosArrowForward,
