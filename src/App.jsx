@@ -1,25 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import {
-  lazy,
-  Suspense,
-  useEffect
-} from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
-
 import { Loader } from './utils';
 import CreateChannel from './pages/CreateChannel/CreateChannel';
 import RecoverPasswordPage from './pages/RecoverPasswordPage/RecoverPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import VeriFyEmailPage from './pages/VeriFyEmailPage/VeriFyEmailPage';
 import { refreshUser } from './redux/auth/operations';
-import {
-  useDispatch,
-  useSelector
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MyChannelsPage } from './pages/MyChannelsPage/MyChannelsPage';
 import { MyProfilePage } from './pages/MyProfilePage/MyProfilePage';
 import AboutChannelPage from './pages/AboutChannelPage/AboutChannelPage';
@@ -52,7 +43,7 @@ export const App = () => {
           <Route path="/channels" element={<PrivateRoute redirectTo="/" component={<MainPage />} />} />
           <Route path="/my-channels" element={<PrivateRoute redirectTo="/" component={<MyChannelsPage />} />} />
           <Route path="/my-profile" element={<PrivateRoute redirectTo="/" component={<MyProfilePage />} />} />
-           <Route path="/about-channel/:channelId" element={<PrivateRoute redirectTo="/" component={<AboutChannelPage />} />} />
+          <Route path="/about-channel/:channelId" element={<PrivateRoute redirectTo="/" component={<AboutChannelPage />} />} />
                          
           <Route path="*" element={<NotFoundPagePage />} />
         </Routes>

@@ -7,6 +7,7 @@ import { OffEyeIcon, OnEyeIcon } from '@/images/reactIcons';
 import { useEffect, useState } from 'react';
 import { confirmPassword } from '../../../../redux/auth/operations';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 export const ForgotPasswordLink = () => {
@@ -33,7 +34,8 @@ export const ForgotPasswordLink = () => {
           } else {
             const credentials = { new_password: values.password, token };
             await confirmPassword(credentials);
-            navigate("/login")
+            toast.success("password is changed successfully");
+            navigate("/login");
             setSubmitting(false);
           }
         }}

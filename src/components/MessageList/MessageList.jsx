@@ -4,6 +4,6 @@ export const MessageList = () => {
     <MainContainer>
       MessageList
     </MainContainer>
-  )
-}
+  );
+};
 

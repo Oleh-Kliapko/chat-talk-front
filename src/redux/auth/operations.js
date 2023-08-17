@@ -85,6 +85,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/login/`, credentials);
+      console.log('data', data)
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
       return data;
@@ -110,9 +111,9 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const refresh = localStorage.getItem('refreshToken');
-    try {
+   try {
       if (refresh !== null) {
-        console.log({ refresh });
+        // console.log({ refresh });
         const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/refresh_user/`, { refresh });
         console.log("refresh data", data);
         return data;
