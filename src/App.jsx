@@ -15,8 +15,8 @@ import { MyChannelsPage } from './pages/MyChannelsPage/MyChannelsPage';
 import { MyProfilePage } from './pages/MyProfilePage/MyProfilePage';
 import AboutChannelPage from './pages/AboutChannelPage/AboutChannelPage';
 import { EditProfilePage } from './pages/EditProfilePage/EditProfilePage';
-import { SecurityPage } from './pages/PasswordPage/SecurityPage';
-import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
+import { SecurityPage } from './pages/SecurityPage/SecurityPage';
+import {ChangePasswordPage} from './pages/ChangePasswordPage/ChangePasswordPage';
 
 const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
 const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));

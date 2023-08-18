@@ -13,6 +13,8 @@ export const AuthBtn = ({ from }) => {
       return "Log In with new password"
     } else if (from === 'emailModal') {
       return "Continue"
+    } else if (from === 'change-password') {
+      return "Change password"
     } else {
       return 'Sign Up'
     }
