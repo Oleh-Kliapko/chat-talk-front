@@ -1,12 +1,13 @@
+import { ChangePasswordForm } from "../../components/ChangePasswordForm/ChangePasswordForm";
 import { Header } from "../../components/Header/Header"
 import { Container } from "../../utils"
 
-const ChangePasswordPage = () => {
+export const ChangePasswordPage = () => {
+
   return (
     <Container>
-      <Header title="Password" />
+      <Header close={true} subTitle="Password"  />
+      <ChangePasswordForm  />
     </Container>
-  )
-}
-
-export default ChangePasswordPage
+  );
+};

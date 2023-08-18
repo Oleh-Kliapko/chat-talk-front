@@ -17,7 +17,7 @@ export const EditProfilePage = () => {
   const [openModal, setOpenModal] = useState(false);
   const onOpen = useCallback(() => { setOpenModal(true) }, []);
   const onClose = useCallback(() => { setOpenModal(false) }, []);
-  
+
   const handleDelete = useCallback(() => {
     toast.success("Account was successfully deleted")
     navigate("/")
@@ -40,7 +40,7 @@ export const EditProfilePage = () => {
     }
     if (userName === "" && selectedPhoto === avatarURL) return toast.warn("nothing no change");
     toast.success("profile info changed successfully");
-    return navigate("/my-profile");
+    return navigate("/");
   }, [avatarURL, navigate, selectedPhoto, userName]);
   
   return (

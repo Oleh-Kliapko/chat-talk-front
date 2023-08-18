@@ -1,22 +1,23 @@
 
 import { useNavigate } from "react-router-dom";
-import { ArrowBackIcon, AvatarIcon } from "../../images/reactIcons";
+import { ArrowBackIcon, AvatarIcon, IoClose } from "../../images/reactIcons";
 import Plus from "../../images/svg/Plus"
 import { MainContainer, HeadContainer, LinkContainer, MainText, StyledLink, Button,ChannelImageBox,Image,ChannelName,Text } from "./Header.styled";
 import PropTypes from 'prop-types';
 
-export const Header = ({ title, goBack, profileLink, addChannelLink, imageUrl, channelName, id="123",done,subTitle }) => {
+export const Header = ({ title, goBack,close, profileLink, addChannelLink, imageUrl, channelName, id="123",done,subTitle }) => {
     const navigate = useNavigate();
     return (
         <MainContainer>
             <HeadContainer>
                 {goBack && <Button onClick={() => navigate(-1)}><ArrowBackIcon size={24} /></Button>}
+                {close && <Button onClick={() => navigate("/")}><IoClose size={24} /></Button>}
                 {title && <MainText>{title}</MainText>}
             </HeadContainer>
             { subTitle && <MainText>{subTitle}</MainText>}
             {channelName && <ChannelName>{channelName}</ChannelName>}
             <LinkContainer>
-                {done && <Text onClick={done}>Done</Text>}
+                {done && <Text type="submit" onClick={done}>Done</Text>}
                 {imageUrl ? <ChannelImageBox onClick={()=>navigate(`/about-channel/${id}`)} ><Image src={imageUrl} width={40} height={40} /></ChannelImageBox>
                     :
                     <>{addChannelLink && <StyledLink to='/create-channel'><Plus size={20} /></StyledLink>}
@@ -30,6 +31,7 @@ Header.propTypes = {
     profileLink: PropTypes.bool,
     addChannelLink: PropTypes.bool,
     goBack: PropTypes.bool,
+    close: PropTypes.bool,
     channelName: PropTypes.string,
     imageUrl: PropTypes.string,
     id: PropTypes.string,
