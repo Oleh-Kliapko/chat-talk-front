@@ -43,7 +43,16 @@ export const CreateChannelForm = () => {
     }, [textAreaValue]);
     
     const handleClick = useCallback(() => { hiddenFileInput.current.click() }, []);
-    const handleChange = useCallback(event => { setSelectedPhoto(event.target.files[0]) }, []);
+    const handleChange = useCallback(event => {
+           if (!event.target.files[0]) return;
+        if (event.target.files[0].size > 160000000000000) return toast.warn("file is too large");
+        if (event.target.files[0].type === "image/jpeg"||event.target.files[0].type === "image/png"){
+        console.log("event.target.files[0]",event.target.files[0].size);
+            setSelectedPhoto(event.target.files[0]);
+            return;
+        }
+        return toast.warn("wrong file type");
+    }, []);
 
     const createChannel = useCallback(() => {
         const formData = new FormData();

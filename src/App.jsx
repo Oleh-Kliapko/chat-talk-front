@@ -17,6 +17,7 @@ import AboutChannelPage from './pages/AboutChannelPage/AboutChannelPage';
 import { EditProfilePage } from './pages/EditProfilePage/EditProfilePage';
 import { SecurityPage } from './pages/SecurityPage/SecurityPage';
 import {ChangePasswordPage} from './pages/ChangePasswordPage/ChangePasswordPage';
+import { EditChannelPage } from './pages/EditChannelPage/EditChannelPage';
 
 const HomePage = lazy(() => import('./pages/GeneralPages/HomePage'));
 const LoginPage = lazy(() => import('./pages/GeneralPages/LoginPage'));
@@ -48,8 +49,9 @@ export const App = () => {
           <Route path="/my-profile" element={<PrivateRoute redirectTo="/" component={<MyProfilePage />} />} />
           <Route path="/profile" element={<PrivateRoute redirectTo="/" component={<EditProfilePage />} />} />
           <Route path="/security" element={<PrivateRoute redirectTo="/" component={<SecurityPage />} />} />
-           <Route path="/change-password" element={<PrivateRoute redirectTo="/" component={<ChangePasswordPage />} />} />
+          <Route path="/change-password" element={<PrivateRoute redirectTo="/" component={<ChangePasswordPage />} />} />
           <Route path="/about-channel/:channelId" element={<PrivateRoute redirectTo="/" component={<AboutChannelPage />} />} />
+          <Route path="/edit-channel/:channelId" element={<PrivateRoute redirectTo="/" component={<EditChannelPage />} />} />
                          
           <Route path="*" element={<NotFoundPagePage />} />
         </Routes>

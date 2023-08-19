@@ -4,7 +4,7 @@ import { themes } from '@/styles';
 export const Wrapper = styled.div`
   background-color: ${themes.colors.mainBgr};
   padding-inline: 24px;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;

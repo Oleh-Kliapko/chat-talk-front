@@ -4,13 +4,23 @@ import { BiSolidCamera } from "react-icons/bi";
 import PropTypes from 'prop-types';
 import { BtnTemplate } from "../Buttons/BtnTemplate";
 import { themes } from "../../styles/themes";
+import { toast } from "react-toastify";
 
 export const EditProfileForm = ({
     preview, userName, setSelectedPhoto, username, setUserName,onOpen
 }) => {
     const hiddenFileInput = useRef(null);
     const handleClick = useCallback(() => { hiddenFileInput.current.click() }, []);
-    const handleChange = useCallback(event => { setSelectedPhoto(event.target.files[0]) }, [setSelectedPhoto]);
+    const handleChange = useCallback(event => {
+        if (!event.target.files[0]) return;
+        if (event.target.files[0].size > 160000000000000) return toast.warn("file is too large");
+        if (event.target.files[0].type === "image/jpeg"||event.target.files[0].type === "image/png"){
+        console.log("event.target.files[0]",event.target.files[0].size);
+            setSelectedPhoto(event.target.files[0]);
+            return
+        }
+         return toast.warn("wrong file type");
+    }, [setSelectedPhoto]);
     return (
         <MainContainer>
             <Box>

@@ -5,7 +5,7 @@ import { MainContainer, ImgContainer,Image,Button,MainText,Text,Description } fr
 import { ArrowBackIcon } from "../../images/reactIcons";
 import PropTypes from 'prop-types';
 
-export const ChannelInfo = ({onOpen}) => {
+export const ChannelInfo = ({onOpen,channelId}) => {
   const navigate = useNavigate();
   return (
       <MainContainer>
@@ -16,7 +16,22 @@ export const ChannelInfo = ({onOpen}) => {
           <MainText>Task Force Leader</MainText>
           <Text>by Benjamine@.com</Text>
           <MainText>Description</MainText>
-          <Description>Experienced and dynamic leader spearheading collaborative initiatives, driving effective decision-making.</Description>
+      <Description>Experienced and dynamic leader spearheading collaborative initiatives, driving effective decision-making.</Description>
+           <BtnTemplate
+                onClick={()=>navigate(`/edit-channel/${channelId}`)}
+                text="Edit channel"
+                textSize={themes.fontSizes.m}
+                color={themes.colors.white}
+                width="100%"
+                height={`${themes.spacing[12]}px`}
+                gradient={themes.colors.mainBtnBgr}
+                hoverGradient={themes.colors.accentBtnBgr}
+                border={themes.border.main}
+                borderRadius={themes.radii.main}
+                marginTop={`245px`}
+                // marginBottom={`auto`}
+                type="button"
+            />
               <BtnTemplate
                 onClick={onOpen}
                 text="Delete channel"
@@ -24,10 +39,10 @@ export const ChannelInfo = ({onOpen}) => {
                 color={themes.colors.main}
                 width="100%"
                 height={`${themes.spacing[12]}px`}
-                hoverGradient={themes.colors.accentBtnBgr}
+                // hoverGradient={themes.colors.accentBtnBgr}
                 border={themes.border.main}
                 borderRadius={themes.radii.main}
-                marginTop={`300px`}
+                marginTop={`8px`}
                 marginBottom={`auto`}
                 type="button"
             />
@@ -36,5 +51,6 @@ export const ChannelInfo = ({onOpen}) => {
 }
 
 ChannelInfo.propTypes = {
-  onOpen:PropTypes.func
+  onOpen: PropTypes.func,
+  channelId: PropTypes.string
 };

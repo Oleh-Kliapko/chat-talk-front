@@ -7,19 +7,27 @@ import { Lock } from '../../images/svg';
 import { OffEyeIcon, OnEyeIcon } from '../../images/reactIcons';
 import { AuthBtn } from '../Buttons/AuthBtn';
 import { toast } from 'react-toastify';
+import { changePassword } from '../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
 
 export const ChangePasswordForm = () => {
     const [isShowCurrentPassword, setIsShowCurrentPassword] = useState(false);
     const [isShowPassword, setIsShowPassword] = useState(false);
     const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
-const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     return (
         <Wrapper>
             <Formik
                 validationSchema={validations.changePasswordSchema}
                 initialValues={{ current: '', new: '', confirm: '' }}
-                onSubmit={async (values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting }) => {
                     console.log(values);
+                    const credentials = {
+                        old_password: values.current,
+                        password: values
+                    }
+                    dispatch(changePassword(credentials));
                     toast.success("password changed successfuly!")
                     navigate("/")
                     setSubmitting(false);
