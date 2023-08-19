@@ -1,13 +1,6 @@
 import styled from '@emotion/styled';
 import { themes } from '@/styles';
 
-export const Text = styled.h4`
-font-size:${themes.fontSizes.m};
-font-weight: 400;
-font-family:"Segoe-Regular";
-color:${themes.colors.grey}
-`
-
 export const MainContainer = styled.div`
 width: ${themes.breakpoints.mobile}px;
 display:flex;
@@ -22,25 +15,24 @@ margin-bottom:24px;
 position: relative;
 background-color:#EFEFEF;
 `
-
-export const InputFileBox = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`
 export const Image = styled.img`
 width:100%;
 height:100%;
 object-fit: cover;
 
 `;
+
 export const Button = styled.button`
 position: absolute;
 top:12px;
 right:12px;
 color:"white"
 
+`;
+export const ButtonBack = styled.button`
+position:absolute;
+top:12px;
+left:12px;
 `;
 export const StyledInput = styled.input`
 width:100%;

@@ -1,6 +1,6 @@
 import {
     useNavigate,
-    // useParams
+    useParams
 } from "react-router-dom";
 import { Container } from "../../utils";
 import { ChannelInfo } from "../../components/ChannelInfo/ChannelInfo";
@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 const AboutChannelPage = () => {
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
-    // const { channelId } = useParams();
+    const { channelId } = useParams();
     const onOpen = useCallback(() => { setOpenModal(true) }, []);
     const onClose = useCallback(() => { setOpenModal(false) }, []);
     const handleDelete = useCallback(() => {
@@ -21,7 +21,7 @@ const AboutChannelPage = () => {
     }, [navigate]);
     return (
         <Container>
-            <ChannelInfo onOpen={onOpen} />
+            <ChannelInfo channelId={channelId} onOpen={onOpen} />
             {openModal && <CreateModal onClose={onClose}>
                 <SmallModal title="Delete the channel?" subtitle="You will not be able to recover it" yes={handleDelete} no={onClose} />
             </CreateModal>}

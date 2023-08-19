@@ -3,10 +3,12 @@ import {
   logIn,
   logOut,
   refreshUser,
+  deleteUser,
 } from './operations';
 
 const initialState = {
   user: {
+    userId:"",
     username: "",
     email: "examlpe@Gmail.com",
     avatarURL: "https://klike.net/uploads/posts/2019-05/medium/1556708030_2.jpg",
@@ -27,6 +29,8 @@ export const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user.username = payload.username;
+        state.user.email = payload.email;
+        // state.user.avatarURL = payload.profile_photo;
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.error = null;
@@ -46,6 +50,9 @@ export const authSlice = createSlice({
       .addCase(logOut.rejected, state => {
         state.isLoggedIn = true;
       })
+      //  .addCase(deleteUser.pending, state => {
+      //   state.isRefreshing = true;
+      // })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -53,6 +60,8 @@ export const authSlice = createSlice({
         refreshUser.fulfilled,
         (state, { payload}) => {
           state.user.username = payload.username;
+          state.user.email = payload.email;
+          // state.user.avatarURL = payload.profile_photo;
           state.isLoggedIn = true;
           state.error = null;
           state.isRefreshing = false;

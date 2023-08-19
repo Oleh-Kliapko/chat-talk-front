@@ -126,4 +126,50 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+export const updatehUser = createAsyncThunk(
+  'auth/refresh',
+  async (formData, thunkAPI) => {
+   try {
 
+        const { data } = await axiosInstance.put("/api/v1/update_profile_photo/", { formData });
+        console.log("update data", data);
+        return data;
+  
+    } catch (error) {
+      // console.log("refresh error", error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const deleteUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+   try {
+ 
+        const { data } = await axiosInstance.delete("/api/v1/delete_account/");
+     console.log("delete_account data", data);
+        return data;
+  
+    } catch (error) {
+      // console.log("refresh error", error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  'auth/refresh',
+  async (credentials, thunkAPI) => {
+   try {
+
+        const { data } = await axiosInstance.put("/api/v1/change_password/",credentials);
+     console.log("change_password data", data);
+     
+        return data;
+  
+    } catch (error) {
+      // console.log("refresh error", error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
