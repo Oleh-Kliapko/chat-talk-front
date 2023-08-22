@@ -60,12 +60,13 @@ export const EditChannelForm = () => {
     const editChannel = useCallback(() => {
         if (!selectedPhoto && textAreaValue.value === channel.description && channelName === channel.name) return toast.warn('Nothing to change');
         const formData = new FormData();
-        if (selectedPhoto) { formData.append('image', selectedPhoto) } else {
+        if (selectedPhoto) {
+            formData.append('image', selectedPhoto)
+        } else {
             formData.append('image', null)
         }
         formData.append('channelName', channelName);
         formData.append('channelDescription', textAreaValue.value);
-        
         toast.success("channel Changed successfully");
         return navigate("/channels/123");
     }, [channelName, navigate, selectedPhoto, textAreaValue.value]);

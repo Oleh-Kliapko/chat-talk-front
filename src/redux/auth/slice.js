@@ -3,7 +3,7 @@ import {
   logIn,
   logOut,
   refreshUser,
-  deleteUser,
+  // deleteUser,
 } from './operations';
 
 const initialState = {
@@ -30,7 +30,7 @@ export const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user.username = payload.username;
         state.user.email = payload.email;
-        // state.user.avatarURL = payload.profile_photo;
+        state.user.avatarURL = payload.profile_photo;
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.error = null;
@@ -61,7 +61,7 @@ export const authSlice = createSlice({
         (state, { payload}) => {
           state.user.username = payload.username;
           state.user.email = payload.email;
-          // state.user.avatarURL = payload.profile_photo;
+          state.user.avatarURL = payload.profile_photo;
           state.isLoggedIn = true;
           state.error = null;
           state.isRefreshing = false;
@@ -73,3 +73,4 @@ export const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+
