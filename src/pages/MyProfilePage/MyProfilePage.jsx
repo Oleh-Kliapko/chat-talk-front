@@ -14,16 +14,16 @@ export const MyProfilePage = () => {
     const dispatch = useDispatch();
     const showModal = useCallback(() => { setModal(true) }, []);
     const closeModal = useCallback(() => { setModal(false) }, []);
-    const signOut = useCallback(async () => { dispatch(logOut()) }, [dispatch]);
+    const signOut = useCallback(() => { dispatch(logOut()) }, [dispatch]);
     return (
         <Container>
-            <Header goBack={true} profileLink={true} title="Profile"  />
-            <ProfileInfo/>
+            <Header goBack={true} profileLink={true} title="Profile" />
+            <ProfileInfo />
             <ProfileOptionsList showModal={showModal} />
             {modal && <CreateModal onClose={closeModal}>
                 <SmallModal yes={signOut} no={closeModal} title="Log Out?" subtitle="Are you sure want to log out?" />
             </CreateModal>}
         </Container>
     );
-}
+};
 

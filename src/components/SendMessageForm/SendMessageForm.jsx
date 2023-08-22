@@ -2,13 +2,24 @@ import { toast } from "react-toastify";
 import { MdAlternateEmail, VscSend } from "../../images/reactIcons/index";
 import { MainContainer, Input, ButtonsContainer, Button } from "./SendMessageForm.styled";
 import { useCallback, useState } from "react";
+import shortid from "shortid";
 
-export const SendMessageForm = () => {
+export const SendMessageForm = ({setMessages}) => {
   const [message, setMessage] = useState("");
   const sendMessage = useCallback(() => {
     if (message.trim() === "") return toast.warning("enter message");
+    setMessages(prev => [...prev, {
+      id: shortid.generate(),
+      text: message,
+      date: new Date(),
+      owner: true,
+      name: "John",
+      image: "https://via.placeholder.com/150",
+      isOnline: true
+    }]);
+    setMessage("")
     toast.success(`message => ${message}`);
-  }, [message]);
+  }, [message, setMessages]);
 
   return (
     <MainContainer>

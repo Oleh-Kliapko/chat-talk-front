@@ -38,14 +38,14 @@ export const EditProfilePage = () => {
   const handleSubmit = useCallback(async () => {
     const formData = new FormData();
     formData.append("profile_photo", selectedPhoto);
-    if (userName === "") {
-      formData.append('username', username)
-    } else {
-      formData.append('username', userName)
-    }
-    if (userName === "" && selectedPhoto === null) return toast.warn("nothing no change");
-    console.log(formData);
-// dispatch(updatehUser(formData))
+    // if (userName === "") {
+    //   formData.append('username', username)
+    // } else {
+    //   formData.append('username', userName)
+    // }
+    // if (userName === "" && selectedPhoto === null) return toast.warn("nothing no change");
+    // console.log(formData);
+dispatch(updatehUser(formData))
     toast.success("profile info changed successfully");
     // return navigate("/");
   }, [dispatch, selectedPhoto]);
