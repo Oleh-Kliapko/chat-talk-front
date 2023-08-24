@@ -23,7 +23,7 @@ export const SendMessageForm = ({setMessages}) => {
 
   return (
     <MainContainer>
-      <Input type="text" placeholder="Start typing..." value={message} onChange={(e) => setMessage(e.target.value)} />
+      <Input type="text" placeholder="Start typing..." maxLength={200} value={message} onChange={(e) => setMessage(e.target.value)} />
       <ButtonsContainer ButtonsContainer>
         <Button type="button" onClick={() => console.log("click")}><MdAlternateEmail size={16} color={"#8E8E93"} /></Button>
         <Button type="button" onClick={sendMessage}><VscSend size={16} color={"#3D3D3D"} /></Button>

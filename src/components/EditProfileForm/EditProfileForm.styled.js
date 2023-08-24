@@ -31,10 +31,12 @@ width:100px;
 height:100px;
 border-radius:50%;
 overflow:hidden;
+object-fit: contain;
 `
 export const Image = styled.img`
 width:100%;
-height:100%;
+height:auto;
+object-fit: contain;
 `
 export const StyledInput = styled.input`
 width:100%;

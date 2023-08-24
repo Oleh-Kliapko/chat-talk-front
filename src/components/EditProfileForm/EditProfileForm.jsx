@@ -25,7 +25,7 @@ export const EditProfileForm = ({
         <MainContainer>
             <Box>
                 <ImageContainer>
-                    <Image src={`https://talk.pythonanywhere.com${preview}`} alt="channel-image" />
+                    <Image src={preview} alt="channel-image" />
                 </ImageContainer>
                 <InputFileBox>
                     <BiSolidCamera onClick={handleClick} size={24} />

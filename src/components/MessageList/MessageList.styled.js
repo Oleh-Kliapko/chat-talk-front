@@ -60,6 +60,8 @@ border-radius:50%;
 
 export const MessageContainer = styled.div`
 width:60%;
+height:auto;
+ word-wrap: break-word;
 padding:4px 8px;
 background-color:${props => props.owner? "#007AFF":"#F2F2F7"};
 border-radius:${props => props.owner ? "6px 0px 6px 6px":"0px 6px 6px 6px"};
@@ -102,7 +104,7 @@ left: 50%;
 transform: translate(-50%, -50%); 
 background-color:#FAFAFA;
 `;
-export const DateContainer = styled.p`
+export const DateContainer = styled.div`
 position:relative;
 margin-top:26px;
 margin-bottom:26px;
