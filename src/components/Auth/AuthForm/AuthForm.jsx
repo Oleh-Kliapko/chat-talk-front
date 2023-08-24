@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Wrapper, Form, Title, Input, Error, InputWrapper, ShowPasswordBtn, } from './AuthForm.styled';
 import { AuthBtn, RedirectBtn, ForgotPasswordBtn } from '@/components/Buttons';
 import { validations } from '@/utils/Schemas';
@@ -15,6 +15,18 @@ export const AuthForm = ({ from, onOpen }) => {
   const isLoginPage = from === 'loginPage';
   const dispatch = useDispatch();
 
+  const signIn = useCallback(async (values) => {
+    console.log('values', values)
+    const response = await dispatch(signUp({ email: values.email, username: values.username, password: values.password }));
+    console.log("response.requestStatus", response);
+    if (response.meta.requestStatus === "rejected") return;
+    onOpen();
+  }, [dispatch, onOpen]);
+  const login = useCallback(async (values) => {
+     dispatch(logIn({ email: values.email, password: values.password }))
+  }, [dispatch]);
+  
+
   return (
     <Wrapper>
       <Formik
@@ -22,10 +34,8 @@ export const AuthForm = ({ from, onOpen }) => {
           isLoginPage ? validations.loginSchema : validations.signUpSchema
         }
         initialValues={{ email: '', password: '', confirmPassword: '', username: '', }}
-        onSubmit={(values, { setSubmitting }) => {
-          isLoginPage ? dispatch(logIn({ email: values.email, password: values.password })) :
-            dispatch(signUp({ email: values.email, username: values.username, password: values.password }));
-          !isLoginPage && onOpen();
+        onSubmit={async(values, { setSubmitting }) => {
+          isLoginPage ? await login(values) : await signIn(values);
           setSubmitting(false);
         }}      >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, }) => (
@@ -112,6 +122,14 @@ AuthForm.propTypes = {
   from: PropTypes.string,
   onOpen:PropTypes.func
 };
+
+
+//  onSubmit={(values, { setSubmitting }) => {
+//           isLoginPage ? dispatch(logIn({ email: values.email, password: values.password })) :
+//             dispatch(signUp({ email: values.email, username: values.username, password: values.password }));
+//           !isLoginPage && onOpen();
+//           setSubmitting(false);
+//         }}
 
 
 // import { Formik } from 'formik';

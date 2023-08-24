@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   MainContainer,
   Item,
@@ -14,14 +15,22 @@ import {
   DateTexts
 } from "./MessageList.styled";
 
-export const MessageList = ({messages}) => {
-  // data.sort(compareDates);
+export const MessageList = ({ messages }) => {
+  const listRef = useRef();
+console.log("MessageList");
+  const scrollToBottom = () => {
+    listRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  };
+
+  useEffect(() => { scrollToBottom() }, [messages]);
+
   function formatDate(date) {
   const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
+  const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   }
+
   const todayDate = new Date();
   const yesterdayDate = new Date(todayDate);
   yesterdayDate.setDate(todayDate.getDate() - 1);
@@ -32,30 +41,28 @@ export const MessageList = ({messages}) => {
     if (date === today) return "today";
     if (date === yesterday) return "yesterday";
     return date;
-  }
+  };
 
   const groupedByDay = messages.reduce((acc, obj) => {
-  const date = formatDate(obj.date) // Извлечение даты в формате "YYYY-MM-DD"
-  if (!acc[date]) {
-    acc[date] = [];
-  }
+  const date = formatDate(obj.date)
+    if (!acc[date]) { acc[date] = [] }
   acc[date].push(obj);
   return acc;
   }, {});
   
   console.log("data",groupedByDay);
   return (
-    <MainContainer>
-      <List>
+    <MainContainer >
+      <List ref={listRef}>
         {Object.keys(groupedByDay).map(date => (
           <div key={date}>
-            <DateContainer><DateTexts>{showDate(date)}</DateTexts><hr/></DateContainer>
-                        <ul>
+            <DateContainer><DateTexts>{showDate(date)}</DateTexts><hr /></DateContainer>
+            <ul>
               {groupedByDay[date].map(el => <Message key={el.id} el={el} />)}
             </ul>
           </div>))}
       </List>
-    </MainContainer>
+    </MainContainer >
   );
 };
 

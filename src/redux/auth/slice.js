@@ -4,14 +4,15 @@ import {
   logOut,
   refreshUser,
   // deleteUser,
+  updatehUser
 } from './operations';
 
 const initialState = {
   user: {
     userId:"",
     username: "",
-    email: "examlpe@Gmail.com",
-    avatarURL: "https://klike.net/uploads/posts/2019-05/medium/1556708030_2.jpg",
+    email: "",
+    avatarURL: "",
   },
   token: null,
   isRefreshing: false,
@@ -31,6 +32,7 @@ export const authSlice = createSlice({
         state.user.username = payload.username;
         state.user.email = payload.email;
         state.user.avatarURL = payload.profile_photo;
+        state.user.userId=payload.user_id
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.error = null;
@@ -42,13 +44,31 @@ export const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(logOut.fulfilled, state => {
-        state.user.username = null;
+        state.user.username = "";
+        state.user.username = "";
+          state.user.email = "";
+          state.user.avatarURL = "";
+        state.user.userId = "";
         state.isLoggedIn = false;
         state.isRefreshing = false;
         state.error = null;
       })
       .addCase(logOut.rejected, state => {
         state.isLoggedIn = true;
+      })
+         .addCase(updatehUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(updatehUser.fulfilled,
+        (state, { payload}) => {
+          state.user.username = payload.username;
+          state.user.avatarURL = payload.profile_photo;
+          state.isLoggedIn = true;
+          state.error = null;
+          state.isRefreshing = false;
+        })
+       .addCase(updatehUser.rejected, state => {
+        state.isRefreshing = false;
       })
       //  .addCase(deleteUser.pending, state => {
       //   state.isRefreshing = true;
@@ -62,6 +82,7 @@ export const authSlice = createSlice({
           state.user.username = payload.username;
           state.user.email = payload.email;
           state.user.avatarURL = payload.profile_photo;
+          state.user.userId=payload.user_id
           state.isLoggedIn = true;
           state.error = null;
           state.isRefreshing = false;
@@ -69,6 +90,7 @@ export const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
+ 
   },
 });
 

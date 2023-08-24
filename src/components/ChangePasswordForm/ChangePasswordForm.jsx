@@ -21,16 +21,27 @@ export const ChangePasswordForm = () => {
             <Formik
                 validationSchema={validations.changePasswordSchema}
                 initialValues={{ current: '', new: '', confirm: '' }}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={async(values, { setSubmitting }) => {
                     console.log(values);
                     const credentials = {
                         old_password: values.current,
-                        password: values
+                        password: values.new
                     }
-                    dispatch(changePassword(credentials));
-                    toast.success("password changed successfuly!")
-                    navigate("/")
-                    setSubmitting(false);
+                    const response = await dispatch(changePassword(credentials))
+                    if (response.payload.message === "Password has been changed successfully.") {
+                        toast.success(response.payload.message)
+                        navigate("/")
+                        setSubmitting(false)
+                        return
+                    } else {
+                          toast.error(response.payload.message)
+                        setSubmitting(false)
+                        return
+                    }
+                    
+                    // toast.success("password changed successfuly!")
+                    // navigate("/")
+                   
                 }}
             >
                 {({

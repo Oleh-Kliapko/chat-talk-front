@@ -13,7 +13,7 @@ margin-bottom:24px;
 export const Image = styled.img`
 display:block;
 width:100%;
-height:100%;
+height:auto;
 `;
 
 export const ImageContainer = styled.div`
@@ -22,6 +22,7 @@ height:76px;
 margin-right:20px;
 border-radius:50%;
 overflow:hidden;
+object-fit: contain;
 
 `;
 export const InfoContainer = styled.div`

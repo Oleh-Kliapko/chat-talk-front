@@ -23,7 +23,7 @@ export const EditProfilePage = () => {
 
   const handleDelete = useCallback(async () => {
     dispatch(deleteUser());
-   dispatch(logOut())
+    dispatch(logOut())
     toast.success("Account was successfully deleted")
     navigate("/")
   }, [dispatch, navigate]);
@@ -37,18 +37,17 @@ export const EditProfilePage = () => {
   
   const handleSubmit = useCallback(async () => {
     const formData = new FormData();
-    formData.append("profile_photo", selectedPhoto);
-    // if (userName === "") {
-    //   formData.append('username', username)
-    // } else {
-    //   formData.append('username', userName)
-    // }
-    // if (userName === "" && selectedPhoto === null) return toast.warn("nothing no change");
-    // console.log(formData);
-dispatch(updatehUser(formData))
-    toast.success("profile info changed successfully");
-    // return navigate("/");
-  }, [dispatch, selectedPhoto]);
+    if (selectedPhoto !== null) { formData.append("profile_photo", selectedPhoto) }
+    if (userName === "") {
+      formData.append('username', username);
+    } else {
+      formData.append('username', userName);
+    }
+    if (userName === "" && selectedPhoto === null) return toast.warn("nothing no change");
+    dispatch(updatehUser(formData));
+    // toast.success("profile info changed successfully");
+    return navigate("/my-profile");
+  }, [dispatch, navigate, selectedPhoto, userName, username]);
   
   return (
     <Container>

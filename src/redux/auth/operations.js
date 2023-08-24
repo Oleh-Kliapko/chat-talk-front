@@ -72,9 +72,12 @@ export const signUp = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axiosInstance.post('/api/v1/register/', credentials);
+      console.log("signup data", data);
       return data
     } catch (error) {
-      toast.error('something went wrong, try again');
+      toast.error(error.response.data.message)
+      // console.log("signup error", error.response.data.messge);
+      // toast.error('something went wrong, try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -127,12 +130,13 @@ export const refreshUser = createAsyncThunk(
   }
 );
 export const updatehUser = createAsyncThunk(
-  'auth/refresh',
+  'auth/update-profile',
   async (formData, thunkAPI) => {
    try {
 
-        const { data } = await axiosInstance.put("/api/v1/update_profile_photo/", { formData });
-        console.log("update data", data);
+        const { data } = await axiosInstance.put("/api/v1/profile_update/",  formData );
+     console.log("update data", data);
+     toast.success(data.message)
         return data;
   
     } catch (error) {
@@ -142,7 +146,7 @@ export const updatehUser = createAsyncThunk(
   }
 );
 export const deleteUser = createAsyncThunk(
-  'auth/refresh',
+  'auth/delete-user',
   async (_, thunkAPI) => {
    try {
  
@@ -158,17 +162,18 @@ export const deleteUser = createAsyncThunk(
 );
 
 export const changePassword = createAsyncThunk(
-  'auth/refresh',
+  'auth/change-password',
   async (credentials, thunkAPI) => {
    try {
 
         const { data } = await axiosInstance.put("/api/v1/change_password/",credentials);
      console.log("change_password data", data);
-     
+    //  toast.success(data.message)
         return data;
   
-    } catch (error) {
-      // console.log("refresh error", error.message);
+   } catch (error) {
+     toast.error(error.response.data.message)
+      console.log("refresh error", error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
