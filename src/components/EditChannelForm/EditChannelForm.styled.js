@@ -14,6 +14,7 @@ margin-top:24px;
 margin-bottom:24px;
 position: relative;
 background-color:#EFEFEF;
+object-fit: cover;
 `
 export const Image = styled.img`
 width:100%;

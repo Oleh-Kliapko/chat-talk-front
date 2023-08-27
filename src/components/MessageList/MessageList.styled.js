@@ -36,7 +36,7 @@ margin-right:${props => props.owner ? "0" : "12px"};
 margin-left:${props => props.owner? "12px":"0"};
 `
 export const ImgContainer = styled.div`
-
+opacity:${props => props.repeatMsg ? "1" : "0"};
 border-radius:50%;
 overflow:hidden;
 
@@ -63,7 +63,8 @@ width:60%;
 height:auto;
  word-wrap: break-word;
 padding:4px 8px;
-background-color:${props => props.owner? "#007AFF":"#F2F2F7"};
+background-color:${props => props.owner ? "#007AFF" : "#F2F2F7"};
+/* border-radius:${props =>{if (props.owner) {return "6px 0px 6px 6px"} if(props.repeatMsg&&props.owner||props.repeatMsg&&!props.owner) {return "6px 6px 6px 6px"}if (!props.owner) {return "0px 6px 6px 6px"}}}; */
 border-radius:${props => props.owner ? "6px 0px 6px 6px":"0px 6px 6px 6px"};
 `;
 export const NameText = styled.p`

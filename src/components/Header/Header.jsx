@@ -34,7 +34,7 @@ Header.propTypes = {
     close: PropTypes.bool,
     channelName: PropTypes.string,
     imageUrl: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
     done: PropTypes.func,
     subTitle: PropTypes.string,
 };

@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL
 });
 
@@ -178,3 +178,5 @@ export const changePassword = createAsyncThunk(
     }
   }
 );
+
+export default axiosInstance
