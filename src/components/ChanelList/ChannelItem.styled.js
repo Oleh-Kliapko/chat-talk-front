@@ -36,7 +36,7 @@ export const Text = styled.p`
 font-size:14px;
 font-weight:400;
 `;
-export const Date = styled.div`
+export const DateText = styled.div`
 position:absolute;
 top:8px;
 right:8px;

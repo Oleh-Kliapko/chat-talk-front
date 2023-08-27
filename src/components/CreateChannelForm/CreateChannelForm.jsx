@@ -6,6 +6,8 @@ import { BtnTemplate } from "../Buttons/BtnTemplate";
 import { themes } from "../../styles/themes";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { createChannel } from "../../redux/channels/operations";
+import { useDispatch, useSelector } from "react-redux";
 
  const textAreaInitialValue={
     value: '',
@@ -16,6 +18,8 @@ import { useNavigate } from "react-router-dom";
   };
 
 export const CreateChannelForm = () => {
+    const dispatch = useDispatch()
+    const {user}= useSelector(state=>state.auth)
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [preview, setPreview] = useState(null);
     const [channelName, setChannelName] = useState('');
@@ -54,15 +58,20 @@ export const CreateChannelForm = () => {
         return toast.warn("wrong file type");
     }, []);
 
-    const createChannel = useCallback(() => {
+    const create = useCallback(async () => {
         const formData = new FormData();
         formData.append('image', selectedPhoto)
-        formData.append('channelName', channelName);
-        formData.append('channelDescription', textAreaValue.value);
+        formData.append('title', channelName);
+        formData.append('description', textAreaValue.value);
+        formData.append('owner', user.userId);
         if (!selectedPhoto || !textAreaValue.value || !channelName) return toast.warn('fill all the fields');
-         toast.success("channel created");
-        return navigate("/channels/123")
-    }, [channelName, navigate, selectedPhoto, textAreaValue.value]);
+        const response = await dispatch(createChannel(formData));
+        console.log("response", response);
+        if (response.meta.requestStatus === "fulfilled") {
+            toast.success("channel created");
+            navigate(`/channels/${response.payload.id}`)
+        } else { toast.error(response.error.message) }
+    }, [channelName, dispatch, navigate, selectedPhoto, textAreaValue.value, user.userId]);
 
     return (
         <MainContainer>
@@ -101,7 +110,7 @@ export const CreateChannelForm = () => {
             ></StyledTextarea></StyledLabel>
             <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
             <BtnTemplate
-                onClick={createChannel}
+                onClick={create}
                 text="Create"
                 textSize={themes.fontSizes.m}
                 color={themes.colors.white}

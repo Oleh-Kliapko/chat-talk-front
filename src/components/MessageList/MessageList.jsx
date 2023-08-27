@@ -58,7 +58,7 @@ console.log("MessageList");
           <div key={date}>
             <DateContainer><DateTexts>{showDate(date)}</DateTexts><hr /></DateContainer>
             <ul>
-              {groupedByDay[date].map(el => <Message key={el.id} el={el} />)}
+              {groupedByDay[date].map((el,idx,arr) => { if (idx > 0 && el.name === arr[idx-1].name){return <Message repeatMsg={false} key={el.id} el={el} />}else {return <Message repeatMsg={true}   key={el.id} el={el} />}})}
             </ul>
           </div>))}
       </List>
@@ -66,7 +66,7 @@ console.log("MessageList");
   );
 };
 
-const Message = ({ el }) => {
+const Message = ({ el, repeatMsg }) => {
   function format12HourTime(date) {
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -78,12 +78,12 @@ const Message = ({ el }) => {
   return (
     <Item owner={el.owner}>
       <ProfileContainer owner={el.owner}>
-        <ImgContainer>
+        <ImgContainer repeatMsg={repeatMsg}>
           <Image src={el.image} alt={el.name} />
-        </ImgContainer>
-        {el.isOnline && <OnlineBox></OnlineBox>}
+        </ImgContainer >
+        {el.isOnline && repeatMsg && <OnlineBox></OnlineBox>}
       </ProfileContainer>
-      <MessageContainer owner={el.owner}>
+      <MessageContainer repeatMsg={repeatMsg}   owner={el.owner}>
         {!el.owner && <NameText>{el.name}</NameText>}
         <MessageText owner={el.owner}>{el.text}</MessageText>
         <DateText owner={el.owner}>{format12HourTime(el.date)}</DateText>
@@ -91,3 +91,5 @@ const Message = ({ el }) => {
     </Item>
   );
 };
+
+//  {groupedByDay[date].map(el => <Message key={el.id} el={el} />)}
