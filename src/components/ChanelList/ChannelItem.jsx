@@ -39,6 +39,10 @@ ChannelItem.propTypes = {
     description: PropTypes.string,
     image: PropTypes.string,
         created_at: PropTypes.string,
-    owner: PropTypes.number,
+        owner: PropTypes.exact({
+            id:PropTypes.number,
+            email: PropTypes.string,
+            username: PropTypes.string,
+        }),
     }),
 };

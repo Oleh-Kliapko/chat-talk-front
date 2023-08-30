@@ -5,7 +5,7 @@ export const getAllChannels = createAsyncThunk(
   'channels/getAllChannels',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axiosInstance.get("/api/v1/channels/");
+      const { data } = await axiosInstance.get(`/api/v1/channels/`);
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -30,6 +30,7 @@ export const createChannel = createAsyncThunk(
       const { data } = await axiosInstance.post(`/api/v1/channels/`, credentials);
       return data
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -38,7 +39,7 @@ export const deleteChannelById = createAsyncThunk(
   'channels/deleteChannelById',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axiosInstance.delete(`/api/v1/channels/${id}`);
+      const { data } = await axiosInstance.delete(`/api/v1/channels/${id}/`);
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -47,9 +48,11 @@ export const deleteChannelById = createAsyncThunk(
 );
 export const updateChannel = createAsyncThunk(
   'channels/updateChannel',
-  async (id, credentials, thunkAPI) => {
+  async ({id, formData}, thunkAPI) => {
+    console.log('credentials', formData)
     try {
-      const { data } = await axiosInstance.put(`/api/v1/channels/${id}`, credentials);
+      const { data } = await axiosInstance.put(`/api/v1/channels/${id}/`, formData);
+      console.log('data', data)
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

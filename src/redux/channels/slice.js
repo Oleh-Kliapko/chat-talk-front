@@ -3,6 +3,7 @@ import { getAllChannels, getChannelById, createChannel, deleteChannelById, updat
 
 const initialState = {
   channels: [],
+  nextPage:null,
   currentChannel: null,
   isLoading: false,
   error: null,
@@ -18,7 +19,8 @@ export const channelsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllChannels.fulfilled, (state, { payload }) => {
-        state.channels = payload;
+        state.channels = [...state.channels, ...payload.results];
+        state.nextPage = payload.next;
         state.isLoading = false;
         state.error = null;
       })
@@ -70,7 +72,7 @@ export const channelsSlice = createSlice({
       .addCase(
         deleteChannelById.fulfilled,
         (state) => {
-          state.currentChannel = null;
+          // state.currentChannel = null;
           state.isLoading = false;
           state.error = null;
         })
