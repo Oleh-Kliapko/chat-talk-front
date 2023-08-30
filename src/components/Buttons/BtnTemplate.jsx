@@ -2,6 +2,7 @@ import { Button } from './Button.styled';
 import PropTypes from 'prop-types';
 
 export const BtnTemplate = ({
+  disabled,
   text,
   gradient,
   hoverBackgroundColor,
@@ -11,6 +12,7 @@ export const BtnTemplate = ({
 }) => {
   return (
     <Button
+      disabled={disabled}
       gradient={gradient}
       hoverGradient={hoverGradient}
       hoverBackgroundColor={hoverBackgroundColor}
@@ -28,4 +30,5 @@ BtnTemplate.propTypes = {
   hoverBackgroundColor: PropTypes.string,
   hoverGradient: PropTypes.string,
   hoverColor: PropTypes.string,
+  disabled: PropTypes.bool,
 };

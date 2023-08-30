@@ -30,7 +30,8 @@ const AboutChannelPage = () => {
         }
     }, [channelId, dispatch, navigate]);
 
-    const owner = Boolean(toString(userId) === toString(currentChannel??owner));
+    const owner = userId.toString() === currentChannel.owner.id.toString();
+
     return (
         <Container>
             <ChannelInfo owner={owner} currentChannel={currentChannel} onOpen={onOpen} />

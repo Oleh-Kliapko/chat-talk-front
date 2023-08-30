@@ -42,7 +42,7 @@ export const AuthForm = ({ from, onOpen }) => {
           <Form noValidate onSubmit={handleSubmit}>
             {!isLoginPage && (
               <>
-                <Title>User Name</Title>
+                <Title>Usename</Title>
                 <InputWrapper style={{ position: 'relative' }}>
                   <BiUserCircle size={18} fill="#909090" style={{ position: 'absolute', top: '14px', left: '16px' }} />
                   <Input
@@ -99,7 +99,7 @@ export const AuthForm = ({ from, onOpen }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.confirmPassword}
-                    placeholder="Enter password again"
+                    placeholder="Password"
                   />
                   <ShowPasswordBtn type="button" onClick={() => setIsShowConfirmPassword(prev => !prev)}>
                     {isShowConfirmPassword ? (<OnEyeIcon size={18} />) : (<OffEyeIcon size={18} />)}

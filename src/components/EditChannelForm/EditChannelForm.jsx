@@ -6,26 +6,34 @@ import { ArrowBackIcon } from "../../images/reactIcons";
 import { BtnTemplate } from "../Buttons/BtnTemplate";
 import { themes } from "../../styles/themes";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { updateChannel } from "../../redux/channels/operations";
 
-const channel = {
-    imageURL: "https://klike.net/uploads/posts/2019-05/medium/1556708030_2.jpg",
-    name: "Task Force Leader",
-    description:"Experienced and dynamic leader spearheading collaborative initiatives, driving effective decision-making.",
-}
-const textAreaInitialValue = {
-    value: channel.description,
+// const textAreaInitialValue = {
+//     value: channel.description,
+//     rows: 4,
+//     maxRows: 5,
+//     maxLength: 120,
+//     lineHeight: 40,
+// };
+
+export const EditChannelForm = () => {
+    const { currentChannel, isLoading } = useSelector(state => state.channels);
+    const { id, title, description, image } = currentChannel;
+    console.log('currentChannel', currentChannel);
+    const textAreaInitialValue = {
+    value: description,
     rows: 4,
     maxRows: 5,
     maxLength: 120,
     lineHeight: 40,
-};
-
-export const EditChannelForm = () => {
+    };
+    const dispatch = useDispatch()
     const navigate = useNavigate();
     const [selectedPhoto, setSelectedPhoto] = useState(null);
-    const [preview, setPreview] = useState(channel.imageURL);
+    const [preview, setPreview] = useState(image);
     const [textAreaValue, setTextAreaValue] = useState(textAreaInitialValue);
-    const [channelName, setChannelName] = useState(channel.name);
+    const [channelName, setChannelName] = useState(title);
     const hiddenFileInput = useRef(null);
     useEffect(() => {
         if (!selectedPhoto) return
@@ -57,19 +65,23 @@ export const EditChannelForm = () => {
         textarea.scrollTop = 0;
     }, [textAreaValue]);
 
-    const editChannel = useCallback(() => {
-        if (!selectedPhoto && textAreaValue.value === channel.description && channelName === channel.name) return toast.warn('Nothing to change');
+    const editChannel = useCallback(async () => {
+        if (!selectedPhoto && textAreaValue.value === description && channelName === title) return toast.warn('Nothing to change');
         const formData = new FormData();
         if (selectedPhoto) {
             formData.append('image', selectedPhoto)
-        } else {
-            formData.append('image', null)
         }
-        formData.append('channelName', channelName);
-        formData.append('channelDescription', textAreaValue.value);
-        toast.success("channel Changed successfully");
-        return navigate("/channels/123");
-    }, [channelName, navigate, selectedPhoto, textAreaValue.value]);
+        formData.append('title', channelName);
+        formData.append('description', textAreaValue.value);
+        const result = await dispatch(updateChannel({ id, formData }));
+        console.log('result', result)
+        if (result.meta.requestStatus === "fulfilled") {
+            toast.success("channel Changed successfully");
+            return navigate(`/channels/${id}`);
+        } else {
+            return toast.error(result.payload);
+        }
+    }, [channelName, description, dispatch, id, navigate, selectedPhoto, textAreaValue.value, title]);
 
     return (
         <MainContainer>
@@ -96,9 +108,10 @@ export const EditChannelForm = () => {
                 placeholder="Write here..."
             ></StyledTextarea></StyledLabel>
             <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
-          <BtnTemplate
+            <BtnTemplate
+                disabled={isLoading}
                 onClick={editChannel}
-                text="Confirm"
+                text={isLoading?"Wait...":"Confirm"}
                 textSize={themes.fontSizes.m}
                 color={themes.colors.white}
                 width="100%"
