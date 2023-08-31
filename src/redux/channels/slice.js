@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllChannels, getChannelById, createChannel, deleteChannelById, updateChannel } from "./operations";
+import { getAllChannels, getChannelById,getAllChannelsByUser, createChannel, deleteChannelById, updateChannel } from "./operations";
 
 const initialState = {
   channels: [],
-  nextPage:null,
+  count:null,
   currentChannel: null,
   isLoading: false,
   error: null,
@@ -12,15 +12,41 @@ const initialState = {
 export const channelsSlice = createSlice({
   name: 'channels',
   initialState,
-  reducers: {},
+  reducers: {
+    clearChannels(state) {
+      state.channels = initialState.channels;
+      state.count = initialState.count;
+    }
+  },
   extraReducers: builder => {
     builder
+      .addCase(getAllChannelsByUser.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getAllChannelsByUser.fulfilled, (state, { payload }) => {
+        if (state.channels.length > 0) {
+          state.channels = [...state.channels, ...payload.results]
+        } else {
+          state.channels = payload.results
+        }
+        state.count = payload.count;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getAllChannelsByUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload
+      })
       .addCase(getAllChannels.pending, state => {
         state.isLoading = true;
       })
       .addCase(getAllChannels.fulfilled, (state, { payload }) => {
-        state.channels = [...state.channels, ...payload.results];
-        state.nextPage = payload.next;
+        if (state.channels.length > 0) {
+          state.channels = [...state.channels, ...payload.results]
+        } else {
+          state.channels = payload.results
+        }
+        state.count = payload.count;
         state.isLoading = false;
         state.error = null;
       })
@@ -63,8 +89,9 @@ export const channelsSlice = createSlice({
           state.isLoading = false;
           state.error = null;
         })
-      .addCase(updateChannel.rejected, state => {
+      .addCase(updateChannel.rejected, (state, { payload }) => {
         state.isRefreshing = false;
+        state.error = payload
       })
       .addCase(deleteChannelById.pending, state => {
         state.isLoading = true;
@@ -81,5 +108,5 @@ export const channelsSlice = createSlice({
       })
   },
 });
-
+export const { clearChannels } = channelsSlice.actions;
 export const channelsReducer = channelsSlice.reducer;

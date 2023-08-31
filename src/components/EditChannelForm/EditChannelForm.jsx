@@ -18,7 +18,7 @@ import { updateChannel } from "../../redux/channels/operations";
 // };
 
 export const EditChannelForm = () => {
-    const { currentChannel, isLoading } = useSelector(state => state.channels);
+    const { currentChannel } = useSelector(state => state.channels);
     const { id, title, description, image } = currentChannel;
     console.log('currentChannel', currentChannel);
     const textAreaInitialValue = {
@@ -34,6 +34,7 @@ export const EditChannelForm = () => {
     const [preview, setPreview] = useState(image);
     const [textAreaValue, setTextAreaValue] = useState(textAreaInitialValue);
     const [channelName, setChannelName] = useState(title);
+    const [loading, setLoading] = useState(false);
     const hiddenFileInput = useRef(null);
     useEffect(() => {
         if (!selectedPhoto) return
@@ -66,7 +67,11 @@ export const EditChannelForm = () => {
     }, [textAreaValue]);
 
     const editChannel = useCallback(async () => {
-        if (!selectedPhoto && textAreaValue.value === description && channelName === title) return toast.warn('Nothing to change');
+        setLoading(true)
+        if (!selectedPhoto && textAreaValue.value === description && channelName === title) {
+           setLoading(false)
+            return toast.warn('Nothing to change')
+        }
         const formData = new FormData();
         if (selectedPhoto) {
             formData.append('image', selectedPhoto)
@@ -77,8 +82,10 @@ export const EditChannelForm = () => {
         console.log('result', result)
         if (result.meta.requestStatus === "fulfilled") {
             toast.success("channel Changed successfully");
+            setLoading(false)
             return navigate(`/channels/${id}`);
         } else {
+            setLoading(false)
             return toast.error(result.payload);
         }
     }, [channelName, description, dispatch, id, navigate, selectedPhoto, textAreaValue.value, title]);
@@ -109,9 +116,9 @@ export const EditChannelForm = () => {
             ></StyledTextarea></StyledLabel>
             <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
             <BtnTemplate
-                disabled={isLoading}
+                disabled={loading}
                 onClick={editChannel}
-                text={isLoading?"Wait...":"Confirm"}
+                text={loading ? "Wait..." : "Confirm"}
                 textSize={themes.fontSizes.m}
                 color={themes.colors.white}
                 width="100%"

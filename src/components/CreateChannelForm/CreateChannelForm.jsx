@@ -7,9 +7,12 @@ import { themes } from "../../styles/themes";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { createChannel } from "../../redux/channels/operations";
-import { useDispatch, useSelector } from "react-redux";
+import {
+    useDispatch,
+    // useSelector
+} from "react-redux";
 
- const textAreaInitialValue={
+const textAreaInitialValue = {
     value: '',
     rows: 1,
     maxRows: 5,
@@ -18,8 +21,9 @@ import { useDispatch, useSelector } from "react-redux";
   };
 
 export const CreateChannelForm = () => {
+    const [loading,setLoading] = useState(false)
     const dispatch = useDispatch()
-    const {user}= useSelector(state=>state.auth)
+    // const { user } = useSelector(state => state.auth);
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [preview, setPreview] = useState(null);
     const [channelName, setChannelName] = useState('');
@@ -47,11 +51,12 @@ export const CreateChannelForm = () => {
     }, [textAreaValue]);
     
     const handleClick = useCallback(() => { hiddenFileInput.current.click() }, []);
+    
     const handleChange = useCallback(event => {
            if (!event.target.files[0]) return;
         if (event.target.files[0].size > 160000000000000) return toast.warn("file is too large");
         if (event.target.files[0].type === "image/jpeg"||event.target.files[0].type === "image/png"){
-        console.log("event.target.files[0]",event.target.files[0].size);
+        // console.log("event.target.files[0]",event.target.files[0].size);
             setSelectedPhoto(event.target.files[0]);
             return;
         }
@@ -59,19 +64,21 @@ export const CreateChannelForm = () => {
     }, []);
 
     const create = useCallback(async () => {
+        setLoading(true);
         const formData = new FormData();
        if(selectedPhoto){ formData.append('image', selectedPhoto)}
         formData.append('title', channelName);
         formData.append('description', textAreaValue.value);
-        formData.append('owner', user.userId);
+        // formData.append('owner', user.userId);
         if ( !textAreaValue.value || !channelName) return toast.warn('fill all the fields');
         const response = await dispatch(createChannel(formData));
         console.log("response", response);
         if (response.meta.requestStatus === "fulfilled") {
             toast.success("channel created");
+            setLoading(false)
             navigate(`/channels/${response.payload.id}`)
-        } else { toast.error(response.error.message) }
-    }, [channelName, dispatch, navigate, selectedPhoto, textAreaValue.value, user.userId]);
+        } else { setLoading(false); toast.error(response.error.message) }
+    }, [channelName, dispatch, navigate, selectedPhoto, textAreaValue.value]);
 
     return (
         <MainContainer>
@@ -110,8 +117,9 @@ export const CreateChannelForm = () => {
             ></StyledTextarea></StyledLabel>
             <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
             <BtnTemplate
+                disabled={loading}
                 onClick={create}
-                text="Create"
+                text={loading ? "Wait..." :"Create"}
                 textSize={themes.fontSizes.m}
                 color={themes.colors.white}
                 width="100%"
