@@ -3,7 +3,7 @@ import { themes } from '@/styles';
 
 export const MainContainer = styled.div`
 width: ${themes.breakpoints.mobile}px;
-height:680px;
+/* height:680px; */
 overflow-y:scroll;
 &::-webkit-scrollbar {
       width: 0;

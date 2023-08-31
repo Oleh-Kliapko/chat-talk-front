@@ -3,9 +3,22 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getAllChannels = createAsyncThunk(
   'channels/getAllChannels',
-  async (_, thunkAPI) => {
+  async (num, thunkAPI) => {
     try {
-      const { data } = await axiosInstance.get(`/api/v1/channels/`);
+      const { data } = await axiosInstance.get(`/api/v1/channels/owner_all/?page=${num}`);
+      console.log("getAllChannels" ,data);
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const getAllChannelsByUser = createAsyncThunk(
+  'channels/getAllChannelsByUser',
+  async (num, thunkAPI) => {
+    try {
+      const { data } = await axiosInstance.get(`/api/v1/channels_only_owner/?page=${num}`);
+      console.log(data);
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -59,13 +59,28 @@ export const resetPassword = async (email) => {
   }
 };
 
-export const confirmPassword = async (credentials) => {
-  try {
-    await axiosInstance.post("/api/v1/password_reset_confirm/", credentials);
-  } catch (error) {
-    console.log(error);
+// export const confirmPassword = async (credentials) => {
+//   try {
+//    const res = await axiosInstance.post("/api/v1/password_reset_confirm/", credentials);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+export const confirmPassword = createAsyncThunk(
+  'auth/confirmPassword',
+  async (credentials, thunkAPI) => {
+    try {
+       const res = await axiosInstance.post("/api/v1/password_reset_confirm/", credentials);
+      
+      return res
+    } catch (error) {
+      toast.error(error.response.data.message)
+      // console.log("signup error", error.response.data.messge);
+      // toast.error('something went wrong, try again');
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-};
+);
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
