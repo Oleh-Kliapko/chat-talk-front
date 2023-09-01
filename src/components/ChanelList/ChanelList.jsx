@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useLazyLoading } from "../../hooks/useLazyLoading";
 
 export const ChanelList = ({ channels, isLoading, ForwardPage }) => {
-  const [onScroll, containerRef] = useLazyLoading({ onIntersection: ForwardPage, delay: 800 });
+  const [onScroll, containerRef] = useLazyLoading({ onIntersection: ForwardPage, delay: 1200, marginFromBottom: 30 });
  
   if (!channels) return <EmptyChannelList />;
   return (

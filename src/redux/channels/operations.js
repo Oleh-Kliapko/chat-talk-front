@@ -15,9 +15,21 @@ export const getAllChannels = createAsyncThunk(
 );
 export const getAllChannelsByUser = createAsyncThunk(
   'channels/getAllChannelsByUser',
-  async (num, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const { data } = await axiosInstance.get(`/api/v1/channels_only_owner/?page=${num}`);
+      const { data } = await axiosInstance.get(`/api/v1/channels_only_owner/?page=${page}`);
+      console.log(data);
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const getAllChannelsBySearch = createAsyncThunk(
+  'channels/getAllChannelsBySearch',
+  async ({ page, search }, thunkAPI) => {
+    try {
+      const { data } = await axiosInstance.get(`/api/v1/channels/search/?page=${page}&search=${search}`);
       console.log(data);
       return data
     } catch (error) {
