@@ -17,7 +17,7 @@ const MainPage = () => {
   return (
     <Container>
       <Header title="Channels" goBack={false} profileLink={true} addChannelLink={true} />
-      <Search />
+      <Search page={page} />
       <ChanelList
         channels={channels} isLoading={isLoading} ForwardPage={ForwardPage}
       />

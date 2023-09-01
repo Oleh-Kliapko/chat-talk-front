@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllChannels, getChannelById,getAllChannelsByUser, createChannel, deleteChannelById, updateChannel } from "./operations";
+import { getAllChannels, getChannelById,getAllChannelsByUser,getAllChannelsBySearch, createChannel, deleteChannelById, updateChannel } from "./operations";
 
 const initialState = {
   channels: [],
@@ -20,7 +20,24 @@ export const channelsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getAllChannelsByUser.pending, state => {
+      .addCase(getAllChannelsBySearch.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getAllChannelsBySearch.fulfilled, (state, { payload }) => {
+        if (state.channels.length > 0) {
+          state.channels = [...state.channels, ...payload.results]
+        } else {
+          state.channels = payload.results
+        }
+        state.count = payload.count;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getAllChannelsBySearch.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload
+      })
+       .addCase(getAllChannelsByUser.pending, state => {
         state.isLoading = true;
       })
       .addCase(getAllChannelsByUser.fulfilled, (state, { payload }) => {

@@ -16,18 +16,9 @@ export function useLazyLoading({
       const containerScrollTop = containerRef.current.scrollTop;
       const containerHeight = containerRef.current.clientHeight;
       const scrollHeight = containerRef.current.scrollHeight;
-      if (
-        scrollHeight -
-          containerScrollTop -
-          containerHeight -
-          marginFromBottom <=
-        0
-      ) {
-        onIntersection();
-      }
+      if (scrollHeight - containerScrollTop - containerHeight - marginFromBottom <= 0) { onIntersection() }
     }, delay),
     [onIntersection, containerRef, marginFromBottom, delay]
   );
-
   return [onScroll, containerRef];
 }
