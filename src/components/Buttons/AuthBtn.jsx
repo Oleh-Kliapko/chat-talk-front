@@ -22,7 +22,7 @@ export const AuthBtn = ({ from }) => {
 
   return (
     <BtnTemplate
-    text={changeTitle()}
+      text={changeTitle()}
       textSize={themes.fontSizes.m}
       color={themes.colors.white}
       width="100%"

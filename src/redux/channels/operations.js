@@ -28,6 +28,7 @@ export const getAllChannelsByUser = createAsyncThunk(
 export const getAllChannelsBySearch = createAsyncThunk(
   'channels/getAllChannelsBySearch',
   async ({ page, search }, thunkAPI) => {
+    console.log("page",page);
     try {
       const { data } = await axiosInstance.get(`/api/v1/channels/search/?page=${page}&search=${search}`);
       console.log(data);

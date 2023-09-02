@@ -9,7 +9,7 @@ import { CreateModal } from "../../components/Modal"
 import { SmallModal } from "../../components/Modal/SmallModal"
 import { deleteUser, logOut, updatehUser } from "../../redux/auth/operations"
 
-export const EditProfilePage = () => {
+const EditProfilePage = () => {
   const navigate = useNavigate();
   const { avatarURL, username } = useSelector(state => state.auth.user);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -67,4 +67,4 @@ export const EditProfilePage = () => {
   );
 };
 
-
+export default EditProfilePage

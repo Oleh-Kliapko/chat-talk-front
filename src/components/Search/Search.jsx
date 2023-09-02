@@ -8,44 +8,28 @@ import {
   MainContainer,  SearchContainer,  StyledInput,  LoupeContainer,
   // FilterContainer,  OptionsContainer,  Text, List, Item, ArrowContainer, Button,  CloseContainer,
 } from "./Search.styled";
-// import { useCallback, useEffect, useState } from "react";
-// import { useRef, useCallback } from "react";
 import PropTypes from 'prop-types';
-import debounce from "lodash/debounce";
-import { getAllChannels, getAllChannelsBySearch } from "../../redux/channels/operations";
-import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import { getFlter } from '../../redux/Filter/slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-export const Search = ({ page }) => {
+
+export const Search = ({ handleOnChange, setSearchList,setSearchValue }) => {
   const dispatch = useDispatch();
-  // const [searchState, setSearchState] = useState('');
-  // const [showOptions, setShowOptions] = useState(false);
-  // const [searchResults, setSearchResults] = useState([]);
-  const handleOnChange = debounce(event => {
-    const search = event.target.value.trim().toLowerCase()
-    toast.success(search);
-    if (search === "") return dispatch(getAllChannels(page));
-    if (search.length > 0) return dispatch(getAllChannelsBySearch({ page, search }));
-  }, 1000);
-  // useEffect(() => {
-  //   const allData = ['Apple', 'Banana', 'Orange', 'Pineapple', 'Mango', 'Grapes', 'Watermelon'];
-    
-  //   if (searchState.length >= 3) {
-  //     const filteredResults = allData.filter(item => item.toLowerCase().includes(searchState.toLowerCase()));
-  //     setSearchResults(filteredResults);
-  //   } else { setSearchResults([]) }
-  // }, [searchState]);
-  // const search = useCallback(() => { setSearchState('') }, []);
-  // const toggleOptions = useCallback(() => { setShowOptions(prev => !prev) }, []);
-  // const handleInputChange = useCallback((event) => { setSearchState(event.target.value) }, []);
-  // const searchLatest = useCallback(() => { setShowOptions(false) }, []);
-  // const searchByAmount = useCallback(() => { setShowOptions(false) }, []);
+  const filter = useSelector(state => state.filter);
 
+  useEffect(() => {
+    if (filter !== "") {
+      setSearchList(true);
+      setSearchValue(filter);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     <MainContainer>
       <SearchContainer>
         <LoupeContainer><LoupeIcon size={24} /></LoupeContainer>
-        <StyledInput  onChange={handleOnChange} type="text" placeholder='Search' />
+        <StyledInput autoFocus={true} value={filter } onChange={(e) => { handleOnChange(e); dispatch(getFlter(e.target.value)) }} type="text" placeholder='Search' />
         {/* {searchResults.length > 0 && searchState.length > 0 && (
           <List>
             {searchResults.map((result) => (<Item onClick={search} key={result}>{result}<ArrowContainer ><ArrowRightIcon size={24} /></ArrowContainer></Item>))}
@@ -63,4 +47,9 @@ export const Search = ({ page }) => {
   );
 };
 
-Search.propTypes = { page: PropTypes.number };
+Search.propTypes = {
+  handleOnChange: PropTypes.func,
+  setSearchValue: PropTypes.func,
+  filter: PropTypes.string,
+  setSearchList: PropTypes.func,
+};

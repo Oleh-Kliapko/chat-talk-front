@@ -2,7 +2,7 @@ import { ChangePasswordForm } from "../../components/ChangePasswordForm/ChangePa
 import { Header } from "../../components/Header/Header"
 import { Container } from "../../utils"
 
-export const ChangePasswordPage = () => {
+const ChangePasswordPage = () => {
 
   return (
     <Container>
@@ -11,3 +11,4 @@ export const ChangePasswordPage = () => {
     </Container>
   );
 };
+export default ChangePasswordPage
