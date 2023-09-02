@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth/slice';
 import { channelsReducer } from './channels/slice';
+import {myFilterSlice} from "./Filter/slice"
 // import { commentsReducer } from './comments/slice';
 
 const authPersistConfig = {
@@ -16,6 +17,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     channels: channelsReducer,
+    filter: myFilterSlice.reducer
     // comments: commentsReducer,
   },
   middleware: getDefaultMiddleware => [

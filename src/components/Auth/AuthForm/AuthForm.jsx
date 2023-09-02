@@ -42,7 +42,7 @@ export const AuthForm = ({ from, onOpen }) => {
           <Form noValidate onSubmit={handleSubmit}>
             {!isLoginPage && (
               <>
-                <Title>Usename</Title>
+                <Title>Username</Title>
                 <InputWrapper style={{ position: 'relative' }}>
                   <BiUserCircle size={18} fill="#909090" style={{ position: 'absolute', top: '14px', left: '16px' }} />
                   <Input

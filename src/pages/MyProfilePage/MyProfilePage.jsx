@@ -8,8 +8,7 @@ import { CreateModal } from "../../components/Modal";
 import { SmallModal } from "../../components/Modal/SmallModal";
 import { ProfileInfo } from "../../components/ProfileInfo/ProfileInfo";
 
-
-export const MyProfilePage = () => {
+const MyProfilePage = () => {
     const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
     const showModal = useCallback(() => { setModal(true) }, []);
@@ -27,3 +26,4 @@ export const MyProfilePage = () => {
     );
 };
 
+export default MyProfilePage

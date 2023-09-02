@@ -3,7 +3,9 @@ import { getAllChannels, getChannelById,getAllChannelsByUser,getAllChannelsBySea
 
 const initialState = {
   channels: [],
-  count:null,
+  searchListChannels: [],
+  сhannellistByUser: [],
+  count: null,
   currentChannel: null,
   isLoading: false,
   error: null,
@@ -16,7 +18,15 @@ export const channelsSlice = createSlice({
     clearChannels(state) {
       state.channels = initialState.channels;
       state.count = initialState.count;
-    }
+    },
+     clearSearchListChannels(state) {
+      state.searchListChannels = initialState.searchListChannels;
+      state.count = initialState.count;
+    },
+         clearChannelsByUser(state) {
+      state.сhannellistByUser = initialState.сhannellistByUser;
+      state.count = initialState.count;
+    },
   },
   extraReducers: builder => {
     builder
@@ -24,11 +34,12 @@ export const channelsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllChannelsBySearch.fulfilled, (state, { payload }) => {
-        if (state.channels.length > 0) {
-          state.channels = [...state.channels, ...payload.results]
+       if (state.searchListChannels.length > 0) {
+          state.searchListChannels = [...state.searchListChannels, ...payload.results]
         } else {
-          state.channels = payload.results
+          state.searchListChannels = payload.results
         }
+        state.channels = payload.results
         state.count = payload.count;
         state.isLoading = false;
         state.error = null;
@@ -41,10 +52,10 @@ export const channelsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllChannelsByUser.fulfilled, (state, { payload }) => {
-        if (state.channels.length > 0) {
-          state.channels = [...state.channels, ...payload.results]
+       if (state.сhannellistByUser.length > 0) {
+          state.сhannellistByUser = [...state.сhannellistByUser, ...payload.results]
         } else {
-          state.channels = payload.results
+          state.сhannellistByUser = payload.results
         }
         state.count = payload.count;
         state.isLoading = false;
@@ -125,5 +136,5 @@ export const channelsSlice = createSlice({
       })
   },
 });
-export const { clearChannels } = channelsSlice.actions;
+export const { clearChannels, incrementSearchPage, clearSearchListChannels,clearChannelsByUser } = channelsSlice.actions;
 export const channelsReducer = channelsSlice.reducer;

@@ -13,7 +13,7 @@ export const RedirectBtn = ({ from }) => {
       {from === 'loginPage' ? (
         <RedirectTitle to="/register">Sign up</RedirectTitle>
       ) : (
-        <RedirectTitle to="/login">Log in</RedirectTitle>
+        <RedirectTitle to="/login">Log In</RedirectTitle>
       )}
     </RedirectWrapper>
   );
