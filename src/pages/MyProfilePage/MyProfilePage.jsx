@@ -16,7 +16,7 @@ const MyProfilePage = () => {
     const signOut = useCallback(() => { dispatch(logOut()) }, [dispatch]);
     return (
         <Container>
-            <Header goBack={true} profileLink={true} title="Profile" />
+            <Header goBack={true} profileLink={false} title="Profile" />
             <ProfileInfo />
             <ProfileOptionsList showModal={showModal} />
             {modal && <CreateModal onClose={closeModal}>

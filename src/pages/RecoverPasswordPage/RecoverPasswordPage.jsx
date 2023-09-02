@@ -21,7 +21,7 @@ const RecoverPasswordPage = () => {
                 <Text>Create a new strong password that you don’t
                     use for other websites</Text>
                 < ForgotPasswordLink onOpenRecieved={onOpenRecieved} />
-                {!openModal && <CreateModal >
+                {openModal && <CreateModal >
         <SucsessPasswordModal onClose={onCloseRecieved} title="Success!" subtitle="Your password has been updated successfully" />
       </CreateModal > }
             </MainContainer>

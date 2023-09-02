@@ -12,7 +12,7 @@ const passwordPattern = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-
   // /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/;
 const passwordPatternErrorMessage =
   '6-32 characters, at least one uppercase, lowercase and special character each';
-const confirmPasswordErrorMessage = 'Passwords must match';
+const confirmPasswordErrorMessage = 'The password you entered does not match';
 
 const requiredField = fieldName => `${fieldName} is required`;
 
