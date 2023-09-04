@@ -3,13 +3,14 @@ import { BtnTemplate } from "../Buttons/BtnTemplate";
 import { MainContainer,MainText,Text,ButtonsContainer } from "./SmallModal.styled";
 import PropTypes from 'prop-types';
 
-export const SmallModal = ({ yes, no, title, subtitle }) => {
+export const SmallModal = ({ yes, no, title, subtitle, isLoading }) => {
     return (
         <MainContainer>
             <MainText>{title }</MainText>
             <Text>{subtitle }</Text>
             <ButtonsContainer>
                 <BtnTemplate
+                    disabled={isLoading}
                     onClick={no}
                     text="No"
                     textSize={themes.fontSizes.m}
@@ -22,8 +23,9 @@ export const SmallModal = ({ yes, no, title, subtitle }) => {
                     type="button"
                 />
                 <BtnTemplate
+                    disabled={isLoading}
                     onClick={yes}
-                    text="Yes"
+                    text={isLoading?"wait...":"Yes"}
                     textSize={themes.fontSizes.m}
                     color={themes.colors.white}
                     width="90px"
@@ -44,4 +46,5 @@ SmallModal.propTypes = {
     no: PropTypes.func,
     title: PropTypes.string,
     subtitle: PropTypes.string,
+    isLoading: PropTypes.bool,
 };

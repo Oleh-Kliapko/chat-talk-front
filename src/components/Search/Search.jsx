@@ -11,25 +11,19 @@ import {
 import PropTypes from 'prop-types';
 import { getFlter } from '../../redux/Filter/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
-
-export const Search = ({ handleOnChange, setSearchList,setSearchValue }) => {
+export const Search = ({ handleOnChange, setSearchList, setSearchValue }) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter);
-
-  useEffect(() => {
-    if (filter !== "") {
-      setSearchList(true);
-      setSearchValue(filter);
-    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  useEffect(() => { if (filter !== "") { setSearchList(true); setSearchValue(filter); } }, []);
+  const onChange = useCallback((e) => { handleOnChange(e); dispatch(getFlter(e.target.value)) }, [dispatch, handleOnChange]);
   return (
     <MainContainer>
       <SearchContainer>
         <LoupeContainer><LoupeIcon size={24} /></LoupeContainer>
-        <StyledInput autoFocus={true} value={filter } onChange={(e) => { handleOnChange(e); dispatch(getFlter(e.target.value)) }} type="text" placeholder='Search' />
+        <StyledInput autoFocus={true} value={filter } onChange={onChange} type="text" placeholder='Search' />
         {/* {searchResults.length > 0 && searchState.length > 0 && (
           <List>
             {searchResults.map((result) => (<Item onClick={search} key={result}>{result}<ArrowContainer ><ArrowRightIcon size={24} /></ArrowContainer></Item>))}

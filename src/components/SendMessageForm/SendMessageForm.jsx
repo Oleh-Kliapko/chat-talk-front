@@ -3,7 +3,7 @@ import { MdAlternateEmail, VscSend } from "../../images/reactIcons/index";
 import { MainContainer, Input, ButtonsContainer, Button } from "./SendMessageForm.styled";
 import { useCallback, useState } from "react";
 import shortid from "shortid";
-
+import PropTypes from 'prop-types';
 export const SendMessageForm = ({setMessages}) => {
   const [message, setMessage] = useState("");
   const sendMessage = useCallback(() => {
@@ -32,3 +32,6 @@ export const SendMessageForm = ({setMessages}) => {
   );
 };
 
+SendMessageForm.propTypes = {
+  setMessages: PropTypes.func,
+};

@@ -11,6 +11,7 @@ import { changePassword } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 
 export const ChangePasswordForm = () => {
+    const [loading, setLoading] = useState(false);
     const [isShowCurrentPassword, setIsShowCurrentPassword] = useState(false);
     const [isShowPassword, setIsShowPassword] = useState(false);
     const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
@@ -23,6 +24,7 @@ export const ChangePasswordForm = () => {
                 initialValues={{ current: '', new: '', confirm: '' }}
                 onSubmit={async(values, { setSubmitting }) => {
                     console.log(values);
+                    setLoading(true)
                     const credentials = {
                         old_password: values.current,
                         password: values.new
@@ -30,18 +32,16 @@ export const ChangePasswordForm = () => {
                     const response = await dispatch(changePassword(credentials))
                     if (response.payload.message === "Password has been changed successfully.") {
                         toast.success(response.payload.message)
-                        navigate("/")
-                        setSubmitting(false)
-                        return
+                        navigate("/");
+                        setSubmitting(false);
+                        setLoading(false)
+                        return;
                     } else {
-                          toast.error(response.payload.message)
-                        setSubmitting(false)
-                        return
+                        toast.error(response.payload.message);
+                        setSubmitting(false);
+                         setLoading(false)
+                        return;
                     }
-                    
-                    // toast.success("password changed successfuly!")
-                    // navigate("/")
-                   
                 }}
             >
                 {({
@@ -133,7 +133,7 @@ export const ChangePasswordForm = () => {
                                 touched.confirm &&
                                 errors.confirm}
                         </Error>
-                        <AuthBtn from={"change-password"} />
+                        <AuthBtn disabled={loading} from={"change-password"} />
                     </Form>
                 )}
             </Formik>

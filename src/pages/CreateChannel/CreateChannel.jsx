@@ -6,7 +6,7 @@ const CreateChannel = () => {
   return (
     <Container>
       <Header title='Create channel' goBack={true} />
-      <CreateChannelForm/>
+      <CreateChannelForm />
     </Container>
   );
 }
