@@ -27,7 +27,7 @@ const MyChannelsPage = () => {
   return (
     <Container>
       <Header title="My Channels" goBack={true} profileLink={true} addChannelLink={true} />
-     {load ? <Loader/> : <ChanelList channels={сhannellistByUser} isLoading={loadNextPage} ForwardPage={ForwardPage} />}
+     {load ? <Loader/> : <ChanelList from="my-channels-page" channels={сhannellistByUser} isLoading={loadNextPage} ForwardPage={ForwardPage} />}
     </Container>
   )
 }

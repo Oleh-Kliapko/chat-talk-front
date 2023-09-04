@@ -10,17 +10,18 @@ import { ProfileInfo } from "../../components/ProfileInfo/ProfileInfo";
 
 const MyProfilePage = () => {
     const [modal, setModal] = useState(false);
+    const [load, setLoad] = useState(false);
     const dispatch = useDispatch();
     const showModal = useCallback(() => { setModal(true) }, []);
     const closeModal = useCallback(() => { setModal(false) }, []);
-    const signOut = useCallback(() => { dispatch(logOut()) }, [dispatch]);
+    const signOut = useCallback(async () => { setLoad(true); await dispatch(logOut());setLoad(false) }, [dispatch]);
     return (
         <Container>
             <Header goBack={true} profileLink={false} title="Profile" />
             <ProfileInfo />
             <ProfileOptionsList showModal={showModal} />
             {modal && <CreateModal onClose={closeModal}>
-                <SmallModal yes={signOut} no={closeModal} title="Log Out?" subtitle="Are you sure want to log out?" />
+                <SmallModal isLoading={load} yes={signOut} no={closeModal} title="Log Out?" subtitle="Are you sure want to log out?" />
             </CreateModal>}
         </Container>
     );

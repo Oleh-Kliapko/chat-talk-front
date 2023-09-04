@@ -72,7 +72,7 @@ const MainPage = () => {
     <Container>
       <Header title="Channels" goBack={false} profileLink={true} addChannelLink={true} />
       <Search setSearchList={setSearchList} setSearchValue={setSearchValue} handleOnChange={handleOnChange} />
-   {load ? <Loader/> : <ChanelList channels={chosenChannels} isLoading={loadNextPage} ForwardPage={ForwardPage} ForwardSearchPage={ForwardSearchPage} notFound={searchList} />}
+   {load ? <Loader/> : <ChanelList from="maim-page" channels={chosenChannels} isLoading={loadNextPage} ForwardPage={ForwardPage} ForwardSearchPage={ForwardSearchPage} notFound={searchList} />}
     </Container>
   );
 };
