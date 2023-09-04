@@ -8,6 +8,7 @@ import { themes } from "../../styles/themes";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { updateChannel } from "../../redux/channels/operations";
+import { Loader } from "../../utils";
 
 // const textAreaInitialValue = {
 //     value: channel.description,
@@ -92,9 +93,10 @@ export const EditChannelForm = () => {
 
     return (
         <MainContainer>
-            <ImgContainer>
+            <>
+                <ImgContainer>
                 <Image src={preview} alt="channel-image" />
-                <Button onClick={handleClick} type="button">
+           { !loading &&  <>  <Button onClick={handleClick} type="button">
                     <Pencil />
                 </Button>
                 <input type="file"
@@ -102,7 +104,8 @@ export const EditChannelForm = () => {
                     onChange={handleChange}
                     style={{ display: 'none' }}
                 />
-                <ButtonBack onClick={() => navigate(-1)}><ArrowBackIcon size={24} fill="#fff" /></ButtonBack>
+                    <ButtonBack onClick={() => navigate(-1)}><ArrowBackIcon size={24} fill="#fff" /></ButtonBack>
+                </>}
             </ImgContainer>
 
             <StyledLabel>Channel Name<StyledInput type="text" name="name" value={channelName} onChange={(e) => setChannelName(e.target.value)} placeholder="Channel name" />
@@ -129,7 +132,9 @@ export const EditChannelForm = () => {
                 borderRadius={themes.radii.main}
                 marginTop={`200px`}
                 marginBottom={`auto`}
-                type="button" />
+                    type="button" />
+            </>
+           { loading && <Loader/>}
         </MainContainer>
     );
 }

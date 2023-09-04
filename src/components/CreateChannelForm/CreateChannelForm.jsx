@@ -7,6 +7,7 @@ import { themes } from "../../styles/themes";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { createChannel } from "../../redux/channels/operations";
+import { Loader } from "../../utils";
 import {
     useDispatch,
     // useSelector
@@ -21,7 +22,7 @@ const textAreaInitialValue = {
   };
 
 export const CreateChannelForm = () => {
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     // const { user } = useSelector(state => state.auth);
     const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -82,33 +83,33 @@ export const CreateChannelForm = () => {
 
     return (
         <MainContainer>
-            <Text>Create your own channel from below</Text>
+          <>  <Text>Create your own channel from below</Text>
             <ImgContainer>
                 {preview ? <>
                     <Image src={preview} alt="channel-image" />
-                    <Button onClick={handleClick} type="button">
+              { !loading &&    <>  <Button onClick={handleClick} type="button">
                         <Pencil />
                     </Button>
                     <input type="file"
                         ref={hiddenFileInput}
                         onChange={handleChange}
                         style={{ display: 'none' }}
-                    />
+                    /></>}
                 </> :
-                    <InputFileBox>
+               <InputFileBox>
                         <button type="button">
                             <MdAddPhotoAlternate onClick={handleClick} size={100} color="#909090" />
                         </button>
-                        <input type="file"
+                    {  !loading &&       <input type="file"
                             ref={hiddenFileInput}
                             onChange={handleChange}
                             style={{ display: 'none' }}
-                        />
+                        />}
                     </InputFileBox>}
             </ImgContainer>
-            <StyledLabel>Channel Name<StyledInput type="text" name="name" value={channelName} onChange={(e) => setChannelName(e.target.value)} placeholder="Channel name" />
+            <StyledLabel>Channel Name<StyledInput disabled={loading} type="text" name="name" value={channelName} onChange={(e) => setChannelName(e.target.value)} placeholder="Channel name" />
             </StyledLabel>
-            <StyledLabel>Description<StyledTextarea name="description"
+            <StyledLabel>Description<StyledTextarea disabled={loading} name="description"
                 rows={textAreaValue.rows}
                 value={textAreaValue.value}
                 onChange={handleTextAreaChange}
@@ -130,7 +131,8 @@ export const CreateChannelForm = () => {
                 borderRadius={themes.radii.main}
                 marginTop={`150px`}
                 marginBottom={`auto`}
-                type="button" />
+                    type="button" /></>
+         {   loading && <Loader/>}
         </MainContainer>
     );
 }

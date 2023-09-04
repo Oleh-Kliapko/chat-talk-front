@@ -4,9 +4,10 @@ import { themes } from '@/styles';
 import { BtnTemplate } from './BtnTemplate';
 import { useCallback } from 'react';
 
-export const AuthBtn = ({ from }) => {
+export const AuthBtn = ({ from, disabled }) => {
   const { handleSubmit} = useFormikContext();
   const changeTitle = useCallback(() => {
+    if (disabled){return "wait..."}
     if (from === 'loginPage') {
       return 'Log in'
     } else if (from === 'recovey-password') {
@@ -18,10 +19,11 @@ export const AuthBtn = ({ from }) => {
     } else {
       return 'Sign Up'
     }
-  }, [from]);
+  }, [disabled, from]);
 
   return (
     <BtnTemplate
+      disabled={disabled}
       text={changeTitle()}
       textSize={themes.fontSizes.m}
       color={themes.colors.white}
@@ -41,4 +43,5 @@ export const AuthBtn = ({ from }) => {
 
 AuthBtn.propTypes = {
   from: PropTypes.string,
+  disabled: PropTypes.bool,
 };

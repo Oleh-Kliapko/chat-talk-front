@@ -42,7 +42,7 @@ export const getChannelById = createAsyncThunk(
   'channels/getChannelById',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axiosInstance.get(`/api/v1/channels/${id}`);
+      const { data } = await axiosInstance.get(`/api/v1/channels/${id}/`);
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

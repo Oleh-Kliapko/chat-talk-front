@@ -7,17 +7,6 @@ import PublicRoute from './routes/PublicRoute';
 import { Loader } from './utils';
 import { refreshUser } from './redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
-// import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
-// import RecoverPasswordPage from './pages/RecoverPasswordPage/RecoverPasswordPage';
-// import CreateChannel from './pages/CreateChannel/CreateChannel';
-// import  MyChannelsPage  from './pages/MyChannelsPage/MyChannelsPage';
-// import  MyProfilePage  from './pages/MyProfilePage/MyProfilePage';
-// import AboutChannelPage from './pages/AboutChannelPage/AboutChannelPage';
-// import  EditProfilePage  from './pages/EditProfilePage/EditProfilePage';
-// import  SecurityPage  from './pages/SecurityPage/SecurityPage';
-// import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
-// import  EditChannelPage  from './pages/EditChannelPage/EditChannelPage';
-// import VeriFyEmailPage from './pages/VeriFyEmailPage/VeriFyEmailPage';
 
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage/ResetPasswordPage'));
 const RecoverPasswordPage = lazy(() => import('./pages/RecoverPasswordPage/RecoverPasswordPage'));

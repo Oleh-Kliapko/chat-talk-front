@@ -10,50 +10,47 @@ import { clearChannels, clearSearchListChannels } from "../../redux/channels/sli
 import debounce from "lodash/debounce";
 
 const MainPage = () => {
-  const { channels, isLoading, count, searchListChannels } = useSelector(state => state.channels);
+  const { channels, count, searchListChannels } = useSelector(state => state.channels);
   const [page, setPage] = useState(1);
   const [searchPage, setSearchPage] = useState(1);
   const [searchList, setSearchList] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [load, setLoad] = useState(false);
+  const [loadNextPage, setLoadNextPage] = useState(false);
   const dispatch = useDispatch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleOnChange = debounce(async (event) => {
-    setLoad(true)
+
+  const handleOnChange = debounce((event) => {
+    if (event.target.value.trim() === searchValue) return;
+    // setLoad(true);
     const search = event.target.value.trim().toLowerCase();
-    if (search === searchValue) return;
     setSearchValue(search);
-    dispatch(clearChannels());
-    dispatch(clearSearchListChannels());
-    setSearchPage(1);
-    setPage(1);
-    if (search === "") return setSearchList(false);
-    if (search !== "") return setSearchList(true);
-  }, 1500);
+    if (search === "") {
+      setPage(1);
+      dispatch(clearChannels());
+      return setSearchList(false)
+    }
+    if (search !== "") {
+      setSearchPage(1);
+      dispatch(clearSearchListChannels());
+      return setSearchList(true)
+    }
+  }, 1000);
 
   const search = useCallback(async () => {
-    setLoad(true)
+    // setLoad(true)
+    
     if (searchList) {
+      searchPage === 1 ? setLoad(true) : setLoadNextPage(true);
       await dispatch(getAllChannelsBySearch({ page: searchPage, search: searchValue }))
-    }  if (!searchList){
+    } else if (!searchList) {
+      page === 1 ? setLoad(true) : setLoadNextPage(true);
       await dispatch(getAllChannels(page));
     }
-    setLoad(false)
-   }, [dispatch, page, searchList, searchPage, searchValue]);
+    setLoad(false); setLoadNextPage(false)
+  }, [dispatch, page, searchList, searchPage, searchValue]);
   
-  useEffect(() => {
-    dispatch(clearChannels());
-    dispatch(clearSearchListChannels())
-    return () => {
-      dispatch(clearChannels());
-      dispatch(clearSearchListChannels());
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    search();
-    return () => { if (page !== 1) { dispatch(clearChannels()) } if (searchPage !== 1) { dispatch(clearSearchListChannels()) } };
-  }, [dispatch, page, search, searchPage]);
+  useEffect(() => { return () => { dispatch(clearChannels()); dispatch(clearSearchListChannels()) } }, [dispatch]);
+  useEffect(() => { search() }, [search]);
 
 
   const ForwardSearchPage = useCallback( () => {
@@ -74,8 +71,8 @@ const MainPage = () => {
   return (
     <Container>
       <Header title="Channels" goBack={false} profileLink={true} addChannelLink={true} />
-      <Search setSearchList={setSearchList} setSearchValue={setSearchValue} handleOnChange={handleOnChange} isLoading={isLoading}  />
-    { load ? <Loader/> : <ChanelList channels={chosenChannels} isLoading={isLoading} ForwardPage={ForwardPage} ForwardSearchPage={ForwardSearchPage} notFound={searchList} />}
+      <Search setSearchList={setSearchList} setSearchValue={setSearchValue} handleOnChange={handleOnChange} />
+   {load ? <Loader/> : <ChanelList channels={chosenChannels} isLoading={loadNextPage} ForwardPage={ForwardPage} ForwardSearchPage={ForwardSearchPage} notFound={searchList} />}
     </Container>
   );
 };

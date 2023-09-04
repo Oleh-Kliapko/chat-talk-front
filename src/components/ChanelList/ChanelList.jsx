@@ -9,12 +9,14 @@ export const ChanelList = ({ channels, isLoading, ForwardPage, notFound, Forward
   const [onScroll, containerRef] = useLazyLoading({ onIntersection: (notFound ? ForwardSearchPage : ForwardPage), delay: 1200, marginFromBottom: 30 });
   
   if (!channels) return null;
-  if (channels.length === 0) return <EmptyChannelList notFound={notFound} />;
   return (
     <MainContainer ref={containerRef} onScroll={onScroll}>
       <List>
-        {channels.map(channel => <ChannelItem key={channel.id} channel={channel} />)}
-        {isLoading && <Loader />}
+        {channels.length === 0 ? <EmptyChannelList notFound={notFound} /> :
+          <>
+            {channels.map(channel => <ChannelItem key={channel.id} channel={channel} />)}
+            {isLoading && <Loader />}
+          </>}
       </List>
     </MainContainer>
   );

@@ -17,7 +17,7 @@ const AboutChannelPage = () => {
     const [openModal, setOpenModal] = useState(false);
     const { channelId } = useParams();
     const { userId } = useSelector(state => state.auth.user);
-    const { currentChannel } = useSelector(state => state.channels);
+    const { currentChannel, isLoading } = useSelector(state => state.channels);
     const onOpen = useCallback(() => { setOpenModal(true) }, []);
     const onClose = useCallback(() => { setOpenModal(false) }, []);
     const handleDelete = useCallback(async () => {
@@ -36,7 +36,7 @@ const AboutChannelPage = () => {
         <Container>
             <ChannelInfo owner={owner} currentChannel={currentChannel} onOpen={onOpen} />
             {openModal && <CreateModal onClose={onClose}>
-                <SmallModal title="Delete the channel?" subtitle="You will not be able to recover it" yes={handleDelete} no={onClose} />
+                <SmallModal isLoading={isLoading} title="Delete the channel?" subtitle="You will not be able to recover it" yes={handleDelete} no={onClose} />
             </CreateModal>}
         </Container>
     );
