@@ -65,13 +65,13 @@ export const CreateChannelForm = () => {
     }, []);
 
     const create = useCallback(async () => {
-        setLoading(true);
         const formData = new FormData();
-       if(selectedPhoto){ formData.append('image', selectedPhoto)}
+        if (selectedPhoto) { formData.append('image', selectedPhoto) }
         formData.append('title', channelName);
         formData.append('description', textAreaValue.value);
         // formData.append('owner', user.userId);
-        if ( !textAreaValue.value || !channelName) return toast.warn('fill all the fields');
+        if (!textAreaValue.value || !channelName) return toast.warn('fill all the fields');
+        setLoading(true);
         const response = await dispatch(createChannel(formData));
         console.log("response", response);
         if (response.meta.requestStatus === "fulfilled") {

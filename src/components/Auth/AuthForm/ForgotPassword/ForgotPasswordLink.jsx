@@ -8,10 +8,11 @@ import { useEffect, useState } from 'react';
 import { confirmPassword } from '../../../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Loader } from '../../../../utils';
 
 export const ForgotPasswordLink = ({onOpenRecieved}) => {
   const dispatch = useDispatch()
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
   const [token, setToken] = useState('');
@@ -112,6 +113,7 @@ export const ForgotPasswordLink = ({onOpenRecieved}) => {
           </Form>
         )}
       </Formik>
+      {loading && <Loader />}
     </Wrapper>
   );
 };

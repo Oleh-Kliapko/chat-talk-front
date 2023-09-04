@@ -51,13 +51,27 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export const resetPassword = async (email) => {
-  try {
-    await axiosInstance.post("/api/v1/password_reset/", email);
-  } catch (error) {
-    console.log(error);
+// export const resetPassword = async (email) => {
+//   try {
+//     const result = await axiosInstance.post("/api/v1/password_reset/", email);
+//     return result
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async (email, thunkAPI) => {
+    try {
+       const res = await axiosInstance.post("/api/v1/password_reset/", email);
+      
+      return res
+    } catch (error) {
+      toast.error(error.response.data.message)
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-};
+);
 
 // export const confirmPassword = async (credentials) => {
 //   try {
