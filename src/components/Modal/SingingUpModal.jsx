@@ -2,7 +2,7 @@ import { TfiEmail } from "react-icons/tfi"
 import { EmailBox, MainContainer, MainText, SecondaryText, Text, Button } from "./SingingUpModal.styled";
 import PropTypes from 'prop-types';
 
-export const SingingUpModal = ({onClose}) => {
+export const SingingUpModal = ({ onClose }) => {
     return (
         <>
             <EmailBox> <TfiEmail color="white" size={54} /> </EmailBox>

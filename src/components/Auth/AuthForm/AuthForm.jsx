@@ -9,6 +9,7 @@ import { OffEyeIcon, OnEyeIcon, BiUserCircle } from '@/images/reactIcons';
 import { logIn, signUp } from "../../../redux/auth/operations";
 import { useDispatch } from 'react-redux';
 import { Loader } from "@/utils/Loader";
+import { FormFieldError } from '../../FormFieldError/FormFieldError';
 
 export const AuthForm = ({ from, onOpen }) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -18,10 +19,8 @@ export const AuthForm = ({ from, onOpen }) => {
   const dispatch = useDispatch();
 
   const signIn = useCallback(async (values) => {
-    console.log('values', values)
      setLoading(true)
     const response = await dispatch(signUp({ email: values.email, username: values.username, password: values.password }));
-    console.log("response.requestStatus", response);
     setLoading(false)
     if (response.meta.requestStatus === "rejected") return;
     onOpen();
@@ -31,8 +30,7 @@ export const AuthForm = ({ from, onOpen }) => {
     await dispatch(logIn({ email: values.email, password: values.password }))
     setLoading(false)
   }, [dispatch]);
-  
-
+ 
   return (
     <Wrapper>
       <>
@@ -62,7 +60,7 @@ export const AuthForm = ({ from, onOpen }) => {
                     id="username"
                   />
                 </InputWrapper>
-                <Error>{errors.username && touched.username && errors.username}</Error>
+                <Error>{errors.username && touched.username && <FormFieldError title={errors.username} />}</Error>
               </>)}
             <Title>Email</Title>
             <InputWrapper style={{ position: 'relative' }}>
@@ -77,7 +75,7 @@ export const AuthForm = ({ from, onOpen }) => {
                 id="email"
               />
             </InputWrapper>
-            <Error>{errors.email && touched.email && errors.email}</Error>
+            <Error>{errors.email && touched.email && <FormFieldError title={errors.email} /> }</Error>
             <Title>Password</Title>
             <InputWrapper>
               <Lock />
@@ -93,7 +91,7 @@ export const AuthForm = ({ from, onOpen }) => {
               <ShowPasswordBtn type="button" onClick={() => setIsShowPassword(prev => !prev)}>
                 {isShowPassword ? (<OnEyeIcon size={18} />) : (<OffEyeIcon size={18} />)}</ShowPasswordBtn>
             </InputWrapper>
-            <Error>{errors.password && touched.password && errors.password}</Error>
+            <Error>{errors.password && touched.password && <FormFieldError title={errors.password} />}</Error>
             {!isLoginPage && (
               <>
                 <Title>Confirm Password</Title>
@@ -112,7 +110,7 @@ export const AuthForm = ({ from, onOpen }) => {
                     {isShowConfirmPassword ? (<OnEyeIcon size={18} />) : (<OffEyeIcon size={18} />)}
                   </ShowPasswordBtn>
                 </InputWrapper>
-                <Error>{errors.confirmPassword && touched.confirmPassword && errors.confirmPassword}</Error>
+                <Error>{errors.confirmPassword && touched.confirmPassword && <FormFieldError title={errors.confirmPassword} /> }</Error>
               </>
             )}
             <ForgotPasswordBtn from={from} onOpen={onOpen} />

@@ -10,18 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateChannel } from "../../redux/channels/operations";
 import { Loader } from "../../utils";
 
-// const textAreaInitialValue = {
-//     value: channel.description,
-//     rows: 4,
-//     maxRows: 5,
-//     maxLength: 120,
-//     lineHeight: 40,
-// };
-
 export const EditChannelForm = () => {
     const { currentChannel } = useSelector(state => state.channels);
     const { id, title, description, image } = currentChannel;
-    console.log('currentChannel', currentChannel);
     const textAreaInitialValue = {
     value: description,
     rows: 4,
@@ -47,7 +38,7 @@ export const EditChannelForm = () => {
         if (!event.target.files[0]) return;
         if (event.target.files[0].size > 160000000000000) return toast.warn("file is too large");
         if (event.target.files[0].type === "image/jpeg"||event.target.files[0].type === "image/png"){
-            console.log("event.target.files[0]", event.target.files[0].size);
+            // console.log("event.target.files[0]", event.target.files[0].size);
             setSelectedPhoto(event.target.files[0]);
             return;
         }
@@ -80,7 +71,6 @@ export const EditChannelForm = () => {
         formData.append('title', channelName);
         formData.append('description', textAreaValue.value);
         const result = await dispatch(updateChannel({ id, formData }));
-        console.log('result', result)
         if (result.meta.requestStatus === "fulfilled") {
             toast.success("channel Changed successfully");
             setLoading(false)

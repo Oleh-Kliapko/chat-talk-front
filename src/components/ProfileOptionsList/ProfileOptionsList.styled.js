@@ -19,10 +19,8 @@ width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:0;
-&:not(:first-of-type){
-    margin-top:12px;
-}
+padding: 12px 0;
+border-bottom: 1px solid  #D9D9D9;
 &:hover{
     cursor: pointer;
     scale:1.01;

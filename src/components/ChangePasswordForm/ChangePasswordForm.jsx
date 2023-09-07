@@ -9,7 +9,9 @@ import { AuthBtn } from '../Buttons/AuthBtn';
 import { toast } from 'react-toastify';
 import { changePassword } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
-
+import { Loader } from '../../utils';
+import { FormFieldError } from '../FormFieldError/FormFieldError';
+console.log();
 export const ChangePasswordForm = () => {
     const [loading, setLoading] = useState(false);
     const [isShowCurrentPassword, setIsShowCurrentPassword] = useState(false);
@@ -22,8 +24,7 @@ export const ChangePasswordForm = () => {
             <Formik
                 validationSchema={validations.changePasswordSchema}
                 initialValues={{ current: '', new: '', confirm: '' }}
-                onSubmit={async(values, { setSubmitting }) => {
-                    console.log(values);
+                onSubmit={async (values, { setSubmitting }) => {
                     setLoading(true)
                     const credentials = {
                         old_password: values.current,
@@ -39,7 +40,7 @@ export const ChangePasswordForm = () => {
                     } else {
                         toast.error(response.payload.message);
                         setSubmitting(false);
-                         setLoading(false)
+                        setLoading(false)
                         return;
                     }
                 }}
@@ -77,7 +78,7 @@ export const ChangePasswordForm = () => {
                             </ShowPasswordBtn>
                         </InputWrapper>
                         <Error>
-                            {errors.current && touched.current && errors.current}
+                            {errors.current && touched.current && <FormFieldError title={errors.current } /> }
                         </Error>
                         <Title>New</Title>
                         <InputWrapper>
@@ -103,7 +104,7 @@ export const ChangePasswordForm = () => {
                             </ShowPasswordBtn>
                         </InputWrapper>
                         <Error>
-                            {errors.new && touched.new && errors.new}
+                            {errors.new && touched.new && <FormFieldError title={errors.new } />}
                         </Error>
                         <Title>Confirm</Title>
                         <InputWrapper>
@@ -131,12 +132,13 @@ export const ChangePasswordForm = () => {
                         <Error>
                             {errors.confirm &&
                                 touched.confirm &&
-                                errors.confirm}
+                               <FormFieldError title={errors.confirm } />}
                         </Error>
                         <AuthBtn disabled={loading} from={"change-password"} />
                     </Form>
                 )}
             </Formik>
+            {loading && <Loader />}
         </Wrapper>
     );
 };

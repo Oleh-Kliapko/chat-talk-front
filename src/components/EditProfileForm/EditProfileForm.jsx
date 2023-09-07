@@ -15,7 +15,7 @@ export const EditProfileForm = ({
         if (!event.target.files[0]) return;
         if (event.target.files[0].size > 160000000000000) return toast.warn("file is too large");
         if (event.target.files[0].type === "image/jpeg"||event.target.files[0].type === "image/png"){
-        console.log("event.target.files[0]",event.target.files[0].size);
+        // console.log("event.target.files[0]",event.target.files[0].size);
             setSelectedPhoto(event.target.files[0]);
             return
         }

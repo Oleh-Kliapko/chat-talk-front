@@ -14,7 +14,7 @@ const MyProfilePage = () => {
     const dispatch = useDispatch();
     const showModal = useCallback(() => { setModal(true) }, []);
     const closeModal = useCallback(() => { setModal(false) }, []);
-    const signOut = useCallback(async () => { setLoad(true); await dispatch(logOut());setLoad(false) }, [dispatch]);
+    const signOut = useCallback(async () => { setLoad(true); await dispatch(logOut()); setLoad(false) }, [dispatch]);
     return (
         <Container>
             <Header goBack={true} profileLink={false} title="Profile" />

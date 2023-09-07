@@ -11,8 +11,10 @@ import { TfiEmail } from "react-icons/tfi"
 import { MdAddPhotoAlternate,MdAlternateEmail ,MdOutlineDone} from "react-icons/md";
 import { IoLogOutOutline,IoClose } from "react-icons/io5"
 import { VscSend } from "react-icons/vsc"
-import {BiUserCircle,BiSolidCamera} from "react-icons/bi"
+import { BiUserCircle, BiSolidCamera } from "react-icons/bi"
+import { FiAlertCircle } from "react-icons/fi";
 export {
+  FiAlertCircle,
   MdOutlineDone,
   IoClose,
   BiSolidCamera,

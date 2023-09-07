@@ -73,7 +73,6 @@ export const CreateChannelForm = () => {
         if (!textAreaValue.value || !channelName) return toast.warn('fill all the fields');
         setLoading(true);
         const response = await dispatch(createChannel(formData));
-        console.log("response", response);
         if (response.meta.requestStatus === "fulfilled") {
             toast.success("channel created");
             setLoading(false)
@@ -83,56 +82,62 @@ export const CreateChannelForm = () => {
 
     return (
         <MainContainer>
-          <>  <Text>Create your own channel from below</Text>
-            <ImgContainer>
-                {preview ? <>
-                    <Image src={preview} alt="channel-image" />
-              { !loading &&    <>  <Button onClick={handleClick} type="button">
-                        <Pencil />
-                    </Button>
-                    <input type="file"
-                        ref={hiddenFileInput}
-                        onChange={handleChange}
-                        style={{ display: 'none' }}
-                    /></>}
-                </> :
-               <InputFileBox>
-                        <button type="button">
-                            <MdAddPhotoAlternate onClick={handleClick} size={100} color="#909090" />
-                        </button>
-                    {  !loading &&       <input type="file"
-                            ref={hiddenFileInput}
-                            onChange={handleChange}
-                            style={{ display: 'none' }}
-                        />}
-                    </InputFileBox>}
-            </ImgContainer>
-            <StyledLabel>Channel Name<StyledInput disabled={loading} type="text" name="name" value={channelName} onChange={(e) => setChannelName(e.target.value)} placeholder="Channel name" />
-            </StyledLabel>
-            <StyledLabel>Description<StyledTextarea disabled={loading} name="description"
-                rows={textAreaValue.rows}
-                value={textAreaValue.value}
-                onChange={handleTextAreaChange}
-                maxLength={textAreaValue.maxLength}
-                placeholder="Write here..."
-            ></StyledTextarea></StyledLabel>
-            <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
-            <BtnTemplate
-                disabled={loading}
-                onClick={create}
-                text={loading ? "Wait..." :"Create"}
-                textSize={themes.fontSizes.m}
-                color={themes.colors.white}
-                width="100%"
-                height={`${themes.spacing[12]}px`}
-                gradient={themes.colors.mainBtnBgr}
-                hoverGradient={themes.colors.accentBtnBgr}
-                border={themes.border.main}
-                borderRadius={themes.radii.main}
-                marginTop={`150px`}
-                marginBottom={`auto`}
+            <>  <Text>Create your own channel from below</Text>
+                <ImgContainer>
+                    {preview ? <>
+                        <Image src={preview} alt="channel-image" />
+                        {!loading && <>  <Button onClick={handleClick} type="button">
+                            <Pencil />
+                        </Button>
+                            <input type="file"
+                                ref={hiddenFileInput}
+                                onChange={handleChange}
+                                style={{ display: 'none' }}
+                            /></>}
+                    </> :
+                        <InputFileBox>
+                            <button type="button">
+                                <MdAddPhotoAlternate onClick={handleClick} size={100} color="#909090" />
+                            </button>
+                            {!loading && <input type="file"
+                                ref={hiddenFileInput}
+                                onChange={handleChange}
+                                style={{ display: 'none' }}
+                            />}
+                        </InputFileBox>}
+                </ImgContainer>
+                <StyledLabel>Channel Name<StyledInput
+                    disabled={loading}
+                    type="text"
+                    name="name"
+                    value={channelName}
+                    onChange={(e) => setChannelName(e.target.value)}
+                    placeholder="Channel name" />
+                </StyledLabel>
+                <StyledLabel>Description<StyledTextarea disabled={loading} name="description"
+                    rows={textAreaValue.rows}
+                    value={textAreaValue.value}
+                    onChange={handleTextAreaChange}
+                    maxLength={textAreaValue.maxLength}
+                    placeholder="Write here..."
+                ></StyledTextarea></StyledLabel>
+                <LetterCounter>{textAreaValue.value.length}/{textAreaValue.maxLength}</LetterCounter>
+                <BtnTemplate
+                    disabled={loading}
+                    onClick={create}
+                    text={loading ? "Wait..." : "Create"}
+                    textSize={themes.fontSizes.m}
+                    color={themes.colors.white}
+                    width="100%"
+                    height={`${themes.spacing[12]}px`}
+                    gradient={themes.colors.mainBtnBgr}
+                    hoverGradient={themes.colors.accentBtnBgr}
+                    border={themes.border.main}
+                    borderRadius={themes.radii.main}
+                    marginTop={`150px`}
+                    marginBottom={`auto`}
                     type="button" /></>
-         {   loading && <Loader/>}
+            {loading && <Loader />}
         </MainContainer>
     );
 }

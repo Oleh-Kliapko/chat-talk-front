@@ -17,7 +17,7 @@ import {
 
 export const MessageList = ({ messages }) => {
   const listRef = useRef();
-console.log("MessageList");
+
   const scrollToBottom = () => {
     listRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
   };
@@ -50,8 +50,7 @@ console.log("MessageList");
   return acc;
   }, {});
   
-  console.log("data",groupedByDay);
-  return (
+   return (
     <MainContainer >
       <List ref={listRef}>
         {Object.keys(groupedByDay).map(date => (

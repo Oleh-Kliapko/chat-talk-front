@@ -3,7 +3,6 @@ import { Image, ImageContainer, InfoContainer, MainContainer, MainText, Secondar
 
 export const ProfileInfo = () => {
     const { user } = useSelector(state => state.auth);
-    console.log("user",user);
     return (
         <MainContainer>
             <ImageContainer><Image src={user.avatarURL} alt={user.username} /></ImageContainer>

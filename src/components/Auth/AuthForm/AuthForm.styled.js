@@ -40,12 +40,12 @@ export const Input = styled.input`
   }
 `;
 
-export const Error = styled.p`
-  color: ${themes.colors.error};
+export const Error = styled.div`
+  /* color: ${themes.colors.error};
   font-size: ${themes.fontSizes.xxs};
-  font-family: 'Segoe-Regular';
+  font-family: 'Segoe-Regular'; */
   margin-bottom: ${themes.spacing[4]}px;
-  align-self: flex-end;
+  /* align-self: flex-start; */
 `;
 
 export const ShowPasswordBtn = styled.button`
