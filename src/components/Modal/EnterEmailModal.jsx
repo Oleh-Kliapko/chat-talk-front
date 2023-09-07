@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Loader } from "../../utils";
+import { FormFieldError } from "../FormFieldError/FormFieldError";
 
 export const EnterEmailModal = ({ onClose, onOpenRecieved }) => {
     const dispatch = useDispatch();
@@ -23,7 +24,6 @@ export const EnterEmailModal = ({ onClose, onOpenRecieved }) => {
                     setLoad(true)
                     const res = await dispatch(resetPassword({ email }));
                     setLoad(false)
-                    console.log("res", res);
                     if (res.meta.requestStatus === "rejected") return;
                     onClose();
                     onOpenRecieved();
@@ -36,7 +36,7 @@ export const EnterEmailModal = ({ onClose, onOpenRecieved }) => {
                             <Email />
                             <Input type="text" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email address" />
                         </InputWrapper>
-                        <Error>{errors.email && touched.email && errors.email}</Error>
+                        <Error>{errors.email && touched.email && <FormFieldError title={errors.email } />}</Error>
                         <AuthBtn disabled={load} from="emailModal" />
                     </Form>)}
             </Formik>

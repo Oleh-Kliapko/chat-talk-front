@@ -7,9 +7,6 @@ export function useLazyLoading({
   marginFromBottom = 10
 }) {
   const containerRef = useRef(null);
-
-  // Функция обработчик scroll эвента, с ограничением количества вызовов
-  // посредством lodash/throttle
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onScroll = useCallback(
     throttle(() => {

@@ -10,13 +10,14 @@ export const HomeBtn = () => {
       text="Get started"
       textSize={themes.fontSizes.m}
       color={themes.colors.white}
-      width="95vw"
+      width="100%"
       height={`${themes.spacing[12]}px`}
       gradient={themes.colors.mainBtnBgr}
       hoverGradient={themes.colors.accentBtnBgr}
       border={themes.border.main}
       borderRadius={themes.radii.main}
-      marginBottom="100px"
+      // marginBottom="100px"
+      marginTop="100px"
       onClick={() => navigate('/login')}
     />
   );

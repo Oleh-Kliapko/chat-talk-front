@@ -21,7 +21,6 @@ const MainPage = () => {
 
   const handleOnChange = debounce((event) => {
     if (event.target.value.trim() === searchValue) return;
-    // setLoad(true);
     const search = event.target.value.trim().toLowerCase();
     setSearchValue(search);
     if (search === "") {
@@ -37,8 +36,6 @@ const MainPage = () => {
   }, 1000);
 
   const search = useCallback(async () => {
-    // setLoad(true)
-    
     if (searchList) {
       searchPage === 1 ? setLoad(true) : setLoadNextPage(true);
       await dispatch(getAllChannelsBySearch({ page: searchPage, search: searchValue }))
@@ -67,7 +64,7 @@ const MainPage = () => {
     } else { setPage(prev => prev + 1) }
   }, [channels, count]);
 
-  let chosenChannels = searchList ? searchListChannels : channels;
+  let chosenChannels = searchList ? searchListChannels : channels
   return (
     <Container>
       <Header title="Channels" goBack={false} profileLink={true} addChannelLink={true} />

@@ -19,7 +19,6 @@ const EditProfilePage = () => {
   const onOpen = useCallback(() => { setOpenModal(true) }, []);
   const onClose = useCallback(() => { setOpenModal(false) }, []);
   const dispatch = useDispatch();
-  console.log('selectedPhoto', selectedPhoto);
 
   const handleDelete = useCallback(async () => {
     dispatch(deleteUser());

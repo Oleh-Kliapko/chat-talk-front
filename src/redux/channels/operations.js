@@ -6,7 +6,6 @@ export const getAllChannels = createAsyncThunk(
   async (num, thunkAPI) => {
     try {
       const { data } = await axiosInstance.get(`/api/v1/channels/owner_all/?page=${num}`);
-      console.log("getAllChannels" ,data);
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -18,7 +17,6 @@ export const getAllChannelsByUser = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       const { data } = await axiosInstance.get(`/api/v1/channels_only_owner/?page=${page}`);
-      console.log(data);
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -28,10 +26,8 @@ export const getAllChannelsByUser = createAsyncThunk(
 export const getAllChannelsBySearch = createAsyncThunk(
   'channels/getAllChannelsBySearch',
   async ({ page, search }, thunkAPI) => {
-    console.log("page",page);
     try {
       const { data } = await axiosInstance.get(`/api/v1/channels/search/?page=${page}&search=${search}`);
-      console.log(data);
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -75,77 +71,11 @@ export const deleteChannelById = createAsyncThunk(
 export const updateChannel = createAsyncThunk(
   'channels/updateChannel',
   async ({id, formData}, thunkAPI) => {
-    console.log('credentials', formData)
     try {
       const { data } = await axiosInstance.put(`/api/v1/channels/${id}/`, formData);
-      console.log('data', data)
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// -----------------------------------------------------------
-
-// export const getAllChannels = async () => {
-//     try {
-//         const { data } = await axiosInstance.get("/api/v1/channels/");
-//         console.log(data);
-//         return data
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
-
-// export const getChannelById = async (id) => {
-//     try {
-//         const { data } = await axiosInstance.get(`/api/v1/channels/${id}`);
-//         console.log(data);
-//         return data
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
-
-// export const createChannel = async (credentials) => {
-//     try {
-//         const { data } = await axiosInstance.post(`/api/v1/channels/`, credentials);
-//         console.log(data);
-//         return data
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
-// export const deleteChannelById = async (id) => {
-//     try {
-//         const { data } = await axiosInstance.delete(`/api/v1/channels/${id}`);
-//         console.log(data);
-//         return data
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
-// export const updateChannel = async (id,credentials ) => {
-//     try {
-//         const { data } = await axiosInstance.put(`/api/v1/channels/${id}`,credentials);
-//         console.log(data);
-//         return data
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };

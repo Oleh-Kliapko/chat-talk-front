@@ -8,7 +8,6 @@ import { App } from './App';
 import { store, persistor } from './redux/store';
 
 createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter basename="chat-talk-front">
@@ -16,5 +15,4 @@ createRoot(document.getElementById('root')).render(
       </BrowserRouter>
     </PersistGate>
   </Provider>
-  // </React.StrictMode>
 );
