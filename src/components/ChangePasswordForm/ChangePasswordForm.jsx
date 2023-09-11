@@ -65,6 +65,7 @@ export const ChangePasswordForm = () => {
                                 onBlur={handleBlur}
                                 value={values.current}
                                 placeholder="Enter your current password"
+                                error={Boolean(errors.current && touched.current)}
                             />
                             <ShowPasswordBtn
                                 type="button"
@@ -91,6 +92,7 @@ export const ChangePasswordForm = () => {
                                 onBlur={handleBlur}
                                 value={values.new}
                                 placeholder="Enter your new password"
+                                error={Boolean(errors.new && touched.new)}
                             />
                             <ShowPasswordBtn
                                 type="button"
@@ -117,6 +119,7 @@ export const ChangePasswordForm = () => {
                                 onBlur={handleBlur}
                                 value={values.confirm}
                                 placeholder="Confirm your new password"
+                                error={Boolean(errors.confirm && touched.confirm)}
                             />
                             <ShowPasswordBtn
                                 type="button"

@@ -38,6 +38,7 @@ export const themes = Object.freeze({
     main: '1px solid #D3D3D3',
     accent: '1px solid #9747FF',
     input: '1px solid #909090',
+    error: '1px solid #D8000C',
   },
   radii: {
     main: '4px',

@@ -24,20 +24,23 @@ margin-top:8px;
 `;
 export const Input = styled.input`
   width: 100%;
-  color: ${themes.colors.main};
+  color:${({error})=>error?themes.colors.error:themes.colors.main};
   font-family: 'Segoe-Regular';
   font-size: ${themes.fontSizes.m};
   padding: ${themes.spacing[3]}px ${themes.spacing[0]}px ${themes.spacing[3]}px
     ${themes.spacing[10]}px;
-  border: ${themes.border.main};
+  border: ${({error})=>error? themes.border.error:themes.border.main};
   border-radius: ${themes.radii.main};
-
-  &:focus,
+  background-color: ${({error})=>error? "#FFF2F4":"white"};
+   &:focus,
   &:hover {
     outline: none;
-    border: ${themes.border.accent};
-    box-shadow: 0 0 0 1px ${themes.colors.accent};
+   border: ${({ error }) => error ? themes.border.error : themes.border.accent};
+   box-shadow: ${({ error }) => error ? `0 0 0 1px ${themes.colors.error}` : `0 0 0 1px ${themes.colors.accent}`};
   }
+  &::placeholder {
+  color:${({ error }) => error ? themes.colors.error : themes.colors.grey};
+}
 `;
 
 export const LabelWrapper = styled.div`
