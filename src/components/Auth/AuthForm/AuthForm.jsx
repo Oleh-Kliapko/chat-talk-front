@@ -48,7 +48,7 @@ export const AuthForm = ({ from, onOpen }) => {
             {!isLoginPage && (
               <>
                 <Title>Username</Title>
-                <InputWrapper style={{ position: 'relative' }}>
+                <InputWrapper  style={{ position: 'relative' }}>
                   <BiUserCircle size={18} fill="#909090" style={{ position: 'absolute', top: '14px', left: '16px' }} />
                   <Input
                     type="text"
@@ -57,7 +57,8 @@ export const AuthForm = ({ from, onOpen }) => {
                     onBlur={handleBlur}
                     value={values.username}
                     placeholder="Username"
-                    id="username"
+                      id="username"
+                     error = {Boolean(errors.username && touched.username)} 
                   />
                 </InputWrapper>
                 <Error>{errors.username && touched.username && <FormFieldError title={errors.username} />}</Error>
@@ -72,7 +73,8 @@ export const AuthForm = ({ from, onOpen }) => {
                 onBlur={handleBlur}
                 value={values.email}
                 placeholder="Email address"
-                id="email"
+                  id="email"
+                   error = {Boolean(errors.email && touched.email)} 
               />
             </InputWrapper>
             <Error>{errors.email && touched.email && <FormFieldError title={errors.email} /> }</Error>
@@ -86,7 +88,8 @@ export const AuthForm = ({ from, onOpen }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
-                placeholder="Password"
+                  placeholder="Password"
+                  error = {Boolean(errors.password && touched.password)} 
               />
               <ShowPasswordBtn type="button" onClick={() => setIsShowPassword(prev => !prev)}>
                 {isShowPassword ? (<OnEyeIcon size={18} />) : (<OffEyeIcon size={18} />)}</ShowPasswordBtn>
@@ -104,7 +107,8 @@ export const AuthForm = ({ from, onOpen }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.confirmPassword}
-                    placeholder="Password"
+                      placeholder="Password"
+                      error = {Boolean(errors.confirmPassword && touched.confirmPassword)} 
                   />
                   <ShowPasswordBtn type="button" onClick={() => setIsShowConfirmPassword(prev => !prev)}>
                     {isShowConfirmPassword ? (<OnEyeIcon size={18} />) : (<OffEyeIcon size={18} />)}

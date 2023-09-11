@@ -3,14 +3,14 @@ import { themes } from '@/styles';
 
 export const MainContainer = styled.div`
 width: ${themes.breakpoints.mobile}px;
-height:665px;
-      overflow: auto;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
+height:665px;
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
 &::-webkit-scrollbar {
       width: 0;
       height: 0;

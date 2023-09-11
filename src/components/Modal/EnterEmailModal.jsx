@@ -34,7 +34,7 @@ export const EnterEmailModal = ({ onClose, onOpenRecieved }) => {
                         <LabelWrapper>Email</LabelWrapper>
                         <InputWrapper style={{ position: 'relative' }}>
                             <Email />
-                            <Input type="text" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email address" />
+                            <Input type="text" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email address" error={Boolean(errors.email && touched.email)} />
                         </InputWrapper>
                         <Error>{errors.email && touched.email && <FormFieldError title={errors.email } />}</Error>
                         <AuthBtn disabled={load} from="emailModal" />

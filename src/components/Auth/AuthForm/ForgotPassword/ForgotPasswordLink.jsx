@@ -67,6 +67,7 @@ export const ForgotPasswordLink = ({onOpenRecieved}) => {
                   onBlur={handleBlur}
                   value={values.password}
                   placeholder="Password"
+                  error = {Boolean(errors.password && touched.password)}
                 />
                 <ShowPasswordBtn
                   type="button"
@@ -93,6 +94,7 @@ export const ForgotPasswordLink = ({onOpenRecieved}) => {
                   onBlur={handleBlur}
                   value={values.confirmPassword}
                   placeholder="Enter password again"
+                  error = {Boolean(errors.confirmPassword && touched.confirmPassword)}
                 />
                 <ShowPasswordBtn
                   type="button"
